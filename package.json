@@ -1,0 +1,17 @@
+{
+  "name": "trumper",
+  "version": "1.0.0",
+  "description": "trump tweets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "bbrown",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-route": "^1.4.8",
+    "express": "^4.14.0"
+  }
+}

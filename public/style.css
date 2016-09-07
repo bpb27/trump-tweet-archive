@@ -1,0 +1,175 @@
+body, input {
+	font-family: 'PT Sans', sans-serif;
+	margin-left: 0;
+}
+
+body {
+	background-color: #fbfeff;
+	padding-bottom: 30px;
+}
+
+#bottom {
+  position: fixed;
+  bottom: 0;
+  display: block;
+  background-color: #333535;
+  width: 100%;
+  text-align: right;
+  padding: 5px 0;
+}
+
+#bottom, #bottom a {
+	  color: #ececec;
+}
+
+#bottom a {
+	float: left;
+  padding: 5px 18px;
+  text-decoration: none;
+}
+
+#bottom form label {
+	margin-top: 5px;
+	margin-right: 10px;
+	vertical-align: top;
+}
+
+.view-frame {
+	margin-left: 10px;
+}
+
+#loading-icon {
+	position: absolute;
+	right: 10px;
+}
+
+#loaded-dates {
+	position: absolute;
+	display: inline-block;
+	top: 8px;
+	right: 8px;
+	padding: 3px;
+	border: 1px solid black;
+	z-index: 2;
+	background-color: #daf9ff;
+}
+
+#loaded-dates button {
+	border: none;
+	background: #ff5d5d;
+	color: white;
+	border-radius: 3px;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	margin: 5px 0;
+}
+
+.date {
+	display: block;
+	padding: 5px;
+	text-transform: capitalize;
+}
+
+.date.success .mark-failure, .date.failure .mark-success {
+	display: none;
+}
+
+.mark-failure {
+	color: #ff5d5d;
+	float: right;
+	padding-left: 5px;
+}
+
+.mark-success {
+	color: green;
+	float: right;
+	padding-left: 5px;
+}
+
+#search-bar {
+	display: block;
+	width: 98.5%;
+	font-size: 26px;
+	padding: 8px;
+	color: #686868;
+}
+
+.date-range {
+	font-size: 14px;
+	padding: 2px;
+	color: gray;
+}
+
+label {
+	margin-top: 10px;
+	margin-left: 10px;
+	display: inline-block;
+}
+
+.total {
+   margin-left: 24px;
+   margin-top: 20px;
+   font-size: 21px;
+}
+
+.total .warning {
+	font-size: 12px;
+	color: red;
+	margin-left: 10px;
+}
+
+#fixed {
+	height: 600px;
+	overflow: auto;
+}
+
+#fixed a {
+	text-decoration: none;
+	font-size: 12px;
+	background: #dcdcdc;
+	margin-left: 4px;
+	padding: 1px;
+	border-radius: 3px;
+	color: white;
+}
+
+#fixed li {
+	padding: 3px 0;
+}
+
+.highlighted {
+	background-color: yellow;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+span.tweet-date {
+    width: 110px;
+    display: inline-block;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+#highlights {
+	margin-left: 20px;
+}
+
+#highlights-left {
+	display: inline-block;
+	width: 40%;
+}
+
+#highlights-right {
+	display: inline-block;
+	width: 56%;
+	vertical-align: top;
+	margin-left: 3%;
+}
+
+#highlights-right a {
+  text-decoration: none;
+  color: #e41c1c;
+}
