@@ -162,6 +162,11 @@ span.tweet-date {
 	width: 40%;
 }
 
+#highlights-left a {
+  text-decoration: none;
+  color: #e41c1c;
+}
+
 #highlights-right {
 	display: inline-block;
 	width: 56%;
@@ -170,6 +175,12 @@ span.tweet-date {
 }
 
 #highlights-right a {
+  text-decoration: none;
+  color: black;
+	cursor: pointer;
+}
+
+#highlights-right .link-highlight a {
   text-decoration: none;
   color: #e41c1c;
 }

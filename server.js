@@ -2,16 +2,16 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
-var port = 8000
+var port = process.env.PORT || 8000
 
 app.use(express.static('public'));
 
 app.get('/node_modules/angular/angular.min.js', function (req, res) {
-  res.sendFile(__dirname + '/node_modules/angular/angular.min.js');
+    res.sendFile(__dirname + '/node_modules/angular/angular.min.js');
 });
 
 app.get('/node_modules/angular-route/angular-route.min.js', function (req, res) {
-  res.sendFile(__dirname + '/node_modules/angular-route/angular-route.min.js');
+    res.sendFile(__dirname + '/node_modules/angular-route/angular-route.min.js');
 });
 
 app.get('/bins/1v0jv', function (req, res) {
@@ -47,5 +47,5 @@ app.get('/bins/3ao4b', function (req, res) {
 });
 
 http.listen(port, function () {
-	console.log("listening on *" + port);
+    console.log("listening on *" + port);
 });
