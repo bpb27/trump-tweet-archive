@@ -23,5 +23,9 @@
 	</label>
 	<ol id='fixed' when-scrolled="loadMore()">
 		<li ng-repeat="tweet in displayed" ng-bind-html="tweet | highlight:query"></li>
+		<!-- <li ng-repeat="tweet in displayed">
+			<span class="tweet-date">{{tweet.date}}</span> {{tweet.text}}
+			<button ng-click="log(tweet)">Log</button>
+		</li> -->
 	</ol>
 </div>

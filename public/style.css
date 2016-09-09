@@ -1,5 +1,6 @@
 body, input {
-	font-family: 'PT Sans', sans-serif;
+	/*font-family: 'PT Sans', sans-serif;*/
+	font-family: 'Hind', sans-serif;
 	margin-left: 0;
 }
 
@@ -16,6 +17,8 @@ body {
   width: 100%;
   text-align: right;
   padding: 5px 0;
+	letter-spacing: 0.2px;
+	font-size: 14px;
 }
 
 #bottom, #bottom a {
@@ -24,7 +27,7 @@ body {
 
 #bottom a {
 	float: left;
-  padding: 5px 18px;
+  padding: 5px 8px;
   text-decoration: none;
 }
 
@@ -32,6 +35,10 @@ body {
 	margin-top: 5px;
 	margin-right: 10px;
 	vertical-align: top;
+}
+
+#bottom input[type="image"] {
+	vertical-align: bottom;
 }
 
 .view-frame {
@@ -48,10 +55,10 @@ body {
 	display: inline-block;
 	top: 8px;
 	right: 8px;
-	padding: 3px;
-	border: 1px solid black;
+	padding: 5px;
 	z-index: 2;
-	background-color: #daf9ff;
+	background-color: #424343;
+	color: #dfdbdb;
 }
 
 #loaded-dates button {
@@ -91,14 +98,24 @@ body {
 	display: block;
 	width: 98.5%;
 	font-size: 26px;
-	padding: 8px;
+	padding: 9px 0 6px 13px;
 	color: #686868;
+	margin-top: 12px;
+	margin-bottom: 9px;
+	border: 2px solid black;
+	border-radius: 2px;
 }
 
 .date-range {
 	font-size: 14px;
-	padding: 2px;
+	padding: 4px 0 2px 5px;
 	color: gray;
+	border: 1px solid black;
+	border-radius: 2px;
+}
+
+.settings-check {
+    font-size: 13px;
 }
 
 label {
@@ -108,9 +125,10 @@ label {
 }
 
 .total {
-   margin-left: 24px;
-   margin-top: 20px;
-   font-size: 21px;
+  margin-left: 24px;
+  margin-top: 20px;
+  font-size: 21px;
+	max-height: 30px;
 }
 
 .total .warning {
@@ -122,6 +140,7 @@ label {
 #fixed {
 	height: 600px;
 	overflow: auto;
+	margin-top: 0;
 }
 
 #fixed a {
@@ -135,7 +154,8 @@ label {
 }
 
 #fixed li {
-	padding: 3px 0;
+	padding: 4px 0 1px 0;
+	font-size: 15px;
 }
 
 .highlighted {
@@ -149,8 +169,14 @@ label {
 span.tweet-date {
     width: 110px;
     display: inline-block;
-    font-weight: bold;
     padding-left: 10px;
+}
+
+#banner {
+  text-align: center;
+  letter-spacing: 13px;
+  border-bottom: 1px solid black;
+  padding-bottom: 18px;
 }
 
 #highlights {
@@ -183,4 +209,13 @@ span.tweet-date {
 #highlights-right .link-highlight a {
   text-decoration: none;
   color: #e41c1c;
+}
+
+.quote-list ul li {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.quote-list li {
+	margin-bottom: 3px;
 }

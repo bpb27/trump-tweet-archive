@@ -24,7 +24,10 @@ app.controller('highlightsCtrl', ['$timeout', function ($timeout) {
     $timeout(transformTweets, 500);
 
     function transformTweets() {
-        if (window.twttr && window.twttr.widgets) window.twttr.widgets.load();
+        if (window.twttr && window.twttr.widgets)
+            window.twttr.widgets.load();
+        else
+            $timeout(transformTweets, 500);
     }
 
 }]);
@@ -41,6 +44,10 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
 
     $scope.loadMore = function () {
         $scope.increment += 100;
+    }
+
+    $scope.log = function (tweet) {
+        console.log('<li><a href="https://twitter.com/realDonaldTrump/status/' + tweet.id + '">"' + tweet.text + '"</a></li>');
     }
 
     $scope.removeDatesModal = function () {
