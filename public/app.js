@@ -23,26 +23,28 @@ app.config(function ($routeProvider) {
 });
 
 
+app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
+    document.querySelector('body').scrollTop = 0;
+    TweetService.transform();
+}]);
+
+
 app.controller('highlightsCtrl', ['$scope', '$http', '$routeParams', 'TweetService', function ($scope, $http, $routeParams, TweetService) {
 
     $scope.media = [];
-    TweetService.transform()
+    TweetService.transform();
 
-    if ($routeParams && $routeParams.birtherism) {
-
-    } else {
-        $http.get('/data/media.json').then(function (results) {
-            results.data.map(function (item) {
-                item.date = new Date(item.date);
-            });
-            $scope.media = results.data;
-        })
-    }
+    $http.get('/data/media.json').then(function (results) {
+        results.data.map(function (item) {
+            item.date = new Date(item.date);
+        });
+        $scope.media = results.data;
+    })
 
 }]);
 
 
-app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', 'TweetService', function ($scope, $http, $sce, $routeParams, TweetService) {
+app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, TweetService) {
 
     $scope.all = [];
     $scope.dateRange = { start: null, end: null };
@@ -69,8 +71,13 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', 'Tweet
     }
 
     $scope.$watch('query', function () {
-        updateList(true);
-        checkForWarning();
+        var query = $scope.query;
+        $timeout(function () {
+            if (query === $scope.query) {
+                updateList(true);
+                checkForWarning();
+            }
+        }, 120);
     });
 
     $scope.$watchGroup([
@@ -227,3 +234,5 @@ function spanDate(d) {
 function tweetLink(id) {
     return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';
 }
+
+console.log("Carla Console-Checker")

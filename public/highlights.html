@@ -1,6 +1,7 @@
+<div id="highlights" ng-controller="highlightsCtrl">
 
 <h1 id="banner">Trump Twitter Archive</h1>
-<div id="highlights" ng-controller="highlightsCtrl">
+<div class="banner-spacing"></div>
 
 <div id="highlights-left">
 
@@ -110,7 +111,7 @@
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/highlights/birtherism">84 tweets</a> implying Obama is foreign ("birtherism") </h2>
+    <h2><a ng-href="#/highlights/birtherism">84 tweets</a> implying Obama is foreign (birtherism) </h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">An &#39;extremely credible source&#39; has called my office and told me that <a href="https://twitter.com/BarackObama">@BarackObama</a>&#39;s birth certificate is a fraud.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/232572505238433794">August 6, 2012</a></blockquote>
   </div>
 
@@ -143,7 +144,8 @@
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Got to do something about these missing chidlren grabbed by the perverts. Too many incidents--fast trial, death penalty.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/255294883680632833">October 8, 2012</a></blockquote>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Michael Forbes lives in a pigsty and bad liquor company Glenfiddich gave him Scot of the Year award...</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/275998837166972928">December 4, 2012</a></blockquote>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Amazing how the haters &amp; losers keep tweeting the name “F**kface Von Clownstick” like they are so original &amp; like no one else is doing it...</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/330359969813770242">May 3, 2013</a></blockquote>
-    <blockquote class="twitter-tweet" data-lang="en"><a href="https://twitter.com/realDonaldTrump/status/714898756420939780" target="_blank"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Why is this reporter touching me as I leave news conference? What is in her hand?? <a href="https://t.co/HQB8dl0fhn">pic.twitter.com/HQB8dl0fhn</a></p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/714898756420939780">March 29, 2016</a></blockquote>
+    <p style="padding-left: 3px">Editorial Note: It was a pen ^^</p>
   </div>
 
 </div> <!-- end of left side -->
@@ -272,7 +274,7 @@
   <div class="quote-list link-highlight">
     <h2>Media Disdain</h2>
     <ol>
-      <li ng-repeat="entry in media | orderBy: 'target' " class="smaller-text">
+      <li ng-repeat="entry in media | orderBy: 'target' ">
         {{entry.target}} <a ng-href="https://twitter.com/realDonaldTrump/status/{{entry.id}}" target="_blank">"{{entry.snippet}}"</a> ({{entry.date | date : 'MM/dd/yyyy'}})
         <!-- <ul ng-if="entry.response">
           <li>{{entry.response}} [<a ng-href="{{entry.source}}" target="_blank">src</a>]</li>
@@ -282,6 +284,6 @@
   </div>
 
 
-</div>
+</div><!-- end of right side -->
 
 </div> <!-- end of page -->

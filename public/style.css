@@ -6,6 +6,27 @@ body, input {
 body {
 	background-color: #fbfeff;
 	padding-bottom: 30px;
+	min-width: 880px;
+}
+
+#banner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-width: 880px;
+	margin: 0;
+	padding: 10px 0;
+	text-align: center;
+  letter-spacing: 13px;
+  border-bottom: 5px solid #e41c1c;
+  background-color: #333535;
+  color: #faf8f8;
+	font-weight: 400
+}
+
+.banner-spacing {
+	height: 90px;
 }
 
 #bottom {
@@ -14,6 +35,8 @@ body {
   display: block;
   background-color: #333535;
   width: 100%;
+	min-width: 880px;
+	min-width: 880px;
   padding: 5px 0;
 	letter-spacing: 0.2px;
 	font-size: 14px;
@@ -47,7 +70,7 @@ body {
 }
 
 #bottom #pp-button {
-	transition: background-color 0.5s ease;
+	transition: background-color 0.7s ease;
 	border: none;
 	height: 32px;
 	cursor: pointer;
@@ -55,9 +78,8 @@ body {
 	background: gold;
 	color: #333535;
 	font-size: 14px;
-	font-family: Hind;
 	padding-top: 3px;
-	border-radius: 14px;
+	border-radius: 20px;
 	margin-right: 3px;
 }
 
@@ -82,8 +104,8 @@ body {
 #loaded-dates {
 	position: absolute;
 	display: inline-block;
-	top: 8px;
-	right: 8px;
+	top: 98px;
+	right: 11px;
 	padding: 5px;
 	z-index: 2;
 	background-color: #424343;
@@ -129,7 +151,6 @@ body {
 	font-size: 26px;
 	padding: 9px 0 6px 13px;
 	color: #686868;
-	margin-top: 12px;
 	margin-bottom: 9px;
 	border: 2px solid black;
 	border-radius: 2px;
@@ -158,6 +179,8 @@ label {
   margin-top: 20px;
   font-size: 21px;
 	max-height: 30px;
+	width: 80%;
+	margin-bottom: 20px;
 }
 
 .total .warning {
@@ -169,7 +192,7 @@ label {
 #fixed {
 	height: 600px;
 	overflow: auto;
-	margin-top: 0;
+	margin: 0;
 }
 
 #fixed a {
@@ -177,7 +200,7 @@ label {
 	font-size: 12px;
 	background: #dcdcdc;
 	margin-left: 4px;
-	padding: 1px;
+	padding: 1px 1px 0 1px;
 	border-radius: 3px;
 	color: white;
 }
@@ -201,15 +224,13 @@ span.tweet-date {
     padding-left: 10px;
 }
 
-#banner {
-  text-align: center;
-  letter-spacing: 13px;
-  border-bottom: 1px solid black;
-  padding-bottom: 18px;
-}
-
 #highlights {
 	margin-left: 20px;
+}
+
+#highlights h2 {
+	letter-spacing: 1px;
+	font-weight: 400;
 }
 
 #highlights-left {
@@ -235,9 +256,18 @@ span.tweet-date {
 	cursor: pointer;
 }
 
+#highlights-right h2 {
+  text-decoration: underline;;
+}
+
 #highlights-right .link-highlight a {
   text-decoration: none;
-  color: #e41c1c;
+  color: #d30000;
+}
+
+.quote-list ol li {
+	margin-bottom: 3px;
+	font-size: 14px;
 }
 
 .quote-list ul li {
@@ -245,24 +275,23 @@ span.tweet-date {
     margin-top: 4px;
 }
 
-.quote-list li {
-	margin-bottom: 3px;
+.center {
+	text-align: center;
 }
 
-.smaller-text {
-	font-size: 14px;
+.new-section {
+    margin-top: 80px;
+}
+
+#tweet-panel {
+	background-color: #d3d3d3;
+  text-align: center;
 }
 
 .embedded-tweet {
 	display: inline-block;
 	vertical-align: top;
 	width: 33%;
-}
-
-.center {
-	text-align: center;
-}
-
-.new-section {
-    margin-top: 100px;
+	width: 32%;
+  padding-left: 6px;
 }
