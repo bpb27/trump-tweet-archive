@@ -1,5 +1,4 @@
 body, input {
-	/*font-family: 'PT Sans', sans-serif;*/
 	font-family: 'Hind', sans-serif;
 	margin-left: 0;
 }
@@ -15,10 +14,21 @@ body {
   display: block;
   background-color: #333535;
   width: 100%;
-  text-align: right;
   padding: 5px 0;
 	letter-spacing: 0.2px;
 	font-size: 14px;
+}
+
+#bottom #bottom-left {
+	display: inline-block;
+	text-align: left;
+	padding-top: 5px;
+	padding-left: 3px;
+}
+
+#bottom #bottom-right {
+	display: inline-block;
+	float: right;
 }
 
 #bottom, #bottom a {
@@ -26,8 +36,7 @@ body {
 }
 
 #bottom a {
-	float: left;
-  padding: 5px 8px;
+  padding: 5px 14px;
   text-decoration: none;
 }
 
@@ -37,9 +46,29 @@ body {
 	vertical-align: top;
 }
 
-#bottom input[type="image"] {
-	vertical-align: bottom;
+#bottom #pp-button {
+	transition: background-color 0.5s ease;
+	border: none;
+	height: 32px;
+	cursor: pointer;
+	width: 118px;
+	background: gold;
+	color: #333535;
+	font-size: 14px;
+	font-family: Hind;
+	padding-top: 3px;
+	border-radius: 14px;
+	margin-right: 3px;
 }
+
+#bottom #pp-button:hover {
+	background-color: #85dcff;
+}
+
+#bottom #pp-button:focus {
+	outline: none;
+}
+
 
 .view-frame {
 	margin-left: 10px;
@@ -218,4 +247,22 @@ span.tweet-date {
 
 .quote-list li {
 	margin-bottom: 3px;
+}
+
+.smaller-text {
+	font-size: 14px;
+}
+
+.embedded-tweet {
+	display: inline-block;
+	vertical-align: top;
+	width: 33%;
+}
+
+.center {
+	text-align: center;
+}
+
+.new-section {
+    margin-top: 100px;
 }

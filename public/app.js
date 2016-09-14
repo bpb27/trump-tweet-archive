@@ -14,40 +14,46 @@ app.config(function ($routeProvider) {
         .when("/highlights", {
             templateUrl: "highlights.html"
         })
+        .when("/highlights/birtherism", {
+            templateUrl: "birtherism.html"
+        })
         .otherwise({
             templateUrl: "archive.html"
         });
 });
 
-app.controller('highlightsCtrl', ['$timeout', function ($timeout) {
 
-    $timeout(transformTweets, 500);
+app.controller('highlightsCtrl', ['$scope', '$http', '$routeParams', 'TweetService', function ($scope, $http, $routeParams, TweetService) {
 
-    function transformTweets() {
-        if (window.twttr && window.twttr.widgets)
-            window.twttr.widgets.load();
-        else
-            $timeout(transformTweets, 500);
+    $scope.media = [];
+    TweetService.transform()
+
+    if ($routeParams && $routeParams.birtherism) {
+
+    } else {
+        $http.get('/data/media.json').then(function (results) {
+            results.data.map(function (item) {
+                item.date = new Date(item.date);
+            });
+            $scope.media = results.data;
+        })
     }
 
 }]);
 
-app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', function ($scope, $http, $sce, $routeParams) {
+
+app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', 'TweetService', function ($scope, $http, $sce, $routeParams, TweetService) {
 
     $scope.all = [];
     $scope.dateRange = { start: null, end: null };
     $scope.loaded = [];
     $scope.increment = 100;
     $scope.query = $routeParams && $routeParams.search || '';
-    $scope.settings = { descending: true, caseSensitive: false, exactMatch: false };
+    $scope.settings = { descending: true, retweets: true, caseSensitive: false, exactMatch: false };
     $scope.showModal = false;
 
     $scope.loadMore = function () {
         $scope.increment += 100;
-    }
-
-    $scope.log = function (tweet) {
-        console.log('<li><a href="https://twitter.com/realDonaldTrump/status/' + tweet.id + '">"' + tweet.text + '"</a></li>');
     }
 
     $scope.removeDatesModal = function () {
@@ -55,7 +61,11 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
     }
 
     $scope.retryUrl = function (item) {
-        requestTweets(item);
+        requestTweets([item.year]);
+    }
+
+    $scope.showUrlToPage = function () {
+        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + encodeURI($scope.query));
     }
 
     $scope.$watch('query', function () {
@@ -66,6 +76,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
     $scope.$watchGroup([
 			'increment',
 			'settings.descending',
+			'settings.retweets',
 			'settings.caseSensitive',
 			'settings.exactMatch',
 			'dateRange.start',
@@ -75,9 +86,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
         checkForWarning();
     });
 
-    dataMap().forEach(function (item) {
-        requestTweets(item);
-    });
+    requestTweets(years());
 
     function checkForWarning() {
         if ($scope.settings.exactMatch && $scope.query.split(' ').length > 1)
@@ -86,39 +95,16 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
             $scope.warning = '';
     }
 
-    function dataMap() {
-        return [
-            { "year": 2016, "url": "/bins/1v0jv", "months": "jan-dec" },
-            { "year": 2015, "url": "/bins/25qcr", "months": "jul-dec" },
-            { "year": 2015, "url": "/bins/4llxn", "months": "jan-jul" },
-            { "year": 2014, "url": "/bins/3gvvv", "months": "jan-dec" },
-            { "year": 2013, "url": "/bins/17ni3", "months": "jul-dec" },
-            { "year": 2013, "url": "/bins/3nj2z", "months": "jan-jul" },
-            { "year": 2012, "url": "/bins/1xdff", "months": "jan-dec" },
-            { "year": 2011, "url": "/bins/4yom3", "months": "jan-dec" },
-            { "year": 2010, "url": "/bins/3tykb", "months": "jan-dec" },
-            { "year": 2009, "url": "/bins/3ao4b", "months": "jan-dec" }
-      ];
-    }
-
-    function requestTweets(item) {
-
-        $http.get(addHostname(item.url)).then(function (results) {
-            $scope.all = $scope.all.concat(results.data);
-            $scope.increment += 1;
-            $scope.showModal = true;
-            $scope.loaded = removeExisting(item.url, $scope.loaded).concat({
-                year: item.year,
-                months: item.months,
-                url: item.url,
-                status: 'success'
-            });
-        }, function (error) {
-            $scope.loaded = removeExisting(item.url, $scope.loaded).concat({
-                year: item.year,
-                months: item.months,
-                url: item.url,
-                status: 'failure'
+    function requestTweets(years) {
+        years.forEach(function (year) {
+            var url = '/data/' + year + '.json';
+            TweetService.load(url, year, function (data) {
+                $scope.all = $scope.all.concat(data);
+                $scope.increment += 1;
+                $scope.showModal = true;
+                $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'success' });
+            }, function (error) {
+                $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'failure' });
             });
         });
 
@@ -126,10 +112,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
             return items.filter(function (item) {
                 return item.url !== url;
             });
-        }
-
-        function addHostname(url) {
-            return location.hostname === 'localhost' ? url : 'https://api.myjson.com' + url;
         }
     }
 
@@ -142,6 +124,8 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
             if ($scope.dateRange.start && new Date(item.date) < $scope.dateRange.start)
                 return;
             if ($scope.dateRange.end && new Date(item.date) > $scope.dateRange.end)
+                return;
+            if (!$scope.settings.retweets && item.retweet)
                 return;
             if (!$scope.query)
                 return true;
@@ -170,15 +154,12 @@ app.controller('archiveCtrl', ['$scope', '$http', '$sce', '$routeParams', functi
 
     }
 
+    function years() {
+        return [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
+    }
+
 }]);
 
-app.filter('highlight', function ($sce) {
-    return function (tweet, phrase, exact) {
-        if (phrase)
-            return $sce.trustAsHtml(spanDate(tweet.date) + (tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>') + tweetLink(tweet.id));
-        return $sce.trustAsHtml(spanDate(tweet.date) + tweet.text + tweetLink(tweet.id));
-    }
-});
 
 app.directive('whenScrolled', function () {
     return function (scope, elm, attr) {
@@ -190,13 +171,58 @@ app.directive('whenScrolled', function () {
     };
 });
 
+
+app.filter('highlight', function ($sce) {
+    return function (tweet, phrase, exact) {
+        if (phrase)
+            return $sce.trustAsHtml(spanDate(tweet.date) + (tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>') + tweetLink(tweet.id));
+        return $sce.trustAsHtml(spanDate(tweet.date) + tweet.text + tweetLink(tweet.id));
+    }
+});
+
+
+app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
+
+    this.loaded = {};
+
+    this.load = function (url, year, successHandler, errorHandler) {
+        if (this.loaded[year]) {
+            successHandler(this.loaded[year]);
+        } else {
+            $http.get(url).then(function (results) {
+                this.loaded[year] = results.data;
+                successHandler(results.data);
+            }.bind(this), errorHandler);
+        }
+    }
+
+    this.transform = function () {
+        var attempts = 100;
+
+        $timeout(transformTweets, 100);
+
+        function transformTweets() {
+            if (window.twttr && window.twttr.widgets && window.twttr.widgets.load)
+                window.twttr.widgets.load();
+            else if (attempts) {
+                attempts -= 1;
+                $timeout(transformTweets, 100);
+            }
+        }
+    }
+
+}]);
+
+
 function esc(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
+
 function spanDate(d) {
     return '<span class="tweet-date">' + d + '</span>';
 }
+
 
 function tweetLink(id) {
     return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';

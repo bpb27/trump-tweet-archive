@@ -4,7 +4,7 @@
 	</div>
 	<div ng-show="showModal" id="loaded-dates">
 		<span ng-repeat="date in loaded | orderBy : 'year' " ng-class="date.status" class="date">
-			{{date.year}} {{date.months}}
+			{{date.year}}
 			<span class="mark-success">✓</span>
 			<span class="mark-failure pointer" ng-click="retryUrl(date)">✕</span>
 		</span>
@@ -14,8 +14,10 @@
 	<input class="date-range" type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
 	<input class="date-range" type="date" ng-model="dateRange.end" placeholder="yyyy-MM-dd">
 	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending"> recent first</label>
-	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact match</label>
+	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> show retweets</label>
+	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact word match</label>
 	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.caseSensitive"> case sensitive</label>
+	<label class="settings-check pointer" ng-click="showUrlToPage()">link to this search</label>
 	<br>
 	<label class="total">
 		Total: <span>{{matches.length}}</span>
@@ -23,9 +25,5 @@
 	</label>
 	<ol id='fixed' when-scrolled="loadMore()">
 		<li ng-repeat="tweet in displayed" ng-bind-html="tweet | highlight:query"></li>
-		<!-- <li ng-repeat="tweet in displayed">
-			<span class="tweet-date">{{tweet.date}}</span> {{tweet.text}}
-			<button ng-click="log(tweet)">Log</button>
-		</li> -->
 	</ol>
 </div>
