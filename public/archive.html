@@ -19,7 +19,7 @@
 	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> show retweets</label>
 	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact word match</label>
 	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.caseSensitive"> case sensitive</label>
-	<label class="settings-check pointer" ng-click="showUrlToPage()">link to this search</label>
+	<label class="settings-check pointer" ng-if="query" ng-click="showUrlToPage()">link to this search</label>
 	<br>
 	<label class="total">
 		Total: <span>{{matches.length}}</span>

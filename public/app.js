@@ -11,6 +11,12 @@ app.config(function ($routeProvider) {
         .when("/archive/:search", {
             templateUrl: "archive.html"
         })
+        .when("/archive/:search/:params", {
+            templateUrl: "archive.html"
+        })
+        .when("/archive/:search/:params/:dates", {
+            templateUrl: "archive.html"
+        })
         .when("/highlights", {
             templateUrl: "highlights.html"
         })
@@ -47,11 +53,11 @@ app.controller('highlightsCtrl', ['$scope', '$http', '$routeParams', 'TweetServi
 app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, TweetService) {
 
     $scope.all = [];
-    $scope.dateRange = { start: null, end: null };
+    $scope.dateRange = getDateRange();
     $scope.loaded = [];
     $scope.increment = 100;
-    $scope.query = $routeParams && $routeParams.search || '';
-    $scope.settings = { descending: true, retweets: true, caseSensitive: false, exactMatch: false };
+    $scope.query = getQuery();
+    $scope.settings = getSettings();
     $scope.showModal = false;
 
     $scope.loadMore = function () {
@@ -67,11 +73,12 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     $scope.showUrlToPage = function () {
-        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + encodeURI($scope.query));
+        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + encodeURI($scope.query) + createParams());
     }
 
     $scope.$watch('query', function () {
         var query = $scope.query;
+        $scope.showModal = false;
         $timeout(function () {
             if (query === $scope.query) {
                 updateList(true);
@@ -100,6 +107,65 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             $scope.warning = '(exact match searches for a single word)';
         else
             $scope.warning = '';
+    }
+
+    function createParams() {
+        var params = '/';
+        $scope.settings.descending ? params += 't' : params += 'f';
+        $scope.settings.retweets ? params += 't' : params += 'f';
+        $scope.settings.exactMatch ? params += 't' : params += 'f';
+        $scope.settings.caseSensitive ? params += 't' : params += 'f';
+        params += parseDateRange();
+        return params;
+    }
+
+    function getDateRange() {
+        var defaultDates = { start: null, end: null };
+        if ($routeParams && $routeParams.dates) {
+            try {
+                var paramDates = $routeParams.dates.split('_');
+                defaultDates.start = createDate(paramDates[0]);
+                defaultDates.end = createDate(paramDates[1]);
+            } catch (error) {}
+        }
+
+        return defaultDates;
+
+        function createDate(d) {
+            if (!d) return null;
+            if (d.length < 8) return null;
+            if (!isNaN(new Date(d).getTime())) return new Date(d);
+            return null;
+        }
+    }
+
+    function getQuery() {
+        return $routeParams && $routeParams.search || '';
+    }
+
+    function getSettings() {
+        var defaultSettings = { descending: true, retweets: true, exactMatch: false, caseSensitive: false };
+
+        if (!$routeParams)
+            return defaultSettings;
+        if (!$routeParams.params || $routeParams.params.length !== 4)
+            return defaultSettings;
+
+        var p = $routeParams.params;
+        return { descending: parse(p[0]), retweets: parse(p[1]), exactMatch: parse(p[2]), caseSensitive: parse(p[3]) };
+
+        function parse(letter) {
+            return letter === 't';
+        }
+    }
+
+    function parseDateRange() {
+        var str = '/' + parseDate($scope.dateRange.start) + '_' + parseDate($scope.dateRange.end);
+        return str.length === 2 ? '' : str;
+
+        function parseDate(d) {
+            return !d ? '' : [d.getMonth() + 1, d.getDate(), d.getFullYear()].join('-');
+        }
     }
 
     function requestTweets(years) {
@@ -235,4 +301,4 @@ function tweetLink(id) {
     return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';
 }
 
-console.log("Carla Console-Checker")
+console.log("Whoa there, Carla Console-Checker")
