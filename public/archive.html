@@ -13,18 +13,22 @@
 		<button ng-click="removeDatesModal()" class="pointer">close</button>
 	</div>
 	<input id="search-bar" type="text" tabindex='1' placeholder="Search..." ng-model="query">
-	<input class="date-range" type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
-	<input class="date-range" type="date" ng-model="dateRange.end" placeholder="yyyy-MM-dd">
-	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending"> recent first</label>
-	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> show retweets</label>
-	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact word match</label>
-	<label class="settings-check pointer"><input type="checkbox" ng-model="settings.caseSensitive"> case sensitive</label>
-	<label class="settings-check pointer" ng-if="query" ng-click="showUrlToPage()">link to this search</label>
-	<br>
-	<label class="total">
-		Total: <span>{{matches.length}}</span>
-		<span class="warning">{{warning}}</span>
-	</label>
+	<div id="control-bar">
+		<div id="controls-left" class="controls">
+			<label class="total">Total: {{matches.length}}</label>
+		</div>
+		<div id="controls-middle" class="controls">
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending"> recent first</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> show retweets</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact word match</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.caseSensitive"> case sensitive</label>
+		</div>
+		<div id="controls-right" class="controls">
+			<input class="date-range" type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
+			<input class="date-range" type="date" ng-model="dateRange.end" placeholder="yyyy-MM-dd">
+			<label class="settings-check pointer" ng-if="query" ng-click="showUrlToPage()">link to this search</label>
+		</div>
+	</div>
 	<ol id='fixed' when-scrolled="loadMore()">
 		<li ng-repeat="tweet in displayed" ng-bind-html="tweet | highlight:query"></li>
 	</ol>

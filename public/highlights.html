@@ -3,35 +3,49 @@
 <h1 id="banner">Trump Twitter Archive</h1>
 <div class="banner-spacing"></div>
 
+<div id="quicklinks-button" ng-click="toggleQuicklinks()">Quicklinks <span ng-if="!showingQuicklinks">&#x25BC;</span><span ng-if="showingQuicklinks">&#x25B2;</span></div>
+<div id="quicklinks" ng-if="showingQuicklinks">
+  <a class="quicklink" ng-href="#/archive">Full Archive</a>
+  <a class="quicklink" ng-href="#/highlights/birtherism">Birtherism</a>
+  <a class="quicklink" ng-href="#/highlights/retaliation">Retaliation</a>
+  <a class="quicklink" ng-href="#/highlights/women">Women</a>
+  <a class="quicklink" ng-href="#/archive/global%20warming/ftff">Global Warming</a>
+  <a class="quicklink" ng-href="#/archive/@Lord_Sugar/ftff">Feud: Lord Sugar</a>
+  <a class="quicklink" ng-href="#/archive/@rosie/ftff">Feud: Rosie O'Donnell</a>
+  <a class="quicklink" ng-href="#/archive/@macmiller/ftff">Feud: Mac Miller</a>
+  <a class="quicklink" ng-href="#/archive/@toure/ftff">Feud: Toure</a>
+</div>
+
 <div id="highlights-left">
 
+  <h1 class="category no-top-margin">Recurrent Insults</h1>
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/loser">169 tweets</a> with "loser" or "losers"</h2>
+    <h2><a ng-href="#/archive/loser">170 tweets</a> with "loser" </h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I feel sorry for Rosie &#39;s new partner in love whose parents are devastated at the thought of their daughter being with <a href="https://twitter.com/Rosie">@Rosie</a>--a true loser.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/146994336670822400" target="_blank">December 14, 2011</a></blockquote>
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/dumb">160 tweets</a> with "dumb", "dumber", "dumbest", or "dummy"</h2>
+    <h2><a ng-href="#/archive/dumb">162 tweets</a> with "dumb" or "dummy"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">You must admit that Bryant Gumbel is one of the dumbest racists around - an arrogant dope with no talent. Failed at CBS etc-why still on TV?</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/370022928639098880" target="_blank">August 21, 2013</a></blockquote>
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/terrible">140 tweets</a> with "terrible"</h2>
+    <h2><a ng-href="#/archive/terrible">142 tweets</a> with "terrible"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I loved beating these two terrible human beings. I would never recommend that anyone use her lawyer, he is a total loser!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/337710578002980865" target="_blank">May 23, 2013</a></blockquote>
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/stupid">136 tweets</a> with "stupid", "stupidity", or "stupidest"</h2>
+    <h2><a ng-href="#/archive/stupid">136 tweets</a> with "stupid"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/michellemalkin">@michellemalkin</a> You were born stupid!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/315103294693466112" target="_blank">March 22, 2013</a></blockquote>
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/weak">125 tweets</a> with "weak" or "weakness"</h2>
+    <h2><a ng-href="#/archive/weak">125 tweets</a> with "weak"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">There is no longer a Bernie Sanders &quot;political revolution.&quot; He is turning out to be a weak and somewhat pathetic figure,wants it all to end!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/757205678821928960" target="_blank">July 24, 2016</a></blockquote>
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/dishonest">85 tweets</a> with "dishonest"</h2>
+    <h2><a ng-href="#/archive/dishonest">86 tweets</a> with "dishonest"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">A dishonest slob of a reporter, who doesn&#39;t understand my sarcasm when talking about him or his wife, wrote a foolish &amp; boring Trump &quot;hit&quot;</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/434546124578648064" target="_blank">February 15, 2014</a></blockquote>
   </div>
 
@@ -66,7 +80,7 @@
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/dopey">40 tweets</a> with "dopey"</h2>
+    <h2><a ng-href="#/archive/dopey">41 tweets</a> with "dopey"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Dopey  <a href="https://twitter.com/Lord_Sugar">@Lord_Sugar</a>  I&#39;m worth $8 billion and you&#39;re worth peanuts...without my show nobody would even know who you are.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/277107284356771841" target="_blank">December 7, 2012</a></blockquote>
   </div>
 
@@ -86,7 +100,7 @@
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/disgusting">30 tweets</a> with "disgusting"</h2>
+    <h2><a ng-href="#/archive/disgusting">31 tweets</a> with "disgusting"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Barney Frank looked disgusting--nipples protruding--in his blue shirt before Congress. Very very disrespectful.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/149589104168939520" target="_blank">December 21, 2011</a></blockquote>
   </div>
 
@@ -105,7 +119,8 @@
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Some low-life journalist claims that I &quot;made a pass&quot; at her 29 years ago. Never happened! Like the <a href="https://twitter.com/nytimes">@nytimes</a> story which has become a joke!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/733113480207798272" target="_blank">May 19, 2016</a></blockquote>
   </div>
 
-  <div class="total-highlight new-section">
+  <h1 class="category new-section">Conspiracy Theories</h1>
+  <div class="total-highlight">
     <h2><a ng-href="#/archive/global%20warming">91 tweets</a> implying "global warming" is fake</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The concept of global warming was created by and for the Chinese in order to make U.S. manufacturing non-competitive.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/265895292191248385" target="_blank">November 6, 2012</a></blockquote>
   </div>
@@ -116,11 +131,12 @@
   </div>
 
   <div class="total-highlight">
-    <h2><a ng-href="#/archive/autism">14 tweets</a> implying "autism" is caused by vaccines </h2>
+    <h2><a ng-href="#/archive/autism">24 tweets</a> implying "autism" is caused by vaccines </h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Massive combined inoculations to small children is the cause for big increase in autism....</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/238717783007977473" target="_blank">August 23, 2012</a></blockquote>
   </div>
 
-  <div class="total-highlight new-section">
+  <h1 class="category new-section">Valued Metrics</h1>
+  <div class="total-highlight">
     <h2><a ng-href="#/archive/poll">371 tweets</a> with "poll" or "polls"</h2>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Even though every poll, Time, Drudge etc., has me winning the debate by a lot, <a href="https://twitter.com/FoxNews">@FoxNews</a> only puts negative people on. Biased - a total joke!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/698853277706784772">February 14, 2016</a></blockquote>
   </div>
@@ -135,8 +151,26 @@
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/Toure">@Toure</a> If you weren&#39;t such a dumb racist moron with bad ratings you would know I never filed for bankruptcy,now worth over $10 billion dummy</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/377246199608508416">September 10, 2013</a></blockquote>
   </div>
 
-  <div class="total-highlight new-section">
-    <h2>Happy Holidays</h2>
+  <h1 class="category new-section">Retaliation</h1>
+  <div class="total-highlight">
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">It makes me feel so good to hit "sleazebags" back -- much better than seeing a psychiatrist (which I never have!)<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/270558656502837248"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I went to Wharton, made over $8 billion, employ thousands of people & get insulted by morons who can’t get enough of me on twitter...!<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/301444292755476480"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Isn't it crazy, I'm worth billions of dollars, employ thousands of people, and get libeled by  moron bloggers who can't afford a suit! WILD.<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/436126612552433665"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Isn't it crazy that people of little or no talent or success can be so critical of those whose accomplishments are great with no retribution<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/357836961605627907"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">When someone attacks me, I always attack back...except 100x more. This has nothing to do with a tirade but rather, a way of life!<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/267626951097868289"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">When somebody challenges you unfairly, fight back - be brutal, be tough - don't take it. It is always important to WIN!<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/614807981188710401"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I am a very calm person but love tweeting about both scum and positive subjects. Whenever I tweet, some call it a tirade..totally dishonest!<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/267626183783493632"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">How come every time I show anger, disgust or impatience, enemies say I had a tantrum or meltdown—stupid or dishonest people?<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/268086256750178304"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">It’s amazing that people can say such bad things about me but if I say bad things about them, it becomes a national incident.<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/289105330531618817"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I was viciously attacked by Mr. Khan at the Democratic Convention. Am I not allowed to respond? Hillary voted for the Iraq war, not me! <p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/759743648573435905"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">"@danrpriest: @realDonaldTrump Just out of curiosity, what makes you care so much about what they think?"  I study cowards and stupid people<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/338043038200897537"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">"@MrMarin88: Why does @realDonaldTrump always insist on calling ppl names and trying to taunt like a kid in a schoolyard? Only stupid people<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/377251216100950016"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Pigs get slaughtered … again.  Ft Lauderdale plaintiffs must pay me close to $400k in legal fees after Trump trial victory.<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/546012950277136385"></a></blockquote>
+    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Many journalists are honest and great - but some are knowingly dishonest and basic scum. They should.be weeded out!<p lang="en" dir="ltr"></p><a href="https://twitter.com/realDonaldTrump/status/585286465183178752"></a></blockquote>
+  </div>
+
+  <h1 class="category new-section">Happy Holidays</h1>
+  <div class="total-highlight">
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">HAPPY THANKSGIVING to everyone--I love you all, even my many enemies (sometimes!).</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/271368033417715712">November 21, 2012</a></blockquote>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Happy Father&#39;s Day to all, even the haters and losers!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/346050284222558209">June 15, 2013</a></blockquote>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Happy Veterans Day to ALL, in particular to the haters and losers who have no idea how lucky they are!!!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/399883997997969408">November 11, 2013</a></blockquote>
@@ -148,8 +182,8 @@
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">“<a href="https://twitter.com/realDonaldTrump">@realDonaldTrump</a>: I would like to extend my best wishes to all, even the haters and losers, on this special date, September 11th.”</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/377947866641485824">September 12, 2013</a></blockquote>
   </div>
 
-  <div class="total-highlight new-section">
-    <h2>No Context</h2>
+  <h1 class="category new-section">No Context</h1>
+  <div class="total-highlight">
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/BarackObama">@BarackObama</a> hard at work yesterday shooting a marshmallow cannon in the WH East Room while our country burns. <a href="http://t.co/CLGMtf2M">http://t.co/CLGMtf2M</a></p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/167328636121255937">February 8, 2012</a></blockquote>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Why is Obama playing basketball today? That is why our country is in trouble!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/265827946240032769">November 6, 2012</a></blockquote>
     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Something very important, and indeed society changing, may come out of the Ebola epidemic that will be a very good thing: NO SHAKING HANDS!</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/518449173549830144">October 4, 2014</a></blockquote>
@@ -168,7 +202,163 @@
 <div id="highlights-right">
 
   <div class="quote-list link-highlight">
-    <h2>On President Barack Obama</h2>
+    <h1 class="no-top-margin">What's the worst?</h1>
+    <ol>
+      <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/732377163505225728" target="_blank">"is the worst president in U.S. history!"</a></li>
+      <li>Bill Clinton <a href="https://twitter.com/realDonaldTrump/status/732540713678819328" target="_blank">"the WORST abuser of woman in U.S. political history"</a></li>
+      <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/702833969537142788" target="_blank">"one of the dumbest and worst candidates in the history of Republican politics"</a></li>
+      <li>Mitt Romney's campaign <a href="https://twitter.com/realDonaldTrump/status/705352657234481152" target="_blank">"one of the worst races in presidential history"</a></li>
+      <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/668914875557629953" target="_blank">"one of the worst presidential candidates in history"</a></li>
+      <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/709595310939643905" target="_blank">"the worst voting record in the U.S. Senate in many years"</a></li>
+      <li>Ted Cruz <a href="https://twitter.com/realDonaldTrump/status/697998702477242369" target="_blank">"the worst liar"</a></li>
+      <li>Bill deBlasio <a href="https://twitter.com/realDonaldTrump/status/667797935686557696" target="_blank">"the worst Mayor in the U.S."</a></li>
+      <li>Eric Schneiderman <a href="https://twitter.com/realDonaldTrump/status/482153112279724032" target="_blank">"nation's worst AG"</a></li>
+      <li>NY Times <a href="https://twitter.com/realDonaldTrump/status/709089928324489216" target="_blank">"one of the worst newspapers"</a></li>
+      <li>The media pile on (against Trump) <a href="https://twitter.com/realDonaldTrump/status/768083669550366720" target="_blank">"the worst in American political history!"</a></li>
+      <li>Charles Krauthammer <a href="https://twitter.com/realDonaldTrump/status/606670546202411008" target="_blank">"one of the worst and most boring political pundits on television"</a></li>
+      <li>celebrity doctors <a href="https://twitter.com/realDonaldTrump/status/506196759300038656" target="_blank">"the worst doctors (by far)"</a></li>
+      <li>Our Q1 GDP <a href="https://twitter.com/realDonaldTrump/status/482511973339656192" target="_blank">"worst in memory"</a></li>
+      <li>Macys <a href="https://twitter.com/realDonaldTrump/status/685057265989189632" target="_blank">"one of the worst performing stocks on the S&P last year"</a></li>
+      <li>The Oscars <a href="https://twitter.com/realDonaldTrump/status/569708741576286209" target="_blank">"worst graphics and stage backdrop ever"</a></li>
+      <li>The Emmys <a href="https://twitter.com/realDonaldTrump/status/250311855229255680" target="_blank">"the absolute worst show"</a></li>
+      <li>Hollywood's 2013 year <a href="https://twitter.com/realDonaldTrump/status/413055107127721984" target="_blank">"the worst year ever for Hollywood"</a></li>
+      <li>The Super Bowl <a href="https://twitter.com/realDonaldTrump/status/430266644569800704" target="_blank">"the worst Super Bowl in history"</a></li>
+      <li>Denver's Super Bowl performance <a href="https://twitter.com/realDonaldTrump/status/430158538326167552" target="_blank">"may be the worst football game ever played by one team"</a></li>
+      <li>Our foreign policy <a href="https://twitter.com/realDonaldTrump/status/368257823576436736" target="_blank">"worst in U.S. history"</a></li>
+      <li>Our negotiators <a href="https://twitter.com/realDonaldTrump/status/406014439960629248" target="_blank">"the worst and dumbest"</a></li>
+      <li>Congressional Republicans <a href="https://twitter.com/realDonaldTrump/status/293817480131002368" target="_blank">"the worst negotiators in history"</a></li>
+      <li>ObamaCare <a href="https://twitter.com/realDonaldTrump/status/400456453477388288" target="_blank">"one of the worst political disasters of all time"</a></li>
+      <li>Trump's spot at CPAC <a href="https://twitter.com/realDonaldTrump/status/312703094079229952" target="_blank">"the worst spot at CPAC"</a></li>
+      <li>CNBC ratings <a href="https://twitter.com/realDonaldTrump/status/373089917200777216" target="_blank">"worst in many years"</a></li>
+      <li>Karl Rove’s ads <a href="https://twitter.com/realDonaldTrump/status/306889406411845632" target="_blank">"the worst in political history"</a></li>
+      <li>Karl Rove’s strategy and commercials <a href="https://twitter.com/realDonaldTrump/status/299575808106844160" target="_blank">"the worst I have ever seen"</a></li>
+      <li>Chuck Hagel's confirmation hearings <a href="https://twitter.com/realDonaldTrump/status/503318071998971904" target="_blank">"the worst I have ever witnessed"</a></li>
+      <li>Chuck Hagel's performance at hearings <a href="https://twitter.com/realDonaldTrump/status/297339815937073152" target="_blank">"the worst I have ever seen before a committee"</a></li>
+      <li>Alan Sugar <a href="https://twitter.com/realDonaldTrump/status/278198760251727873" target="_blank">"the worst kind of loser"</a></li>
+      <li>Rick Reilly <a href="https://twitter.com/realDonaldTrump/status/172404730876792832" target="_blank">"may be the worst reporter in all of sports"</a></li>
+      <li>Megyn Kelly <a href="https://twitter.com/realDonaldTrump/status/646137843232952320" target="_blank">"is the worst"</a></li>
+      <li>CNN <a href="https://twitter.com/realDonaldTrump/status/755142098190475265" target="_blank">"is the worst"</a></li>
+    </ol>
+  </div>
+
+  <div class="quote-list link-highlight">
+    <h1>Who doesn't have a clue?</h1>
+    <ol>
+      <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/754789482621243392" target="_blank">"doesn't have a clue"</a></li>
+      <li>Elizabeth Warren <a href="https://twitter.com/realDonaldTrump/status/730504511291265024" target="_blank">"doesn't have a clue"</a></li>
+      <li>David Brooks <a href="https://twitter.com/realDonaldTrump/status/706531140195196932" target="_blank">"doesn't have a clue"</a></li>
+      <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/710928141112332288" target="_blank">"doesn't have a clue"</a></li>
+      <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/660312839543005184" target="_blank">"doesn't have a clue"</a></li>
+      <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/647250131365036033" target="_blank">"doesn't have a clue"</a></li>
+      <li>Rich Lowry <a href="https://twitter.com/realDonaldTrump/status/646147515918761984" target="_blank">"doesn't have a clue"</a></li>
+      <li>Nicole Wallace <a href="https://twitter.com/realDonaldTrump/status/613891332944302080" target="_blank">"doesn't have a clue"</a></li>
+      <li>Karl Rove <a href="https://twitter.com/realDonaldTrump/status/559820576164831232" target="_blank">"doesn't have a clue"</a></li>
+      <li>Republican candidates <a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"don't have a clue"</a></li>
+      <li>Chuck Hagel <a href="https://twitter.com/realDonaldTrump/status/536892449181147136" target="_blank">"didn't have a clue"</a></li>
+      <li>someone ("I just had to fire") <a href="https://twitter.com/realDonaldTrump/status/256078510467215360" target="_blank">"didn't have a clue"</a></li>
+      <li>Hillary Clinton <a href="https://twitter.com/realDonaldTrump/status/728974420807581696" target="_blank">"has no clue"</a></li>
+      <li>Jeb Bush <a href="https://twitter.com/realDonaldTrump/status/699283203027292161" target="_blank">"has no clue"</a></li>
+      <li>Pamela Geller <a href="https://twitter.com/realDonaldTrump/status/595803825392459776" target="_blank">"doesn't have a clue"</a></li>
+      <li>S.E. Cupp <a href="https://twitter.com/realDonaldTrump/status/674777043163332608" target="_blank">"doesn't have a clue"</a></li>
+      <li>Errol Louis <a href="https://twitter.com/realDonaldTrump/status/671308887178551296" target="_blank">"doesn't have a clue"</a></li>
+      <li>Tim O'Brien <a href="https://twitter.com/realDonaldTrump/status/624166285363015681" target="_blank">"dumb guy with no clue!"</a></li>
+    </ol>
+  </div>
+
+  <div class="quote-list">
+    <h1>Personal Superlatives</h1>
+    <ol>
+      <li><a href="https://twitter.com/realDonaldTrump/status/332308211321425920" target="_blank">"My I.Q. is one of the highest - and you all know it!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/712729376207540226" target="_blank">"I will be the best by far in fighting terror"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/690896236765806592" target="_blank">"I will be the greatest job-producing president in American history"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"I am the BEST builder, just look at what I've built"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/263286265934381058" target="_blank">"I am the best builder but if that were my building with the crane mishap..."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/645763590981611524" target="_blank">"I am attracting the biggest crowds, by far, and the best poll numbers, also by far."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/741590381503086592" target="_blank">"I am least racist person there is"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/701750410621497345" target="_blank">"I am in Las Vegas, at the best hotel (by far), Trump International"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/706543741088067584" target="_blank">"I am at Trump National Doral-best resort in U.S."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/523775993094602752" target="_blank">"Donald Trump's Palm Beach mansion...which I turned into the greatest club in the world"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/306797506791079938" target="_blank">"Many people have commented that my fragrance, “Success”  is the best scent & lasts the longest"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/491324429184823296" target="_blank">"Many people have said I’m the world’s greatest writer of 140 character sentences."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/267286471172562944" target="_blank">"Many are saying I'm the best 140 character writer in the world"</a></li>
+    </ol>
+  </div>
+
+  <div class="quote-list">
+    <h1>I have...</h1>
+    <ol>
+      <li><a href="https://twitter.com/realDonaldTrump/status/712300954775887876" target="_blank">"I have proven to be far more correct about terrorism than anybody- and it’s not even close."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/739803054476775424" target="_blank">"I have been able to spend far less money than others on the campaign and finish #1"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/737610159459991552" target="_blank">"I have raised/given a tremendous amount of money to our great VETERANS"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/714818473382248448" target="_blank">"I have millions more votes/hundreds more dels than Cruz or Kasich"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/705354682886201348" target="_blank">"I have brought millions of people into the Republican Party"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/700787183872057344" target="_blank">"I have built so many great & complicated projects– creating tens of thousands of jobs"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/681847012304797696" target="_blank">"I have spent almost nothing on my run for president and am in 1st place"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/676279366184247298" target="_blank">"I have a 33% to 20% lead over Ted Cruz and all others. Think about it!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/290845284215431169" target="_blank">"I have just exceeded 2 million followers--and in such a short time!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/750692436687585280" target="_blank">"I have over seven million hits on social media re Crooked Hillary Clinton"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/767505383430782976" target="_blank">"I have been drawing very big and enthusiastic crowds"</a></li>
+    </ol>
+  </div>
+
+  <div class="quote-list link-highlight">
+    <h1>Key to solving issues</h1>
+    <ol>
+      <li>Illegal immigration <a href="https://twitter.com/realDonaldTrump/status/769203012250112006" target="_blank">"Such a big problem for our country-I will solve"</a></li>
+      <li>Infrastructure <a href="https://twitter.com/realDonaldTrump/status/598324947140902912" target="_blank">"The only one to fix the infrastructure of our country is me"</a></li>
+      <li>Infrastructure <a href="https://twitter.com/realDonaldTrump/status/594963283548975107" target="_blank">"I am the only one that knows how to build cities"</a></li>
+      <li>Infrastructure <a href="https://twitter.com/realDonaldTrump/status/598462317945315329" target="_blank">"all falling apart. I can fix for 20% of pols, & better"</a></li>
+      <li>ISIS <a href="https://twitter.com/realDonaldTrump/status/733597831261499392" target="_blank">"ISIS is still running around wild. I can fix it fast"</a></li>
+      <li>ISIS <a href="https://twitter.com/realDonaldTrump/status/713030660475240448" target="_blank">"5000 ISIS fighters have infiltrated Europe. Also, many in U.S. I TOLD YOU SO! I alone can fix this problem!"</a></li>
+      <li>Jobs <a href="https://twitter.com/realDonaldTrump/status/685584095120887809" target="_blank">"I will create jobs like no one else"</a></li>
+      <li>Jobs <a href="https://twitter.com/realDonaldTrump/status/706953562316603392" target="_blank">"I am the only presidential candidate who will bring jobs back to the U.S.and protect car industry!"</a></li>
+      <li>Jobs <a href="https://twitter.com/realDonaldTrump/status/709775232152817664" target="_blank">"I will bring our jobs back to the U.S., and keep our companies from leaving. Nobody else can do it."</a></li>
+      <li>Making America great <a href="https://twitter.com/realDonaldTrump/status/596332619144495105" target="_blank">"I am the only one who can Make America Great Again"</a></li>
+      <li>Making America great <a href="https://twitter.com/realDonaldTrump/status/601551956117708800">"If I run, and if I win, our country will be great again."</a></li>
+      <li>Moving jobs to Mexico <a href="https://twitter.com/realDonaldTrump/status/698522430847983616" target="_blank">"I am the only one who can fix this. Very sad."</a></li>
+      <li>Obamacare <a href="https://twitter.com/realDonaldTrump/status/697182075045179392" target="_blank">"We will immediately repeal and replace ObamaCare - and nobody can do that like me"</a></li>
+      <li>Slow GDP <a href="https://twitter.com/realDonaldTrump/status/604411222906265600" target="_blank">"I TOLD YOU SO! Only I can fix"</a></li>
+      <li>Social Security <a href="https://twitter.com/realDonaldTrump/status/601544572498509824" target="_blank">"I am going to save Social Security without any cuts. I know where to get the money from. Nobody else does."</a></li>
+      <li>The border <a href="https://twitter.com/realDonaldTrump/status/617093560123437056" target="_blank">"Our Southern border is unsecure. I am the only one that can fix it"</a></li>
+      <li>Terrorism <a href="https://twitter.com/realDonaldTrump/status/714189569793646597" target="_blank">"At least 67 dead,400 injured. I alone can solve"</a></li>
+      <li>Terrorism <a href="https://twitter.com/realDonaldTrump/status/713014127061544961" target="_blank">"TIME FOR A CHANGE, I WILL SOLVE - AND FAST!"</a></li>
+      <li>Veterans Affairs <a href="https://twitter.com/realDonaldTrump/status/622545987219910656" target="_blank">"I will fix VA quickly."</a></li>
+      <!-- <li>Instability in Iraq <a href="https://twitter.com/realDonaldTrump/status/151748731509800960" target="_blank">"Sadly, I called this one and please remember, I alone called it."</a></li> -->
+      <li><a href="https://twitter.com/realDonaldTrump/status/592698043629215746" target="_blank">"Nobody but Donald Trump will save Israel"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/685582649679867904" target="_blank">"Nobody knows jobs like I do!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/602309292826468353" target="_blank">"Nobody understands politicians like I do"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/718530443272970240" target="_blank">"Nobody beats me on National Security"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/595404051925307395" target="_blank">"Nobody would fight harder for free speech than me"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/726461507601612800" target="_blank">"Nobody can beat me on the economy (and jobs)"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/713807872388440069" target="_blank">"Nobody will protect our Nation like Donald J. Trump"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/693801552855740416" target="_blank">"Nobody more against ObamaCare than me"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/713747213801938946" target="_blank">"Nobody has more respect for women than Donald Trump!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/697031343272812544" target="_blank">"No-one has done more for people with disabilities than me"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/370646948081975296" target="_blank">Why are people upset w/ me over Pres Obama’s birth certificate? I got him to release it, or whatever it was, when nobody else could!"</a></li>
+    </ol>
+  </div>
+
+  <!-- <div class="quote-list">
+    <h2>Hitting Back</h2>
+    <ol>
+      <li><a href="https://twitter.com/realDonaldTrump/status/301444292755476480" target="_blank">"I went to Wharton, made over $8 billion, employ thousands of people & get insulted by morons who can’t get enough of me on twitter...!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/436126612552433665" target="_blank">"Isn't it crazy, I'm worth billions of dollars, employ thousands of people, and get libeled by  moron bloggers who can't afford a suit! WILD."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/357836961605627907" target="_blank">"Isn't it crazy that people of little or no talent or success can be so critical of those whose accomplishments are great with no retribution"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/270558656502837248" target="_blank">"It makes me feel so good to hit "sleazebags" back -- much better than seeing a psychiatrist (which I never have!)"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/267626951097868289" target="_blank">"When someone attacks me, I always attack back...except 100x more. This has nothing to do with a tirade but rather, a way of life!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/614807981188710401" target="_blank">"When somebody challenges you unfairly, fight back - be brutal, be tough - don't take it. It is always important to WIN!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/267626183783493632" target="_blank">"I am a very calm person but love tweeting about both scum and positive subjects. Whenever I tweet, some call it a tirade..totally dishonest!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/268086256750178304" target="_blank">"How come every time I show anger, disgust or impatience, enemies say I had a tantrum or meltdown—stupid or dishonest people?"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/289105330531618817" target="_blank">"It’s amazing that people can say such bad things about me but if I say bad things about them, it becomes a national incident."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/759743648573435905" target="_blank">"I was viciously attacked by Mr. Khan at the Democratic Convention. Am I not allowed to respond? Hillary voted for the Iraq war, not me!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/338043038200897537" target="_blank">"@danrpriest: @realDonaldTrump Just out of curiosity, what makes you care so much about what they think?"  I study cowards and stupid people"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/377251216100950016" target="_blank">"@MrMarin88: Why does @realDonaldTrump always insist on calling ppl names and trying to taunt like a kid in a schoolyard? Only stupid people"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/546012950277136385" target="_blank">"Pigs get slaughtered … again.  Ft Lauderdale plaintiffs must pay me close to $400k in legal fees after Trump trial victory."</a></li>
+    </ol>
+  </div> -->
+
+  <div class="quote-list link-highlight">
+    <h1>On President Barack Obama</h1>
     <ol>
       <li>Obama has <a href="https://twitter.com/realDonaldTrump/status/570004147451392001" target="_blank">"no idea what he is doing - incompetent!"</a></li>
       <li>Obama has <a href="https://twitter.com/realDonaldTrump/status/666606474613886976" target="_blank">"a horrible attitude - a man who is resigned to defeat"</a></li>
@@ -193,7 +383,7 @@
       <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/699913243251339265" target="_blank">"perhaps the worst president in U.S. history!"</a></li>
       <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/760552601356267520" target="_blank">"perhaps the worst president in the history of the United States!"</a></li>
       <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/752207752852832256" target="_blank">"living in a world of the make believe!"</a></li>
-      <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/448742848960397313" target="_blank">"not a natural leader, was never ment to lead"</a></li>
+      <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/448742848960397313" target="_blank">"not a natural leader, was never ment (sic) to lead"</a></li>
       <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/665524569961287680" target="_blank">"just so bad!"</a></li>
       <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/446801014822543361" target="_blank">"an absolutely terrible president, maybe the worst in our history!"</a></li>
       <li>Obama is <a href="https://twitter.com/realDonaldTrump/status/474719268819308544" target="_blank">"without question, the WORST EVER president"</a></li>
@@ -238,126 +428,40 @@
   </div>
 
   <div class="quote-list link-highlight">
-    <h2>What's the worst?</h2>
+    <h1>On Global Warming</h1>
     <ol>
-      <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/732377163505225728" target="_blank">"is the worst president in U.S. history!"</a></li>
-      <li>Bill Clinton <a href="https://twitter.com/realDonaldTrump/status/732540713678819328" target="_blank">"the WORST abuser of woman in U.S. political history"</a></li>
-      <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/702833969537142788" target="_blank">"one of the dumbest and worst candidates in the history of Republican politics"</a></li>
-      <li>Mitt Romney's campaign <a href="https://twitter.com/realDonaldTrump/status/705352657234481152" target="_blank">"one of the worst races in presidential history"</a></li>
-      <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/668914875557629953" target="_blank">"one of the worst presidential candidates in history"</a></li>
-      <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/709595310939643905" target="_blank">"the worst voting record in the U.S. Senate in many years"</a></li>
-      <li>Ted Cruz <a href="https://twitter.com/realDonaldTrump/status/697998702477242369" target="_blank">"the worst liar"</a></li>
-      <li>Bill deBlasio <a href="https://twitter.com/realDonaldTrump/status/667797935686557696" target="_blank">"the worst Mayor in the U.S."</a></li>
-      <li>Eric Schneiderman <a href="https://twitter.com/realDonaldTrump/status/482153112279724032" target="_blank">"nation's worst AG"</a></li>
-      <li>NY Times <a href="https://twitter.com/realDonaldTrump/status/709089928324489216" target="_blank">"one of the worst newspapers"</a></li>
-      <li>The media pile on (against Trump) <a href="https://twitter.com/realDonaldTrump/status/768083669550366720" target="_blank">"the worst in American political history!"</a></li>
-      <li>Charles Krauthammer <a href="https://twitter.com/realDonaldTrump/status/606670546202411008" target="_blank">"one of the worst and most boring political pundits on television"</a></li>
-      <li>celebrity doctors <a href="https://twitter.com/realDonaldTrump/status/506196759300038656" target="_blank">"the worst doctors (by far)"</a></li>
-      <li>Our Q1 GDP <a href="https://twitter.com/realDonaldTrump/status/482511973339656192" target="_blank">"worst in memory"</a></li>
-      <li>Macys <a href="https://twitter.com/realDonaldTrump/status/685057265989189632" target="_blank">"one of the worst performing stocks on the S&P last year"</a></li>
-      <li>The Oscars <a href="https://twitter.com/realDonaldTrump/status/569708741576286209" target="_blank">"worst graphics and stage backdrop ever"</a></li>
-      <li>The Emmys <a href="https://twitter.com/realDonaldTrump/status/250311855229255680" target="_blank">"the absolute worst show"</a></li>
-      <li>Hollywood's 2013 year <a href="https://twitter.com/realDonaldTrump/status/413055107127721984" target="_blank">"the worst year ever for Hollywood"</a></li>
-      <li>The Super Bowl <a href="https://twitter.com/realDonaldTrump/status/430266644569800704" target="_blank">"the worst Super Bowl in history"</a></li>
-      <li>Denver's Super Bowl performance <a href="https://twitter.com/realDonaldTrump/status/430158538326167552" target="_blank">"may be the worst football game ever played by one team"</a></li>
-      <li>Our foreign policy <a href="https://twitter.com/realDonaldTrump/status/368257823576436736" target="_blank">"worst in U.S. history"</a></li>
-      <li>Our negotiators <a href="https://twitter.com/realDonaldTrump/status/406014439960629248" target="_blank">"the worst and dumbest"</a></li>
-      <li>Congressional Republicans <a href="https://twitter.com/realDonaldTrump/status/293817480131002368" target="_blank">"the worst negotiators in history"</a></li>
-      <li>ObamaCare <a href="https://twitter.com/realDonaldTrump/status/400456453477388288" target="_blank">"one of the worst political disasters of all time"</a></li>
-      <li>Trump's spot at CPAC <a href="https://twitter.com/realDonaldTrump/status/312703094079229952" target="_blank">"the worst spot at CPAC"</a></li>
-      <li>CNBC ratings <a href="https://twitter.com/realDonaldTrump/status/373089917200777216" target="_blank">"worst in many years"</a></li>
-      <li>Karl Rove’s ads <a href="https://twitter.com/realDonaldTrump/status/306889406411845632" target="_blank">"the worst in political history"</a></li>
-      <li>Karl Rove’s strategy and commercials <a href="https://twitter.com/realDonaldTrump/status/299575808106844160" target="_blank">"the worst I have ever seen"</a></li>
-      <li>Chuck Hagel's confirmation hearings <a href="https://twitter.com/realDonaldTrump/status/503318071998971904" target="_blank">"the worst I have ever witnessed"</a></li>
-      <li>Chuck Hagel's performance at hearings <a href="https://twitter.com/realDonaldTrump/status/297339815937073152" target="_blank">"the worst I have ever seen before a committee"</a></li>
-      <li>Alan Sugar <a href="https://twitter.com/realDonaldTrump/status/278198760251727873" target="_blank">"the worst kind of loser"</a></li>
-      <li>Rick Reilly <a href="https://twitter.com/realDonaldTrump/status/172404730876792832" target="_blank">"may be the worst reporter in all of sports"</a></li>
-      <li>Megyn Kelly <a href="https://twitter.com/realDonaldTrump/status/646137843232952320" target="_blank">"is the worst"</a></li>
-      <li>CNN <a href="https://twitter.com/realDonaldTrump/status/755142098190475265" target="_blank">"is the worst"</a></li>
+      <li>Global warming is an <a href="https://twitter.com/realDonaldTrump/status/428414113463955457" target="_blank">"expensive hoax!"</a></li>
+      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/427226424987385856" target="_blank">"HOAX"</a></li>
+      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/408977616926830592" target="_blank">"total, and very expensive, hoax!"</a></li>
+      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/416909004984844288" target="_blank">"total hoax!"</a></li>
+      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/412017385345138688" target="_blank">"con"</a></li>
+      <li>Global warming, again, is a <a href="https://twitter.com/realDonaldTrump/status/440811151283486720" target="_blank">"con!"</a></li>
+      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/509436043368873984" target="_blank">"fictional"</a></li>
+      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264009741234221058" target="_blank">"mythical"</a></li>
+      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/418542137899491328" target="_blank">"bullshit"</a></li>
+      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264441602636906496" target="_blank">"based on faulty science and manipulated data"</a></li>
+      <li>Global warming has <a href="https://twitter.com/realDonaldTrump/status/185074709111644160" target="_blank">"been proven to be a canard repeatedly over and over again"</a></li>
+      <li>Global warming - <a href="https://twitter.com/realDonaldTrump/status/435741126440808448" target="_blank">"we didn't cause it"</a></li>
+      <li>Global warming was <a href="https://twitter.com/realDonaldTrump/status/265895292191248385" target="_blank">"created by and for the Chinese"</a></li>
     </ol>
   </div>
 
   <div class="quote-list link-highlight">
-    <h2>Who doesn't have a clue?</h2>
+    <h1>Media Disdain</h1>
+    <!-- <div ng-if="!showingReasons" ng-click="toggleReasons()" class="pointer">Show what Trump was reacting to</div>
+    <div ng-if="showingReasons"ng-click="showReasons()" class="pointer">Hide reasons</div> -->
     <ol>
-      <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/754789482621243392" target="_blank">"doesn't have a clue"</a></li>
-      <li>Elizabeth Warren <a href="https://twitter.com/realDonaldTrump/status/730504511291265024" target="_blank">"doesn't have a clue"</a></li>
-      <li>David Brooks <a href="https://twitter.com/realDonaldTrump/status/706531140195196932" target="_blank">"doesn't have a clue"</a></li>
-      <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/710928141112332288" target="_blank">"doesn't have a clue"</a></li>
-      <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/660312839543005184" target="_blank">"doesn't have a clue"</a></li>
-      <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/647250131365036033" target="_blank">"doesn't have a clue"</a></li>
-      <li>Rich Lowry <a href="https://twitter.com/realDonaldTrump/status/646147515918761984" target="_blank">"doesn't have a clue"</a></li>
-      <li>Nicole Wallace <a href="https://twitter.com/realDonaldTrump/status/613891332944302080" target="_blank">"doesn't have a clue"</a></li>
-      <li>Karl Rove <a href="https://twitter.com/realDonaldTrump/status/559820576164831232" target="_blank">"doesn't have a clue"</a></li>
-      <li>Republican candidates <a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"don't have a clue"</a></li>
-      <li>Chuck Hagel <a href="https://twitter.com/realDonaldTrump/status/536892449181147136" target="_blank">"didn't have a clue"</a></li>
-      <li>someone ("I just had to fire") <a href="https://twitter.com/realDonaldTrump/status/256078510467215360" target="_blank">"didn't have a clue"</a></li>
-      <li>Hillary Clinton <a href="https://twitter.com/realDonaldTrump/status/728974420807581696" target="_blank">"has no clue"</a></li>
-      <li>Jeb Bush <a href="https://twitter.com/realDonaldTrump/status/699283203027292161" target="_blank">"has no clue"</a></li>
-      <li>Pamela Geller <a href="https://twitter.com/realDonaldTrump/status/595803825392459776" target="_blank">"doesn't have a clue"</a></li>
-      <li>S.E. Cupp <a href="https://twitter.com/realDonaldTrump/status/674777043163332608" target="_blank">"doesn't have a clue"</a></li>
-      <li>Errol Louis <a href="https://twitter.com/realDonaldTrump/status/671308887178551296" target="_blank">"doesn't have a clue"</a></li>
-      <li>Tim O'Brien <a href="https://twitter.com/realDonaldTrump/status/624166285363015681" target="_blank">"dumb guy with no clue!"</a></li>
+      <li ng-repeat="entry in media | orderBy:['target','date']">
+        {{entry.target}} <a ng-href="https://twitter.com/realDonaldTrump/status/{{entry.id}}" target="_blank">"{{entry.snippet}}"</a> ({{entry.date | date : 'MM/dd/yyyy'}})
+        <ul ng-if="showingReasons && entry.response">
+          <li>{{entry.response}} [<a ng-href="{{entry.source}}" target="_blank">src</a>]</li>
+        </ul>
+      </li>
     </ol>
   </div>
 
   <div class="quote-list link-highlight">
-    <h2>On Global Warming</h2>
-    <ol>
-      <li>Global warming is an <a href="https://twitter.com/realDonaldTrump/status/428414113463955457">"expensive hoax!"</a></li>
-      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/427226424987385856">"HOAX"</a></li>
-      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/408977616926830592">"total, and very expensive, hoax!"</a></li>
-      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/416909004984844288">"total hoax!"</a></li>
-      <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/440811151283486720">"con!"</a></li>
-      <li>Global warming, again, is a <a href="https://twitter.com/realDonaldTrump/status/412017385345138688">"con"</a></li>
-      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/509436043368873984">"fictional"</a></li>
-      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264009741234221058">"mythical"</a></li>
-      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/418542137899491328">"bullshit"</a></li>
-      <li>Global warming was <a href="https://twitter.com/realDonaldTrump/status/265895292191248385">"created by and for the Chinese"</a></li>
-      <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264441602636906496">"based on faulty science and manipulated data"</a></li>
-      <li>Global warming has <a href="https://twitter.com/realDonaldTrump/status/185074709111644160">"been proven to be a canard repeatedly over and over again"</a></li>
-      <li>Global warming - <a href="https://twitter.com/realDonaldTrump/status/435741126440808448">"the fact is We didn't cause it. We cannot change it."</a></li>
-    </ol>
-  </div>
-
-  <div class="quote-list">
-    <h2>Personal Superlatives</h2>
-    <ol>
-      <li><a href="https://twitter.com/realDonaldTrump/status/332308211321425920" target="_blank">"My I.Q. is one of the highest - and you all know it!"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/712729376207540226" target="_blank">"I will be the best by far in fighting terror"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/690896236765806592" target="_blank">"I will be the greatest job-producing president in American history"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"I am the BEST builder, just look at what I've built"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/263286265934381058" target="_blank">"I am the best builder but if that were my building with the crane mishap..."</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/645763590981611524" target="_blank">"I am attracting the biggest crowds, by far, and the best poll numbers, also by far."</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/741590381503086592" target="_blank">"I am least racist person there is"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/701750410621497345" target="_blank">"I am in Las Vegas, at the best hotel (by far), Trump International"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/706543741088067584" target="_blank">"I am at Trump National Doral-best resort in U.S."</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/523775993094602752" target="_blank">"Donald Trump's Palm Beach mansion...which I turned into the greatest club in the world"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/306797506791079938" target="_blank">"Many people have commented that my fragrance, “Success”  is the best scent & lasts the longest</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/491324429184823296" target="_blank">"Many people have said I’m the world’s greatest writer of 140 character sentences."</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/267286471172562944" target="_blank">"Many are saying I'm the best 140 character writer in the world"</a></li>
-    </ol>
-  </div>
-
-  <div class="quote-list">
-    <h2>I have...</h2>
-    <ol>
-      <li><a href="https://twitter.com/realDonaldTrump/status/767505383430782976" target="_blank">"I have been drawing very big and enthusiastic crowds"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/750692436687585280" target="_blank">"I have over seven million hits on social media re Crooked Hillary Clinton"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/739803054476775424" target="_blank">"I have been able to spend far less money than others on the campaign and finish #1"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/737610159459991552" target="_blank">"I have raised/given a tremendous amount of money to our great VETERANS"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/714818473382248448" target="_blank">"I have millions more votes/hundreds more dels than Cruz or Kasich"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/712300954775887876" target="_blank">"I have proven to be far more correct about terrorism than anybody- and it’s not even close."</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/705354682886201348" target="_blank">"I have brought millions of people into the Republican Party"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/700787183872057344" target="_blank">"I have built so many great & complicated projects– creating tens of thousands of jobs"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/681847012304797696" target="_blank">"I have spent almost nothing on my run for president and am in 1st place"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/676279366184247298" target="_blank">"I have a 33% to 20% lead over Ted Cruz and all others. Think about it!"</a></li>
-      <li><a href="https://twitter.com/realDonaldTrump/status/290845284215431169" target="_blank">"I have just exceeded 2 million followers--and in such a short time!"</a></li>
-    </ol>
-  </div>
-
-  <div class="quote-list link-highlight">
-    <h2>Highest Rated</h2>
+    <h1>Highest Rated</h1>
     <ol>
       <li>Face The Nation Trump interview <a href="https://twitter.com/realDonaldTrump/status/686740083265957889" target="_blank">"highest rated show that they have had in 15 years"</a></li>
       <li>SNL's Trump episode <a href="https://twitter.com/realDonaldTrump/status/663520201187590144" target="_blank">"highest ratings since 2012"</a></li>
@@ -376,14 +480,70 @@
   </div>
 
   <div class="quote-list link-highlight">
-    <h2>Media Disdain</h2>
+    <h1>Who's laughing?</h1>
     <ol>
-      <li ng-repeat="entry in media | orderBy: 'target' ">
-        {{entry.target}} <a ng-href="https://twitter.com/realDonaldTrump/status/{{entry.id}}" target="_blank">"{{entry.snippet}}"</a> ({{entry.date | date : 'MM/dd/yyyy'}})
-        <!-- <ul ng-if="entry.response">
-          <li>{{entry.response}} [<a ng-href="{{entry.source}}" target="_blank">src</a>]</li>
-        </ul> -->
-      </li>
+      <li>Arab League <a href="https://twitter.com/realDonaldTrump/status/375757214763732992" target="_blank">"members are laughing at us"</a></li>
+      <li>Central Park 5 lawyers <a href="https://twitter.com/realDonaldTrump/status/480672486342664193" target="_blank">"are laughing at the stupidity of N.Y.C."</a></li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/278956599786213376" target="_blank">"is laughing at us"</a> over "the Norks" blasting a missile</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/349973845228269569" target="_blank">"laughed!"</a> at Obama’s climate change speech</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/590983873451978753" target="_blank">"is laughing at us"</a> over the TPP</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/319174786548908032" target="_blank">"is laughing at our expense"</a> after the Yuan hit another record high against the Dollar"</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/236531168911167490" target="_blank">"is laughing all the way to the bank"</a> over the government's foreign debt</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/215165457177653250" target="_blank">"laughing at @BarackObama"</a> over a war game</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/306235882585870336" target="_blank">"is laughing at us"</a> over the exchange rate</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/212978018539417600" target="_blank">"is laughing at us!"</a> over the Keystone pipline</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/147777192439459840" target="_blank">"is laughing at our inept leaders"</a> over a tariff on cars</li>
+      <li>China <a href="https://twitter.com/realDonaldTrump/status/236531168911167490" target="_blank">"is laughing all the way to the bank"</a> over the government's foreign debt</li>
+      <li>China, OPEC and Russia <a href="https://twitter.com/realDonaldTrump/status/374967222512267264" target="_blank">"laugh at us. But now thanks to Obama so does Syria."</a></li>
+      <li>China, Russia and Iran <a href="https://twitter.com/realDonaldTrump/status/378236334273331201" target="_blank">"are laughing at us"</a></li>
+      <li>China’s top academics <a href="https://twitter.com/realDonaldTrump/status/316285942333841409" target="_blank">"are laughing at us!"</a> over cyber-espionage</li>
+      <li>The Chinese <a href="https://twitter.com/realDonaldTrump/status/537155665635344385" target="_blank">"laugh at us and our president over the riots in Ferguson!"</a></li>
+      <li>The Chinese <a href="https://twitter.com/realDonaldTrump/status/521651877352857600" target="_blank">"are laughing at USA!"</a> after exports rose 15% in September</li>
+      <li>The Chinese <a href="https://twitter.com/realDonaldTrump/status/324584451495571456" target="_blank">"must still be laughing at Kerry’s trip to China"</a></li>
+      <li>The Chinese <a href="https://twitter.com/realDonaldTrump/status/318113046822273027" target="_blank">"laugh at our stupidity!"</a> over pollution</li>
+      <li>The Chinese <a href="https://twitter.com/realDonaldTrump/status/179267639363895296" target="_blank">"laugh"</a> about the "so-called carbon footprint"</li>
+      <li>The Chinese <a href="https://twitter.com/realDonaldTrump/status/175316716367253505" target="_blank">"laugh at how weak and pathetic our government is in combating intellectual property theft"</a></li>
+      <li>The DNC <a href="https://twitter.com/realDonaldTrump/status/757565892146454532" target="_blank">"laughed at Bernie"</a></li>
+      <li>Everybody <a href="https://twitter.com/realDonaldTrump/status/696734735578615808" target="_blank">"laughing at Jeb Bush. A pathetic figure!"</a></li>
+      <li>Everyone <a href="https://twitter.com/realDonaldTrump/status/731804642368212992" target="_blank">"laughing at the @nytimes for the lame hit piece"</a></li>
+      <li>The five Taliban leaders <a href="https://twitter.com/realDonaldTrump/status/474024761685573632" target="_blank">"must really be laughing and having a good time right now"</a></li>
+      <li>High ranking people <a href="https://twitter.com/realDonaldTrump/status/731923681522397184" target="_blank">"laughing at the stupidity of the failing @nytimes piece"</a></li>
+      <li>Iran <a href="https://twitter.com/realDonaldTrump/status/383739370261725184" target="_blank">"buying time and laughing at the stupidity of our leadership"</a></li>
+      <li>Iran <a href="https://twitter.com/realDonaldTrump/status/542074495276945409" target="_blank">"laughing at Kerry & Obama!"</a> over sanctions</li>
+      <li>The Iranians <a href="https://twitter.com/realDonaldTrump/status/119499484790128640" target="_blank"> "laugh at us"</a></li>
+      <li>ISIS <a href="https://twitter.com/realDonaldTrump/status/524705334485843968" target="_blank">"laughs!"</a> after a US military airdrop in the wrong place</li>
+      <li>ISIS <a href="https://twitter.com/realDonaldTrump/status/733600358501625857" target="_blank">"LAUGHS!"</a> at Hillary and four more years of Obama</a></li>
+      <li>ISIS and all others are <a href="https://twitter.com/realDonaldTrump/status/757364534873128960" target="_blank">"laughing at Hillary Clinton and Tim Kaine on 60 Minutes"</a></li>
+      <li>Mexican leadership <a href="https://twitter.com/realDonaldTrump/status/487613289527267329" target="_blank">"has been laughing at us for many years"</a></li>
+      <li>The Mexicans <a href="https://twitter.com/realDonaldTrump/status/487316499208896512" target="_blank">"are laughing at us as buses pass by"</a></li>
+      <li>The Mullahs <a href="https://twitter.com/realDonaldTrump/status/147059490020274178" target="_blank">"laughed when @BarackObama "asked" Iran to return our drone"</a></li>
+      <li>The Mullahs <a href="https://twitter.com/realDonaldTrump/status/146660771538014208" target="_blank">"are laughing at what they think is a very stupid president"</a></li>
+      <li>Obama <a href="https://twitter.com/realDonaldTrump/status/314093741562535936" target="_blank">"is laughing at @GOP"</a> over amnesty</li>
+      <li>Obama <a href="https://twitter.com/realDonaldTrump/status/141912279661805568" target="_blank">"is flying around on Air Force One, laughing at everybody"</a></li>
+      <li>Obama <a href="https://twitter.com/realDonaldTrump/status/275707339905060864" target="_blank">"is laughing at Karl Rove & all the losers"</a> who lost in 2012</li>
+      <li>Obama <a href="https://twitter.com/realDonaldTrump/status/286554233556316160" target="_blank">"is laughing at"</a> the RNC over tax increases</li>
+      <li>Obama and the Democrats <a href="https://twitter.com/realDonaldTrump/status/286127330135506948" target="_blank">"are laughing at the deal they just made...the Republicans got nothing!"</a></li>
+      <li>OPEC <a href="https://twitter.com/realDonaldTrump/status/238347103703793664" target="_blank">"is laughing at how stupid we are"</a> over gas prices</li>
+      <li>OPEC <a href="https://twitter.com/realDonaldTrump/status/303984203333259264" target="_blank">"is laughing at us"</a> over the Keystone pipeline</li>
+      <li>Our enemies <a href="https://twitter.com/realDonaldTrump/status/378615096148099072" target="_blank">"are laughing!"</a></li>
+      <li>Putin <a href="https://twitter.com/realDonaldTrump/status/491324721297100801" target="_blank">"laughed"</a> at Obama</li>
+      <li>Putin <a href="https://twitter.com/realDonaldTrump/status/363008114582228992" target="_blank">"Putin is laughing at Obama"</a> over Snowden</li>
+      <li>Putin <a href="https://twitter.com/realDonaldTrump/status/377743129992261632" target="_blank">"is laughing"</a> at Obama's speech</li>
+      <li>Russia <a href="https://twitter.com/realDonaldTrump/status/468628444192845825" target="_blank">"laughing in U.S. face."</a> over an oil deal.</li>
+      <li>Russia <a href="https://twitter.com/realDonaldTrump/status/439389810269380608" target="_blank">"laughs loudly"</a> at the US over Ukraine</li>
+      <li>Street smart players <a href="https://twitter.com/realDonaldTrump/status/513065123834236929" target="_blank">"are laughing"</a> at Roger Goodell and the NFL</li>
+      <li>Trump protestors <a href="https://twitter.com/realDonaldTrump/status/739080401747120128" target="_blank">"laughed at police"</a></li>
+      <li>Terrorists <a href="https://twitter.com/realDonaldTrump/status/543305177907068928" target="_blank">"cut off the heads of Americans and laugh"</a></li>
+      <li>The world <a href="https://twitter.com/realDonaldTrump/status/266034957875544064" target="_blank">"is laughing at us"</a></li>
+      <li>The world <a href="https://twitter.com/realDonaldTrump/status/391680505332396032" target="_blank">"IS WATCHING AND LAUGHING"</a> at the rollout of Obamacare</li>
+      <li>The world <a href="https://twitter.com/realDonaldTrump/status/543075492849799168" target="_blank">"is laughing at us—they think we are fools"</a> over released torture documents</li>
+      <li>The strong world <a href="https://twitter.com/realDonaldTrump/status/322433076967907328" target="_blank">"is laughing at us"</a> over "algae-powered" ships</li>
+      <li>Various countries <a href="https://twitter.com/realDonaldTrump/status/530802365323296769" target="_blank">"laugh at our President’s stupidity!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/498008486551506945" target="_blank">"We need a President who isn't a laughing stock to the entire World."</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/248068725524291585" target="_blank">"We are a laughing stock"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/387194672885817344" target="_blank">"OUR COUNTRY is a laughingstock!"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/598328562739970048" target="_blank">"Our country is a laughing stock that is going to hell"</a></li>
+      <li><a href="https://twitter.com/realDonaldTrump/status/600117133184466944" target="_blank">"I laugh when I see Marco Rubio and Jeb Bush pretending to "love" each other"</a></li>
     </ol>
   </div>
 

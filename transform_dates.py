@@ -2,7 +2,7 @@ import json
 import re
 from pprint import pprint
 
-year = '2016'
+year = 'temp'
 full_dataset = []
 
 def properDate (d):
@@ -10,7 +10,7 @@ def properDate (d):
         d = '0'
     return d.replace(',', '')
 
-with open('./data/{}.json'.format(year)) as json_data:
+with open('./{}.json'.format(year)) as json_data:
     full_dataset = json.load(json_data)
     for entry in full_dataset:
         if not entry['date'][0].isdigit():
@@ -21,5 +21,5 @@ with open('./data/{}.json'.format(year)) as json_data:
         else:
             entry['retweet'] = False
 
-with open('./data/{}.json'.format(year), 'w') as outfile:
+with open('./{}-r.json'.format(year), 'w') as outfile:
     json.dump(full_dataset, outfile)

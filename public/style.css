@@ -9,6 +9,10 @@ body {
 	min-width: 880px;
 }
 
+label {
+	display: inline-block;
+}
+
 #banner {
 	position: absolute;
 	top: 0;
@@ -74,7 +78,7 @@ body {
 	border: none;
 	height: 32px;
 	cursor: pointer;
-	width: 118px;
+	width: 84px;
 	background: gold;
 	color: #333535;
 	font-size: 14px;
@@ -91,9 +95,25 @@ body {
 	outline: none;
 }
 
-
 .view-frame {
 	margin-left: 10px;
+}
+
+#about {
+	text-align: center;
+	margin-top: 130px;
+}
+
+#about p, #about ul {
+	width: 50%;
+	text-align: left;
+	display: inline-block;
+}
+
+#about hr {
+	width: 50%;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 #loading-icon {
@@ -151,9 +171,41 @@ body {
 	font-size: 26px;
 	padding: 9px 0 6px 13px;
 	color: #686868;
-	margin-bottom: 9px;
+	margin-bottom: 16px;
 	border: 2px solid black;
 	border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+#control-bar {
+	min-width: 960px;
+}
+
+.controls {
+	display: inline-block;
+}
+
+.total {
+	width: 130px;
+	margin-left: 24px;
+	font-size: 20px;
+}
+
+.settings-check {
+	margin-right: 20px;
+	font-size: 13px;
+}
+
+#controls-right {
+	margin-left: 10px;
+}
+
+#controls-right label {
+  background: #a18eff;
+  color: white;
+  padding: 2px 8px 1px 8px;
+  margin-top: 4px;
+  vertical-align: top;
 }
 
 .date-range {
@@ -162,37 +214,14 @@ body {
 	color: gray;
 	border: 1px solid black;
 	border-radius: 2px;
-}
-
-.settings-check {
-    font-size: 13px;
-}
-
-label {
-	margin-top: 10px;
-	margin-left: 10px;
-	display: inline-block;
-}
-
-.total {
-  margin-left: 24px;
-  margin-top: 20px;
-  font-size: 21px;
-	max-height: 30px;
-	width: 80%;
-	margin-bottom: 20px;
-}
-
-.total .warning {
-	font-size: 12px;
-	color: red;
-	margin-left: 10px;
+	margin-right: 20px;
 }
 
 #fixed {
-	height: 600px;
+	height: 700px;
 	overflow: auto;
 	margin: 0;
+	margin-top: 40px;
 }
 
 #fixed a {
@@ -216,10 +245,6 @@ label {
 	background-color: yellow;
 }
 
-.pointer {
-	cursor: pointer;
-}
-
 span.tweet-date {
     width: 110px;
     display: inline-block;
@@ -235,6 +260,47 @@ span.tweet-date {
 	font-weight: 400;
 }
 
+#highlights-left h1, #highlights-right h1 {
+	letter-spacing: 1px;
+	font-weight: 400;
+	text-decoration: underline;
+}
+
+#quicklinks-button {
+	cursor: pointer;
+	position: absolute;
+  right: 10px;
+  top: 80px;
+}
+
+#quicklinks-button:hover span {
+	color: red;
+}
+
+#quicklinks-button span {
+	font-size: 12px;
+}
+
+#quicklinks {
+  position: absolute;
+	right: 10px;
+  top: 105px;
+  background: white;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+#quicklinks .quicklink {
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+#quicklinks .quicklink:hover {
+	color: red;
+}
+
 #highlights-left {
 	display: inline-block;
 	width: 40%;
@@ -242,6 +308,12 @@ span.tweet-date {
 
 #highlights-left a {
   color: #e41c1c;
+	text-decoration: none;
+}
+
+#highlights-left .new-section {
+		margin-top: 70px;
+		margin-bottom: 30px;
 }
 
 #highlights-right {
@@ -276,14 +348,6 @@ span.tweet-date {
     margin-top: 4px;
 }
 
-.center {
-	text-align: center;
-}
-
-.new-section {
-    margin-top: 80px;
-}
-
 #tweet-panel {
 	background-color: #d3d3d3;
   text-align: center;
@@ -295,4 +359,31 @@ span.tweet-date {
 	width: 33%;
 	width: 32%;
   padding-left: 6px;
+}
+
+.center {
+	text-align: center;
+}
+
+.no-top-margin {
+	margin-top: 0;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  #bottom-right form label span {
+		display: none;
+	}
+}
+
+@media (max-width: 1170px) {
+  .date-range {
+		display: none;
+	}
+	#controls-right label {
+		margin-top: 1px;
+	}
 }

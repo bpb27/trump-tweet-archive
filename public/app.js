@@ -3,7 +3,10 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "archive.html"
+            templateUrl: "highlights.html"
+        })
+        .when("/about", {
+            templateUrl: "about.html"
         })
         .when("/archive", {
             templateUrl: "archive.html"
@@ -23,8 +26,14 @@ app.config(function ($routeProvider) {
         .when("/highlights/birtherism", {
             templateUrl: "birtherism.html"
         })
+        .when("/highlights/women", {
+            templateUrl: "women.html"
+        })
+        .when("/highlights/retaliation", {
+            templateUrl: "retaliation.html"
+        })
         .otherwise({
-            templateUrl: "archive.html"
+            templateUrl: "highlights.html"
         });
 });
 
@@ -38,6 +47,17 @@ app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
 app.controller('highlightsCtrl', ['$scope', '$http', '$routeParams', 'TweetService', function ($scope, $http, $routeParams, TweetService) {
 
     $scope.media = [];
+    $scope.showingReasons = false;
+    $scope.showingQuicklinks = false;
+
+    $scope.toggleQuicklinks = function () {
+        $scope.showingQuicklinks = !$scope.showingQuicklinks;
+    }
+
+    $scope.toggleReasons = function () {
+        $scope.showingReasons = !$scope.showingReasons;
+    }
+
     TweetService.transform();
 
     $http.get('/data/media.json').then(function (results) {
@@ -82,7 +102,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         $timeout(function () {
             if (query === $scope.query) {
                 updateList(true);
-                checkForWarning();
             }
         }, 120);
     });
@@ -97,17 +116,11 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 			'dateRange.end'
 		], function () {
         updateList();
-        checkForWarning();
     });
 
-    requestTweets(years());
 
-    function checkForWarning() {
-        if ($scope.settings.exactMatch && $scope.query.split(' ').length > 1)
-            $scope.warning = '(exact match searches for a single word)';
-        else
-            $scope.warning = '';
-    }
+    requestTweets(years()); // kick off
+
 
     function createParams() {
         var params = '/';
@@ -246,7 +259,7 @@ app.directive('whenScrolled', function () {
 
 
 app.filter('highlight', function ($sce) {
-    return function (tweet, phrase, exact) {
+    return function (tweet, phrase) {
         if (phrase)
             return $sce.trustAsHtml(spanDate(tweet.date) + (tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>') + tweetLink(tweet.id));
         return $sce.trustAsHtml(spanDate(tweet.date) + tweet.text + tweetLink(tweet.id));
