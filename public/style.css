@@ -13,6 +13,14 @@ label {
 	display: inline-block;
 }
 
+#update-notice {
+  position: absolute;
+  z-index: 200;
+  color: #e41c1c;
+  font-size: 13px;
+  padding: 18px 0 0 14px;
+}
+
 #banner {
 	position: absolute;
 	top: 0;
@@ -101,7 +109,7 @@ label {
 
 #about {
 	text-align: center;
-	margin-top: 130px;
+	padding-top: 130px;
 }
 
 #about p, #about ul {
@@ -369,8 +377,19 @@ span.tweet-date {
 	margin-top: 0;
 }
 
+.no-bottom-margin {
+	margin-bottom: 0;
+}
+
 .pointer {
 	cursor: pointer;
+}
+
+@media (max-width: 1310px) {
+  #update-notice {
+		top: 0;
+		padding: 0 0 0 5px;
+	}
 }
 
 @media (max-width: 1200px) {

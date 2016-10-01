@@ -32,6 +32,12 @@ app.config(function ($routeProvider) {
         .when("/highlights/retaliation", {
             templateUrl: "retaliation.html"
         })
+        .when("/highlights/vaccines", {
+            templateUrl: "vaccines.html"
+        })
+        .when("/highlights/profanity", {
+            templateUrl: "profanity.html"
+        })
         .otherwise({
             templateUrl: "highlights.html"
         });
@@ -233,6 +239,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
                 return new Date(a.date) < new Date(b.date) ? 1 : -1;
             return new Date(a.date) > new Date(b.date) ? 1 : -1;
         });
+
+        if ($scope.matches.length < 400)
+            console.log($scope.matches)
 
         if (resetIncrement)
             $scope.increment = 100;
