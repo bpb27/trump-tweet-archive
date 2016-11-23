@@ -20,23 +20,16 @@ app.config(function ($routeProvider) {
         .when("/archive/:search/:params/:dates", {
             templateUrl: "archive.html"
         })
+        .when("/archive/:search/:params/:dates/:time/:device", {
+            templateUrl: "archive.html"
+        })
         .when("/highlights", {
             templateUrl: "highlights.html"
         })
-        .when("/highlights/birtherism", {
-            templateUrl: "birtherism.html"
-        })
-        .when("/highlights/women", {
-            templateUrl: "women.html"
-        })
-        .when("/highlights/retaliation", {
-            templateUrl: "retaliation.html"
-        })
-        .when("/highlights/vaccines", {
-            templateUrl: "vaccines.html"
-        })
-        .when("/highlights/profanity", {
-            templateUrl: "profanity.html"
+        .when("/highlights/:template", {
+            templateUrl: function (urlattr) {
+                return urlattr.template + '.html';
+            }
         })
         .otherwise({
             templateUrl: "highlights.html"
@@ -50,11 +43,15 @@ app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
 }]);
 
 
-app.controller('highlightsCtrl', ['$scope', '$http', '$routeParams', 'TweetService', function ($scope, $http, $routeParams, TweetService) {
+app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
 
     $scope.media = [];
     $scope.showingReasons = false;
     $scope.showingQuicklinks = false;
+
+    $scope.showUrlToPage = function ($event) {
+        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/highlights#' + $event.srcElement.parentElement.id);
+    }
 
     $scope.toggleQuicklinks = function () {
         $scope.showingQuicklinks = !$scope.showingQuicklinks;
@@ -71,12 +68,12 @@ app.controller('highlightsCtrl', ['$scope', '$http', '$routeParams', 'TweetServi
             item.date = new Date(item.date);
         });
         $scope.media = results.data;
-    })
+    });
 
 }]);
 
 
-app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, TweetService) {
+app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', '$filter', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, $filter, TweetService) {
 
     $scope.all = [];
     $scope.dateRange = getDateRange();
@@ -85,9 +82,21 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     $scope.query = getQuery();
     $scope.settings = getSettings();
     $scope.showModal = false;
+    $scope.sources = {
+        source: getDevice(),
+        options: sources
+    };
+    $scope.times = {
+        time: getTime(),
+        options: times
+    };
 
     $scope.loadMore = function () {
         $scope.increment += 100;
+    }
+
+    $scope.log = function (tweet) {
+        console.log('<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">' + tweet.text + '</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/' + tweet.id_str + '" target="_blank"></a></blockquote>');
     }
 
     $scope.removeDatesModal = function () {
@@ -99,7 +108,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     $scope.showUrlToPage = function () {
-        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + encodeURI($scope.query) + createParams());
+        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + encodeURI(createParams()));
     }
 
     $scope.$watch('query', function () {
@@ -119,7 +128,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 			'settings.caseSensitive',
 			'settings.exactMatch',
 			'dateRange.start',
-			'dateRange.end'
+			'dateRange.end',
+      'times.time',
+      'sources.source'
 		], function () {
         updateList();
     });
@@ -129,18 +140,24 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
 
     function createParams() {
-        var params = '/';
+        var params = ($scope.query || 'none') + '/';
         $scope.settings.descending ? params += 't' : params += 'f';
         $scope.settings.retweets ? params += 't' : params += 'f';
         $scope.settings.exactMatch ? params += 't' : params += 'f';
         $scope.settings.caseSensitive ? params += 't' : params += 'f';
         params += parseDateRange();
-        return params;
+
+        if ($scope.times.time === 'any time' && $scope.sources.source === 'all devices')
+            return params;
+        else if (parseDateRange())
+            return params + '/' + $scope.times.time + '/' + $scope.sources.source;
+        else
+            return params + '/none/' + $scope.times.time + '/' + $scope.sources.source;
     }
 
     function getDateRange() {
         var defaultDates = { start: null, end: null };
-        if ($routeParams && $routeParams.dates) {
+        if ($routeParams && $routeParams.dates && $routeParams.dates !== 'none') {
             try {
                 var paramDates = $routeParams.dates.split('_');
                 defaultDates.start = createDate(paramDates[0]);
@@ -159,7 +176,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     function getQuery() {
-        return $routeParams && $routeParams.search || '';
+        if ($routeParams && $routeParams.search && $routeParams.search !== 'none')
+            return $routeParams.search;
+        return '';
     }
 
     function getSettings() {
@@ -176,6 +195,20 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         function parse(letter) {
             return letter === 't';
         }
+    }
+
+    function getTime() {
+        var defaultTime = 'any time';
+        if ($routeParams && $routeParams.time && times.indexOf($routeParams.time) !== -1)
+            return $routeParams.time;
+        return defaultTime;
+    }
+
+    function getDevice() {
+        var defaultDevice = 'all devices';
+        if ($routeParams && $routeParams.device && sources.indexOf($routeParams.device) !== -1)
+            return $routeParams.device;
+        return defaultDevice;
     }
 
     function parseDateRange() {
@@ -207,22 +240,34 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         }
     }
 
+    function timeOutOfRange(date, time) {
+        var s = $filter('date')(new Date(date), 'medium', '-0400');
+        if (s[s.length - 2].toLowerCase() !== time[time.length - 2].toLowerCase())
+            return true;
+        if (s.split(' ')[3].split(':')[0] !== time.split(':')[0])
+            return true;
+    }
+
     function updateList(resetIncrement) {
 
         var query = $scope.settings.caseSensitive ? $scope.query : $scope.query.toLowerCase();
 
         $scope.matches = $scope.all.filter(function (item) {
 
-            if ($scope.dateRange.start && new Date(item.date) < $scope.dateRange.start)
+            if ($scope.dateRange.start && new Date(item.created_at) < $scope.dateRange.start)
                 return;
-            if ($scope.dateRange.end && new Date(item.date) > $scope.dateRange.end)
+            if ($scope.dateRange.end && new Date(item.created_at) > $scope.dateRange.end)
                 return;
-            if (!$scope.settings.retweets && item.retweet)
+            if ($scope.times.time !== 'any time' && timeOutOfRange(item.created_at, $scope.times.time))
+                return
+            if ($scope.sources.source !== 'all devices' && item.source !== $scope.sources.source)
+                return
+            if (!$scope.settings.retweets && item.manual_retweet)
                 return;
             if (!$scope.query)
                 return true;
 
-            var text = $scope.settings.caseSensitive ? (item.date + ' ' + item.text) : (item.date + ' ' + item.text).toLowerCase();
+            var text = $scope.settings.caseSensitive ? item.text : item.text.toLowerCase();
 
             if ($scope.settings.exactMatch) {
                 return text.split(' ').map(function (word) {
@@ -236,8 +281,8 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
         $scope.matches.sort(function (a, b) {
             if ($scope.settings.descending)
-                return new Date(a.date) < new Date(b.date) ? 1 : -1;
-            return new Date(a.date) > new Date(b.date) ? 1 : -1;
+                return new Date(a.created_at) < new Date(b.created_at) ? 1 : -1;
+            return new Date(a.created_at) > new Date(b.created_at) ? 1 : -1;
         });
 
         if ($scope.matches.length < 400)
@@ -267,11 +312,17 @@ app.directive('whenScrolled', function () {
 });
 
 
-app.filter('highlight', function ($sce) {
+app.filter('highlight', function ($sce, $filter) {
     return function (tweet, phrase) {
         if (phrase)
-            return $sce.trustAsHtml(spanDate(tweet.date) + (tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>') + tweetLink(tweet.id));
-        return $sce.trustAsHtml(spanDate(tweet.date) + tweet.text + tweetLink(tweet.id));
+            return $sce.trustAsHtml((tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>'));
+        return $sce.trustAsHtml(tweet.text);
+    }
+});
+
+app.filter('dateformat', function ($sce, $filter) {
+    return function (tweet) {
+        return $sce.trustAsHtml($filter('date')(new Date(tweet.created_at), 'medium', '-0400'));
     }
 });
 
@@ -315,6 +366,7 @@ function esc(str) {
 
 
 function spanDate(d) {
+    console.log(d);
     return '<span class="tweet-date">' + d + '</span>';
 }
 
@@ -322,5 +374,55 @@ function spanDate(d) {
 function tweetLink(id) {
     return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';
 }
+
+var sources = [
+  "all devices",
+  "Facebook",
+  "Instagram",
+  "Mobile Web (M5)",
+  "Neatly For BlackBerry 10",
+  "Periscope",
+  "TweetDeck",
+  "TwitLonger Beta",
+  "Twitlonger",
+  "Twitter Ads",
+  "Twitter Mirror for iPad",
+  "Twitter QandA",
+  "Twitter Web Client",
+  "Twitter for Android",
+  "Twitter for BlackBerry",
+  "Twitter for Websites",
+  "Twitter for iPad",
+  "Twitter for iPhone",
+  "Vine - Make a Scene"
+]
+
+var times = [
+  'any time',
+  '12:00am',
+  '1:00am',
+  '2:00am',
+  '3:00am',
+  '4:00am',
+  '5:00am',
+  '6:00am',
+  '7:00am',
+  '8:00am',
+  '9:00am',
+  '10:00am',
+  '11:00am',
+  '12:00pm',
+  '1:00pm',
+  '2:00pm',
+  '3:00pm',
+  '4:00pm',
+  '5:00pm',
+  '6:00pm',
+  '7:00pm',
+  '8:00pm',
+  '9:00pm',
+  '10:00pm',
+  '11:00pm',
+];
 
 console.log("Whoa there, Carla Console-Checker")

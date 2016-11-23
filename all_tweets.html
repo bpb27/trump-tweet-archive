@@ -1,0 +1,62 @@
+<style>
+	body {padding: 25px; }
+	li   {margin-bottom: 10px;}
+	h3   {margin-top: 30px;}
+	h2 	 {text-decoration: underline;}
+	.highlight { background: yellow;}
+</style>
+
+<h2>Getting all the tweets:</h2>
+
+<h3>NB:</h3>
+<ol>
+	<li>Following these steps will get you tweets in JSON format</li>
+	<li>If you're unfamiliar with the format, you can <a href="https://json-csv.com/">convert</a> JSON to CSV (good for Excel, Google Spreadsheets, etc.)</li>
+	<li>This process will not get you every single tweet, but it should get a large majority of them</li>
+</ol>
+
+<h3>How to do it:</h3>
+<ol>
+	<li>Open the link below in Google Chrome (replace the user name and dates with whatever is applicable):</li>
+		<ul>
+			<li><code>https://twitter.com/search?f=tweets&vertical=default&q=from%3A<span class="highlight">realdonaldtrump</span>%20since%3A<span class="highlight">2015-01-01</span>%20until%3A<span class="highlight">2015-12-31</span>include%3Aretweets&src=typd</code></li>
+			<li>Be sure to keep the "%3A" and "%20" parts intact.</li>
+			<li>Recommended to do yearly, half-year, or monthly increments (rather than 5 years).</li>
+		</ul>
+	<li>Open the Javascript console in Google Chrome:</li>
+	<ul>
+		<li>Mac: cmd + option + j</li>
+		<li>PC: ctrl + shift + j</li>
+	</ul>
+	<li>Paste in the full setInterval line below and press enter:</li>
+	<ul>
+		<li><code>setInterval(function(){ scrollTo(0, document.body.scrollHeight) }, 2500)</code></li>
+	</ul>
+	<li>Wait until the page has stopped scrolling (could be 2-25 minutes depending on how many there are)</li>
+	<li>Paste in the javascript below and press enter (this will automatically copy the data to your computer's clipboard)</li>
+	<ul>
+		<li><code>
+			var allTweets = [];
+			var tweetElements = document.querySelectorAll('li.stream-item');
+
+			for (var i = 0; i < tweetElements.length; i++) {
+				var el = tweetElements[i];
+				var text = el.querySelector('.tweet-text').textContent;
+				allTweets.push({
+					id: el.getAttribute('data-item-id'),
+					timestamp: el.querySelector('a.tweet-timestamp').getAttribute('data-original-title'),
+					text: text,
+					link: 'https://twitter.com' + el.querySelector('div.tweet').getAttribute('data-permalink-path'),
+					is_retweet: el.querySelector('.js-retweet-text') ? true : false,
+					retweets: el.querySelector('.js-actionRetweet .ProfileTweet-actionCountForPresentation').textContent,
+					favorites: el.querySelector('.js-actionFavorite .ProfileTweet-actionCountForPresentation').textContent,
+					replies: el.querySelector('.js-actionReply .ProfileTweet-actionCountForPresentation').textContent,
+				});
+			}
+
+			copy(allTweets);
+		</code></li>
+	</ul>
+	<li>Paste in a text editor and save</li>
+	<li>NB: If there are a ton of tweets, it might be better to grab them in smaller increments - your computer might have a hard time copying 10,000 entries</li>
+</ol>

@@ -18,18 +18,29 @@
 			<label class="total">Total: {{matches.length}}</label>
 		</div>
 		<div id="controls-middle" class="controls">
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending"> recent first</label>
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> show retweets</label>
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact word match</label>
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.caseSensitive"> case sensitive</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending"> recent <span class="small-hide">first</span></label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> <span class="small-hide">show</span> retweets</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch"> exact word <span class="small-hide">match</span></label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.caseSensitive"> case <span class="small-hide">sensitive</span></label>
 		</div>
 		<div id="controls-right" class="controls">
 			<input class="date-range" type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
 			<input class="date-range" type="date" ng-model="dateRange.end" placeholder="yyyy-MM-dd">
-			<label class="settings-check pointer" ng-if="query" ng-click="showUrlToPage()">link to this search</label>
+			<select class="date-range" ng-model="times.time">
+      	<option ng-repeat="hour in times.options" value="{{hour}}">{{hour}}</option>
+    	</select>
+			<select class="date-range" ng-model="sources.source">
+      	<option ng-repeat="source in sources.options" value="{{source}}">{{source}}</option>
+    	</select>
+			<label class="settings-check pointer" ng-click="showUrlToPage()">link to this search</label>
 		</div>
 	</div>
 	<ol id='fixed' when-scrolled="loadMore()">
-		<li ng-repeat="tweet in displayed" ng-bind-html="tweet | highlight:query"></li>
+		<li ng-repeat="tweet in displayed">
+			<span class="tweet-date" ng-bind-html="tweet | dateformat"></span>
+			<span class="tweet-text" ng-bind-html="tweet | highlight:query" ng-click="log(tweet)"></span>
+			<span class="tweet-source">[{{tweet.source}}]</span>
+			<a href="https://twitter.com/realDonaldTrump/status/{{tweet.id_str}}" target="_blank">↗</a>
+		</li>
 	</ol>
 </div>

@@ -118,6 +118,12 @@ label {
 	display: inline-block;
 }
 
+#about .coverage a {
+	width: 200px;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
 #about hr {
 	width: 50%;
 	margin-top: 40px;
@@ -186,7 +192,7 @@ label {
 }
 
 #control-bar {
-	min-width: 960px;
+	min-width: 1150px;
 }
 
 .controls {
@@ -223,6 +229,7 @@ label {
 	border: 1px solid black;
 	border-radius: 2px;
 	margin-right: 20px;
+	max-width: 134px;
 }
 
 #fixed {
@@ -254,9 +261,13 @@ label {
 }
 
 span.tweet-date {
-    width: 110px;
+    width: 170px;
     display: inline-block;
     padding-left: 10px;
+}
+
+span.tweet-source {
+    color: gray;
 }
 
 #highlights {
@@ -346,6 +357,13 @@ span.tweet-date {
   color: #d30000;
 }
 
+#highlights-right .list-link {
+	font-size: 10px;
+	margin-left: 16px;
+	vertical-align: -webkit-baseline-middle;
+	cursor: pointer;
+}
+
 .quote-list ol li {
 	margin-bottom: 3px;
 	font-size: 14px;
@@ -361,12 +379,24 @@ span.tweet-date {
   text-align: center;
 }
 
+#tweet-panel h2 {
+	border: 1px solid #333535;
+	background-color: #e41c1c;
+	color: #faf8f8;
+	margin: 25px 25% 25px 25%;
+	padding: 5px 30px;
+}
+
 .embedded-tweet {
 	display: inline-block;
 	vertical-align: top;
 	width: 33%;
 	width: 32%;
   padding-left: 6px;
+}
+
+.strikethrough {
+	text-decoration: line-through;
 }
 
 .center {
@@ -385,6 +415,19 @@ span.tweet-date {
 	cursor: pointer;
 }
 
+@media (max-width: 1410px) {
+	.small-hide {
+		display: none;
+	}
+	.settings-check {
+		margin-right: 8px;
+	}
+
+	.date-range {
+		margin-right: 10px;
+	}
+}
+
 @media (max-width: 1310px) {
   #update-notice {
 		top: 0;
@@ -392,16 +435,13 @@ span.tweet-date {
 	}
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   #bottom-right form label span {
 		display: none;
 	}
 }
 
 @media (max-width: 1170px) {
-  .date-range {
-		display: none;
-	}
 	#controls-right label {
 		margin-top: 1px;
 	}
