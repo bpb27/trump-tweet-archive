@@ -13,6 +13,10 @@ label {
 	display: inline-block;
 }
 
+.center {
+	text-align: center;
+}
+
 #update-notice {
   position: absolute;
   z-index: 200;
@@ -119,9 +123,7 @@ label {
 }
 
 #about .coverage a {
-	width: 200px;
-	display: inline-block;
-	margin-bottom: 10px;
+
 }
 
 #about hr {
@@ -233,10 +235,11 @@ label {
 }
 
 #fixed {
-	height: 700px;
+	height: 96vh;
 	overflow: auto;
 	margin: 0;
 	margin-top: 40px;
+	padding-bottom: 100px;
 }
 
 #fixed a {
@@ -251,7 +254,7 @@ label {
 
 #fixed li {
 	padding: 4px 0 1px 0;
-	font-size: 14px;
+	font-size: 13px;
 	margin-bottom: 3px;
   letter-spacing: 0.3px;
 }
@@ -285,38 +288,54 @@ span.tweet-source {
 	text-decoration: underline;
 }
 
+#archives-button {
+  cursor: pointer;
+  position: absolute;
+  right: 110px;
+  top: 80px;
+  padding-top: 5px;
+}
+
 #quicklinks-button {
 	cursor: pointer;
 	position: absolute;
   right: 10px;
   top: 80px;
+	padding-top: 5px;
 }
 
-#quicklinks-button:hover span {
+.caret:hover {
 	color: red;
 }
 
-#quicklinks-button span {
+.caret {
 	font-size: 12px;
 }
 
+#additional-archives {
+	right: 120px;
+}
+
 #quicklinks {
-  position: absolute;
 	right: 10px;
-  top: 105px;
+}
+
+.dropdown {
+  position: absolute;
+  top: 110px;
   background: white;
   padding: 10px;
   border: 1px solid black;
 }
 
-#quicklinks .quicklink {
+.dropdown .quicklink {
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
 	color: black;
 }
 
-#quicklinks .quicklink:hover {
+.dropdown .quicklink:hover {
 	color: red;
 }
 
@@ -442,7 +461,18 @@ span.tweet-source {
 }
 
 @media (max-width: 1170px) {
-	#controls-right label {
-		margin-top: 1px;
+	.date-range:nth-child(3), .date-range:nth-child(4), .settings-check:nth-child(3), .settings-check:nth-child(4) {
+		display: none;
+	}
+
+	span.tweet-date {
+		font-size: inherit;
+    text-decoration: underline;
+    width: inherit;
+    display: inline;
+	}
+
+	#control-bar {
+    min-width: inherit;
 	}
 }

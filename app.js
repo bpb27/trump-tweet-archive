@@ -11,6 +11,21 @@ app.config(function ($routeProvider) {
         .when("/archive", {
             templateUrl: "archive.html"
         })
+        .when("/archive/account/:account", {
+            templateUrl: "archive.html"
+        })
+        .when("/archive/account/:account/:search", {
+            templateUrl: "archive.html"
+        })
+        .when("/archive/account/:account/:search/:params", {
+            templateUrl: "archive.html"
+        })
+        .when("/archive/account/:account/:search/:params/:dates", {
+            templateUrl: "archive.html"
+        })
+        .when("/archive/account/:account/:search/:params/:dates/:time/:device", {
+            templateUrl: "archive.html"
+        })
         .when("/archive/:search", {
             templateUrl: "archive.html"
         })
@@ -45,6 +60,7 @@ app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
 
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
 
+    $scope.accounts = accounts;
     $scope.media = [];
     $scope.showingReasons = false;
     $scope.showingQuicklinks = false;
@@ -53,8 +69,14 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
         prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/highlights#' + $event.srcElement.parentElement.id);
     }
 
+    $scope.toggleArchives = function () {
+        $scope.showingArchives = !$scope.showingArchives;
+        $scope.showingQuicklinks = false;
+    }
+
     $scope.toggleQuicklinks = function () {
         $scope.showingQuicklinks = !$scope.showingQuicklinks;
+        $scope.showingArchives = false;
     }
 
     $scope.toggleReasons = function () {
@@ -75,6 +97,7 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 
 app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', '$filter', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, $filter, TweetService) {
 
+    $scope.account = 'realdonaldtrump'
     $scope.all = [];
     $scope.dateRange = getDateRange();
     $scope.loaded = [];
@@ -84,7 +107,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     $scope.showModal = false;
     $scope.sources = {
         source: getDevice(),
-        options: sources
+        options: []
     };
     $scope.times = {
         time: getTime(),
@@ -93,10 +116,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     $scope.loadMore = function () {
         $scope.increment += 100;
-    }
-
-    $scope.log = function (tweet) {
-        console.log('<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">' + tweet.text + '</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/' + tweet.id_str + '" target="_blank"></a></blockquote>');
     }
 
     $scope.removeDatesModal = function () {
@@ -108,7 +127,11 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     $scope.showUrlToPage = function () {
-        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + encodeURI(createParams()));
+        var paramString = encodeURI(createParams());
+        if ($scope.account === 'realDonaldTrump')
+            prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + paramString);
+        else
+            prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/account/' + $scope.account + '/' + paramString);
     }
 
     $scope.$watch('query', function () {
@@ -197,6 +220,14 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         }
     }
 
+    function getSources(data) {
+        var sources = {};
+        data.forEach(function (item) {
+            sources[item.source] = true;
+        });
+        return Object.keys(sources).concat('all devices').sort()
+    }
+
     function getTime() {
         var defaultTime = 'any time';
         if ($routeParams && $routeParams.time && times.indexOf($routeParams.time) !== -1)
@@ -221,10 +252,14 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     function requestTweets(years) {
+        if ($routeParams && $routeParams.account)
+            $scope.account = $routeParams.account
+
         years.forEach(function (year) {
-            var url = '/data/' + year + '.json';
-            TweetService.load(url, year, function (data) {
+            var url = '/data/' + $scope.account + '/' + year + '.json';
+            TweetService.load($scope.account, url, year, function (data) {
                 $scope.all = $scope.all.concat(data);
+                $scope.sources.options = getSources(data);
                 $scope.increment += 1;
                 $scope.showModal = true;
                 $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'success' });
@@ -330,13 +365,16 @@ app.filter('dateformat', function ($sce, $filter) {
 app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
     this.loaded = {};
+    accounts.forEach(function (item) {
+        this.loaded[item.account] = {};
+    }.bind(this));
 
-    this.load = function (url, year, successHandler, errorHandler) {
-        if (this.loaded[year]) {
-            successHandler(this.loaded[year]);
+    this.load = function (user, url, year, successHandler, errorHandler) {
+        if (this.loaded[user][year]) {
+            successHandler(this.loaded[user][year]);
         } else {
             $http.get(url).then(function (results) {
-                this.loaded[year] = results.data;
+                this.loaded[user][year] = results.data;
                 successHandler(results.data);
             }.bind(this), errorHandler);
         }
@@ -375,6 +413,21 @@ function tweetLink(id) {
     return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';
 }
 
+var accounts = [
+    { account: "agscottpruitt", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['scottpruittok'] },
+    { account: "donaldjtrumpjr", name: "Donald Trump Jr.", title: "son", linked: [] },
+    { account: "erictrump", name: "Eric Trump", title: "son", linked: [] },
+    { account: "genflynn", name: "Michael Flynn", title: "National Security Advisor", linked: [] },
+    { account: "ivankatrump", name: "Ivanka Trump", title: "daughter", linked: [] },
+    { account: "realbencarson", name: "Ben Carson", title: "Housing and Urban Development", linked: [] },
+    { account: "realdonaldtrump", name: "Donald Trump", title: "President", linked: [] },
+    { account: "reptomprice", name: "Tom Price", title: "Health and Human Services", linked: [] },
+    { account: "scottpruittok", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['agscottpruitt'] },
+    { account: "seanhannity", name: "Sean Hannity", title: "conservative commentator", linked: [] },
+    { account: "sheriffclarke", name: "David A. Clarke", title: "sheriff / conservative personality", linked: [] },
+    { account: "stephenbannon", name: "Stephen Bannon", title: "Senior Advisor", linked: [] }
+];
+
 var sources = [
   "all devices",
   "Facebook",
@@ -382,6 +435,7 @@ var sources = [
   "Mobile Web (M5)",
   "Neatly For BlackBerry 10",
   "Periscope",
+  "TweetAdder",
   "TweetDeck",
   "TwitLonger Beta",
   "Twitlonger",

@@ -8,20 +8,28 @@
 
 <h2>Getting all the tweets:</h2>
 
+<h3>Coding knowledge:</h3>
+<ul>
+	<li>The process detailed below requires no coding knowledge</li>
+	<li>If you do having coding knowledge, I'd recommend using my <a href="https://github.com/bpb27/twitter_scraping">Twitter Scraper</a> (it's more thorough)</li>
+	<li>If you're interested in the source code behind the site, see it <a href="https://github.com/bpb27/trump-tweet-archive">here</a></li>
+</ul>
+
 <h3>NB:</h3>
-<ol>
+<ul>
 	<li>Following these steps will get you tweets in JSON format</li>
 	<li>If you're unfamiliar with the format, you can <a href="https://json-csv.com/">convert</a> JSON to CSV (good for Excel, Google Spreadsheets, etc.)</li>
 	<li>This process will not get you every single tweet, but it should get a large majority of them</li>
-</ol>
+	<li>If you have any issues, feel free to email me at trumptwitterarchive@gmail.com</li>
+</ul>
 
 <h3>How to do it:</h3>
 <ol>
 	<li>Open the link below in Google Chrome (replace the user name and dates with whatever is applicable):</li>
 		<ul>
 			<li><code>https://twitter.com/search?f=tweets&vertical=default&q=from%3A<span class="highlight">realdonaldtrump</span>%20since%3A<span class="highlight">2015-01-01</span>%20until%3A<span class="highlight">2015-12-31</span>include%3Aretweets&src=typd</code></li>
-			<li>Be sure to keep the "%3A" and "%20" parts intact.</li>
-			<li>Recommended to do yearly, half-year, or monthly increments (rather than 5 years).</li>
+			<li>Be sure to keep the "%3A" and "%20" parts intact</li>
+			<li>Recommended to do yearly, half-year, or monthly increments (rather than 5 years)</li>
 		</ul>
 	<li>Open the Javascript console in Google Chrome:</li>
 	<ul>

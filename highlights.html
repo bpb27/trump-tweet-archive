@@ -3,8 +3,8 @@
 <h1 id="banner">Trump Twitter Archive</h1>
 <div class="banner-spacing"></div>
 
-<div id="quicklinks-button" ng-click="toggleQuicklinks()">Quicklinks <span ng-if="!showingQuicklinks">&#x25BC;</span><span ng-if="showingQuicklinks">&#x25B2;</span></div>
-<div id="quicklinks" ng-if="showingQuicklinks">
+<div id="quicklinks-button" ng-click="toggleQuicklinks()">Quicklinks <span class="caret" ng-if="!showingQuicklinks">&#x25BC;</span><span class="caret" ng-if="showingQuicklinks">&#x25B2;</span></div>
+<div id="quicklinks" class="dropdown" ng-if="showingQuicklinks">
   <a class="quicklink" ng-href="#/archive">Full Archive</a>
   <a class="quicklink" ng-href="#/highlights/birtherism">Birtherism</a>
   <a class="quicklink" ng-href="#/highlights/retaliation">Retaliation</a>
@@ -213,9 +213,17 @@
 </div> <!-- end of left side -->
 
 <div id="highlights-right">
+  <div class="quote-list link-highlight">
+    <h1 class="no-top-margin">Archived Accounts:</h1>
+    <ol>
+      <li ng-repeat="entry in accounts | orderBy:['name']">
+        <a ng-href="#/archive/account/{{entry.account}}">{{entry.name}}</a> ({{entry.title}})
+      </li>
+    </ol>
+  </div>
 
   <div class="quote-list link-highlight">
-    <h1 id="list-worst" class="no-top-margin">What's the worst?</h1>
+    <h1 id="list-worst">What's the worst?</h1>
     <ol>
       <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/732377163505225728" target="_blank">"is the worst president in U.S. history!"</a></li>
       <li>Bill Clinton <a href="https://twitter.com/realDonaldTrump/status/732540713678819328" target="_blank">"the WORST abuser of woman in U.S. political history"</a></li>
