@@ -212,6 +212,15 @@ label {
 	font-size: 13px;
 }
 
+#account-name {
+	position: absolute;
+	top: 22px;
+	color: white;
+	left: 10px;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+
 #controls-right {
 	margin-left: 10px;
 }

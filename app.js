@@ -60,7 +60,7 @@ app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
 
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
 
-    $scope.accounts = accounts;
+    $scope.accounts = [];
     $scope.media = [];
     $scope.showingReasons = false;
     $scope.showingQuicklinks = false;
@@ -90,6 +90,10 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
             item.date = new Date(item.date);
         });
         $scope.media = results.data;
+    });
+
+    TweetService.getAccounts(function (accounts) {
+        $scope.accounts = accounts;
     });
 
 }]);
@@ -297,7 +301,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
                 return
             if ($scope.sources.source !== 'all devices' && item.source !== $scope.sources.source)
                 return
-            if (!$scope.settings.retweets && item.manual_retweet)
+            if (!$scope.settings.retweets && item.is_retweet)
                 return;
             if (!$scope.query)
                 return true;
@@ -364,20 +368,55 @@ app.filter('dateformat', function ($sce, $filter) {
 
 app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
+    this.accounts = [];
     this.loaded = {};
-    accounts.forEach(function (item) {
-        this.loaded[item.account] = {};
-    }.bind(this));
+
+    this.getAccounts = function (successHandler) {
+        if (this.accounts.length) {
+            return successHandler(this.accounts);
+        } else {
+            $http.get('./accounts.json').then(function (results) {
+                this.accounts = results.data;
+                successHandler(results.data);
+            }.bind(this));
+        }
+    }
 
     this.load = function (user, url, year, successHandler, errorHandler) {
-        if (this.loaded[user][year]) {
-            successHandler(this.loaded[user][year]);
-        } else {
-            $http.get(url).then(function (results) {
-                this.loaded[user][year] = results.data;
-                successHandler(results.data);
-            }.bind(this), errorHandler);
-        }
+
+        this.getAccounts(function (accounts) {
+            var linkedAccount = findLinkedAccount(user, accounts);
+
+            if (!Object.keys(this.loaded).length) {
+                accounts.forEach(function (account) {
+                    this.loaded[account.account] = {};
+                }.bind(this));
+            }
+
+            if (linkedAccount) {
+                var linked = linkedAccount.account;
+                var linkedUrl = url.replace(user, linked);
+                if (this.loaded[user][year] && this.loaded[linked][year]) {
+                    successHandler(this.loaded[user][year].concat(this.loaded[linked][year]));
+                } else {
+                    $http.get(url).then(function (results) {
+                        this.loaded[user][year] = results.data;
+                        $http.get(linkedUrl).then(function (secondResults) {
+                            this.loaded[linked][year] = secondResults.data;
+                            successHandler(results.data.concat(secondResults.data));
+                        }.bind(this), errorHandler);
+                    }.bind(this), errorHandler);
+                }
+            } else if (this.loaded[user][year]) {
+                successHandler(this.loaded[user][year]);
+            } else {
+                $http.get(url).then(function (results) {
+                    this.loaded[user][year] = results.data;
+                    successHandler(results.data);
+                }.bind(this), errorHandler);
+            }
+        }.bind(this));
+
     }
 
     this.transform = function () {
@@ -402,6 +441,17 @@ function esc(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 }
 
+function findAccount(name, accounts) {
+    return accounts.filter(function (item) {
+        return item.account === name;
+    })[0];
+}
+
+function findLinkedAccount(name, accounts) {
+    return accounts.filter(function (item) {
+        return item.linked.indexOf(name) !== -1;
+    })[0];
+}
 
 function spanDate(d) {
     console.log(d);
@@ -413,43 +463,20 @@ function tweetLink(id) {
     return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';
 }
 
-var accounts = [
-    { account: "agscottpruitt", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['scottpruittok'] },
-    { account: "donaldjtrumpjr", name: "Donald Trump Jr.", title: "son", linked: [] },
-    { account: "erictrump", name: "Eric Trump", title: "son", linked: [] },
-    { account: "genflynn", name: "Michael Flynn", title: "National Security Advisor", linked: [] },
-    { account: "ivankatrump", name: "Ivanka Trump", title: "daughter", linked: [] },
-    { account: "realbencarson", name: "Ben Carson", title: "Housing and Urban Development", linked: [] },
-    { account: "realdonaldtrump", name: "Donald Trump", title: "President", linked: [] },
-    { account: "reptomprice", name: "Tom Price", title: "Health and Human Services", linked: [] },
-    { account: "scottpruittok", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['agscottpruitt'] },
-    { account: "seanhannity", name: "Sean Hannity", title: "conservative commentator", linked: [] },
-    { account: "sheriffclarke", name: "David A. Clarke", title: "sheriff / conservative personality", linked: [] },
-    { account: "stephenbannon", name: "Stephen Bannon", title: "Senior Advisor", linked: [] }
-];
-
-var sources = [
-  "all devices",
-  "Facebook",
-  "Instagram",
-  "Mobile Web (M5)",
-  "Neatly For BlackBerry 10",
-  "Periscope",
-  "TweetAdder",
-  "TweetDeck",
-  "TwitLonger Beta",
-  "Twitlonger",
-  "Twitter Ads",
-  "Twitter Mirror for iPad",
-  "Twitter QandA",
-  "Twitter Web Client",
-  "Twitter for Android",
-  "Twitter for BlackBerry",
-  "Twitter for Websites",
-  "Twitter for iPad",
-  "Twitter for iPhone",
-  "Vine - Make a Scene"
-]
+// var accounts = [
+//     { account: "agscottpruitt", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['scottpruittok'] },
+//     { account: "donaldjtrumpjr", name: "Donald Trump Jr.", title: "son", linked: [] },
+//     { account: "erictrump", name: "Eric Trump", title: "son", linked: [] },
+//     { account: "genflynn", name: "Michael Flynn", title: "National Security Advisor", linked: [] },
+//     { account: "ivankatrump", name: "Ivanka Trump", title: "daughter", linked: [] },
+//     { account: "realbencarson", name: "Ben Carson", title: "Housing and Urban Development", linked: [] },
+//     { account: "realdonaldtrump", name: "Donald Trump", title: "President", linked: [] },
+//     { account: "reptomprice", name: "Tom Price", title: "Health and Human Services", linked: [] },
+//     { account: "scottpruittok", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['agscottpruitt'] },
+//     { account: "seanhannity", name: "Sean Hannity", title: "conservative commentator", linked: [] },
+//     { account: "sheriffclarke", name: "David A. Clarke", title: "sheriff / conservative personality", linked: [] },
+//     { account: "stephenbannon", name: "Stephen Bannon", title: "Senior Advisor", linked: [] }
+// ];
 
 var times = [
   'any time',
@@ -480,3 +507,32 @@ var times = [
 ];
 
 console.log("Whoa there, Carla Console-Checker")
+
+// function onlyUnique(value, index, self) {
+//     if (self.indexOf(value) !== index) {
+//         console.log(value);
+//         return false;
+//     } else {
+//         return true;
+//     }
+// }
+//
+// function uniqueProps(data) {
+//     var hash = {
+//         "account": [],
+//         "name": [],
+//         "title": [],
+//         "id": []
+//     };
+//     var fields = Object.keys(hash);
+//     data.forEach(function (item) {
+//         fields.forEach(function (field) {
+//             hash[field].push(item[field])
+//         });
+//     });
+//
+//     fields.forEach(function (field) {
+//         hash[field].filter(onlyUnique);
+//     });
+//     console.log(hash);
+// }

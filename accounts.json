@@ -1,0 +1,205 @@
+[
+  {
+    "account": "agscottpruitt",
+    "id": 80911302,
+    "linked": "scottpruittok",
+    "name": "Scott Pruitt",
+    "title": "Environmental Protection Agency"
+  },
+  {
+    "account": "donaldjtrumpjr",
+    "id": 39344374,
+    "linked": "",
+    "name": "Donald Trump Jr.",
+    "title": "son"
+  },
+  {
+    "account": "erictrump",
+    "id": 39349894,
+    "linked": "",
+    "name": "Eric Trump",
+    "title": "son"
+  },
+  {
+    "account": "genflynn",
+    "id": 240454812,
+    "linked": "",
+    "name": "Michael Flynn",
+    "title": "National Security Advisor"
+  },
+  {
+    "account": "ivankatrump",
+    "id": 52544275,
+    "linked": "",
+    "name": "Ivanka Trump",
+    "title": "daughter"
+  },
+  {
+    "account": "realbencarson",
+    "id": 1180379185,
+    "linked": "",
+    "name": "Ben Carson",
+    "title": "Housing and Urban Development"
+  },
+  {
+    "account": "realdonaldtrump",
+    "id": 25073877,
+    "linked": "",
+    "name": "Donald Trump",
+    "title": "President"
+  },
+  {
+    "account": "reptomprice",
+    "id": 6577802,
+    "linked": "",
+    "name": "Tom Price",
+    "title": "Health and Human Services"
+  },
+  {
+    "account": "scottpruittok",
+    "id": 119463881,
+    "linked": "agscottpruitt",
+    "name": "Scott Pruitt",
+    "title": "Environmental Protection Agency"
+  },
+  {
+    "account": "seanhannity",
+    "id": 41634520,
+    "linked": "",
+    "name": "Sean Hannity",
+    "title": "conservative commentator"
+  },
+  {
+    "account": "sheriffclarke",
+    "id": 118845216,
+    "linked": "",
+    "name": "David A. Clarke",
+    "title": "sheriff / conservative personality"
+  },
+  {
+    "account": "stephenbannon",
+    "id": 114547606,
+    "linked": "",
+    "name": "Stephen Bannon",
+    "title": "Senior Advisor"
+  },
+  {
+    "account": "andypuzder",
+    "id": 17494466,
+    "linked": "",
+    "name": "Andy Puzder",
+    "title": "Labor"
+  },
+  {
+    "account": "clewandowski_",
+    "id": 4121225056,
+    "linked": "",
+    "name": "Corey Lewandowski",
+    "title": "advisor"
+  },
+  {
+    "account": "coburnforsenate",
+    "id": 88754581,
+    "linked": "",
+    "name": "Tom Coburn",
+    "title": "Senator"
+  },
+  {
+    "account": "governorperry",
+    "id": 18906561,
+    "linked": "",
+    "name": "Rick Perry",
+    "title": "Energy"
+  },
+  {
+    "account": "govhaleysc",
+    "id": 720756469,
+    "linked": "nikkihaley",
+    "name": "Nikki Haley",
+    "title": "UN Ambassador"
+  },
+  {
+    "account": "jasonmillerindc",
+    "id": 1084375028,
+    "linked": "",
+    "name": "Jason Miller",
+    "title": "transition team"
+  },
+  {
+    "account": "kellyannepolls",
+    "id": 471672239,
+    "linked": "",
+    "name": "Kellyanne Conway",
+    "title": "transition team"
+  },
+  {
+    "account": "larry_kudlow",
+    "id": 44401911,
+    "linked": "",
+    "name": "Larry Kudlow",
+    "title": "NEC"
+  },
+  {
+    "account": "nikkihaley",
+    "id": 37666984,
+    "linked": "govhaleysc",
+    "name": "Nikki Haley",
+    "title": "UN Ambassador"
+  },
+  {
+    "account": "petehoekstra",
+    "id": 15661604,
+    "linked": "",
+    "name": "Pete Hoekstra",
+    "title": "former congressman"
+  },
+  {
+    "account": "reince",
+    "id": 20733972,
+    "linked": "",
+    "name": "Reince Priebus",
+    "title": "Chief of Staff"
+  },
+  {
+    "account": "repmickmulvaney",
+    "id": 240385577,
+    "linked": "",
+    "name": "Mick Mulvaney",
+    "title": "Office of Management and Budget"
+  },
+  {
+    "account": "repmikepompeo",
+    "id": 244268646,
+    "linked": "",
+    "name": "Mike Pompeo",
+    "title": "CIA"
+  },
+  {
+    "account": "repmikerogers",
+    "id": 156703580,
+    "linked": "",
+    "name": "Mike Rogers",
+    "title": "congressman"
+  },
+  {
+    "account": "ryanzinke",
+    "id": 1906282568,
+    "linked": "",
+    "name": "Ryan Zinke",
+    "title": "Interior"
+  },
+  {
+    "account": "seanspicer",
+    "id": 20776147,
+    "linked": "",
+    "name": "Sean Spicer",
+    "title": "transition team"
+  },
+  {
+    "account": "senatorsessions",
+    "id": 47975734,
+    "linked": "",
+    "name": "Jeff Sessions",
+    "title": "Attorney General"
+  }
+]
