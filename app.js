@@ -43,7 +43,7 @@ app.config(function ($routeProvider) {
         })
         .when("/highlights/:template", {
             templateUrl: function (urlattr) {
-                return urlattr.template + '.html';
+                return '/highlights/' + urlattr.template + '.html';
             }
         })
         .otherwise({
@@ -375,7 +375,7 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
         if (this.accounts.length) {
             return successHandler(this.accounts);
         } else {
-            $http.get('./accounts.json').then(function (results) {
+            $http.get('./data/accounts.json').then(function (results) {
                 this.accounts = results.data;
                 successHandler(results.data);
             }.bind(this));
