@@ -112,7 +112,8 @@ for user_dict in users:
         "2013": [],
         "2014": [],
         "2015": [],
-        "2016": []
+        "2016": [],
+        "2017": []
     }
 
     for entry in short_dataset:

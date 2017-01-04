@@ -59,6 +59,7 @@ app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
 
 
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
+    document.querySelector('body').scrollTop = 0;
 
     $scope.accounts = [];
     $scope.media = [];
@@ -100,6 +101,7 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 
 
 app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', '$filter', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, $filter, TweetService) {
+    document.querySelector('body').scrollTop = 0;
 
     $scope.account = 'realdonaldtrump'
     $scope.all = [];
@@ -224,12 +226,17 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         }
     }
 
-    function getSources(data) {
-        var sources = {};
-        data.forEach(function (item) {
-            sources[item.source] = true;
+    function getSources(data, previous) {
+        var sources = {
+            'all devices': true
+        };
+        previous.forEach(function (item) {
+            if (item) sources[item] = true;
         });
-        return Object.keys(sources).concat('all devices').sort()
+        data.forEach(function (item) {
+            if (item.source) sources[item.source] = true;
+        });
+        return Object.keys(sources).sort()
     }
 
     function getTime() {
@@ -263,7 +270,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             var url = '/data/' + $scope.account + '/' + year + '.json';
             TweetService.load($scope.account, url, year, function (data) {
                 $scope.all = $scope.all.concat(data);
-                $scope.sources.options = getSources(data);
+                $scope.sources.options = getSources(data, $scope.sources.options);
                 $scope.increment += 1;
                 $scope.showModal = true;
                 $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'success' });
@@ -289,7 +296,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     function updateList(resetIncrement) {
 
-        var query = $scope.settings.caseSensitive ? $scope.query : $scope.query.toLowerCase();
+        var query = $scope.query.toLowerCase();
 
         $scope.matches = $scope.all.filter(function (item) {
 
@@ -306,15 +313,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             if (!$scope.query)
                 return true;
 
-            var text = $scope.settings.caseSensitive ? item.text : item.text.toLowerCase();
+            var text = item.text.toLowerCase();
 
-            if ($scope.settings.exactMatch) {
-                return text.split(' ').map(function (word) {
-                    return word.replace(/\W/g, '')
-                }).indexOf(query) !== -1;
-            } else {
-                return text.indexOf(query) !== -1;
-            }
+            return text.indexOf(query) !== -1;
 
         });
 
@@ -324,9 +325,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             return new Date(a.created_at) > new Date(b.created_at) ? 1 : -1;
         });
 
-        if ($scope.matches.length < 400)
-            console.log($scope.matches)
-
         if (resetIncrement)
             $scope.increment = 100;
         $scope.displayed = $scope.matches.slice(0, $scope.increment);
@@ -334,7 +332,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     function years() {
-        return [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
+        return [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017];
     }
 
 }]);
@@ -385,7 +383,7 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
     this.load = function (user, url, year, successHandler, errorHandler) {
 
         this.getAccounts(function (accounts) {
-            var linkedAccount = findLinkedAccount(user, accounts);
+            var linked = user.linked;
 
             if (!Object.keys(this.loaded).length) {
                 accounts.forEach(function (account) {
@@ -393,8 +391,7 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
                 }.bind(this));
             }
 
-            if (linkedAccount) {
-                var linked = linkedAccount.account;
+            if (linked) {
                 var linkedUrl = url.replace(user, linked);
                 if (this.loaded[user][year] && this.loaded[linked][year]) {
                     successHandler(this.loaded[user][year].concat(this.loaded[linked][year]));
@@ -447,36 +444,67 @@ function findAccount(name, accounts) {
     })[0];
 }
 
-function findLinkedAccount(name, accounts) {
-    return accounts.filter(function (item) {
-        return item.linked.indexOf(name) !== -1;
-    })[0];
+function parser(str) {
+
+    str = andor(str)[1] + str;
+
+    var hash = { 'and': [], 'or': [], 'not': [] };
+    var symbol = andor(str)[0];
+    var marker = 0;
+
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] == '&' && str[i + 1] == '&') {
+            step();
+            symbol = 'and';
+        } else if (str[i] == '|' && str[i + 1] == '|') {
+            step();
+            symbol = 'or';
+        } else if (str[i] == '~' && str[i + 1] == '~') {
+            step();
+            symbol = 'not';
+        } else if (i === str.length - 1) {
+            step();
+        }
+    }
+
+    hash['and'] = clean(hash['and']);
+    hash['or'] = clean(hash['or']);
+    hash['not'] = clean(hash['not']);
+
+    function andor(str) {
+        var or = ['or', '||'];
+        var and = ['and', '&&'];
+
+        if (str.indexOf('||') !== -1) {
+            if (str.indexOf('&&') !== -1) {
+                if (str.indexOf('||') < str.indexOf('&&')) {
+                    return or;
+                } else {
+                    return and;
+                }
+            } else {
+                return or;
+            }
+        } else {
+            return and;
+        }
+    }
+
+    function clean(list) {
+        return list.map(function (item) {
+            return item.replace(/[|&~]/g, '').trim();
+        }).filter(function (item) {
+            return item;
+        });
+    }
+
+    function step() {
+        hash[symbol].push(str.slice(marker, i + 1));
+        marker = i + 1;
+    }
+
+    return hash;
 }
-
-function spanDate(d) {
-    console.log(d);
-    return '<span class="tweet-date">' + d + '</span>';
-}
-
-
-function tweetLink(id) {
-    return '<a href="https://twitter.com/realDonaldTrump/status/' + id + '" target="_blank">↗</a>';
-}
-
-// var accounts = [
-//     { account: "agscottpruitt", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['scottpruittok'] },
-//     { account: "donaldjtrumpjr", name: "Donald Trump Jr.", title: "son", linked: [] },
-//     { account: "erictrump", name: "Eric Trump", title: "son", linked: [] },
-//     { account: "genflynn", name: "Michael Flynn", title: "National Security Advisor", linked: [] },
-//     { account: "ivankatrump", name: "Ivanka Trump", title: "daughter", linked: [] },
-//     { account: "realbencarson", name: "Ben Carson", title: "Housing and Urban Development", linked: [] },
-//     { account: "realdonaldtrump", name: "Donald Trump", title: "President", linked: [] },
-//     { account: "reptomprice", name: "Tom Price", title: "Health and Human Services", linked: [] },
-//     { account: "scottpruittok", name: "Scott Pruitt", title: "Environmental Protection Agency", linked: ['agscottpruitt'] },
-//     { account: "seanhannity", name: "Sean Hannity", title: "conservative commentator", linked: [] },
-//     { account: "sheriffclarke", name: "David A. Clarke", title: "sheriff / conservative personality", linked: [] },
-//     { account: "stephenbannon", name: "Stephen Bannon", title: "Senior Advisor", linked: [] }
-// ];
 
 var times = [
   'any time',
@@ -507,32 +535,3 @@ var times = [
 ];
 
 console.log("Whoa there, Carla Console-Checker")
-
-// function onlyUnique(value, index, self) {
-//     if (self.indexOf(value) !== index) {
-//         console.log(value);
-//         return false;
-//     } else {
-//         return true;
-//     }
-// }
-//
-// function uniqueProps(data) {
-//     var hash = {
-//         "account": [],
-//         "name": [],
-//         "title": [],
-//         "id": []
-//     };
-//     var fields = Object.keys(hash);
-//     data.forEach(function (item) {
-//         fields.forEach(function (field) {
-//             hash[field].push(item[field])
-//         });
-//     });
-//
-//     fields.forEach(function (field) {
-//         hash[field].filter(onlyUnique);
-//     });
-//     console.log(hash);
-// }

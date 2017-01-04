@@ -4,9 +4,9 @@ body, input {
 }
 
 body {
+	margin: 0;
 	background-color: #fbfeff;
 	padding-bottom: 30px;
-	min-width: 880px;
 }
 
 label {
@@ -17,32 +17,21 @@ label {
 	text-align: center;
 }
 
-#update-notice {
-  position: absolute;
-  z-index: 200;
-  color: #e41c1c;
-  font-size: 13px;
-  padding: 18px 0 0 14px;
-}
-
-#banner {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	min-width: 880px;
-	margin: 0;
-	padding: 10px 0;
+.top-banner {
+	padding: 10px 30px;
+	border-bottom: 5px solid #e41c1c;
+	background-color: #333535;
+	color: #faf8f8;
 	text-align: center;
-  letter-spacing: 13px;
-  border-bottom: 5px solid #e41c1c;
-  background-color: #333535;
-  color: #faf8f8;
-	font-weight: 400
 }
 
-.banner-spacing {
-	height: 90px;
+.top-banner .site-name {
+	font-size: 2em;
+	letter-spacing: 3px;
+}
+
+#about .top-banner {
+	margin-bottom: 50px;
 }
 
 #bottom {
@@ -51,11 +40,9 @@ label {
   display: block;
   background-color: #333535;
   width: 100%;
-	min-width: 880px;
-	min-width: 880px;
   padding: 5px 0;
 	letter-spacing: 0.2px;
-	font-size: 14px;
+	font-size: 1em;
 }
 
 #bottom #bottom-left {
@@ -107,13 +94,8 @@ label {
 	outline: none;
 }
 
-.view-frame {
-	margin-left: 10px;
-}
-
 #about {
 	text-align: center;
-	padding-top: 130px;
 }
 
 #about p, #about ul {
@@ -187,6 +169,7 @@ label {
 	font-size: 26px;
 	padding: 9px 0 6px 13px;
 	color: #686868;
+	margin-top: 24px;
 	margin-bottom: 16px;
 	border: 2px solid black;
 	border-radius: 2px;
@@ -283,7 +266,8 @@ span.tweet-source {
 }
 
 #highlights {
-	margin-left: 20px;
+	margin-left: 3%;
+  margin-top: 3%;
 }
 
 #highlights h2 {
@@ -450,22 +434,8 @@ span.tweet-source {
 	.settings-check {
 		margin-right: 8px;
 	}
-
 	.date-range {
 		margin-right: 10px;
-	}
-}
-
-@media (max-width: 1310px) {
-  #update-notice {
-		top: 0;
-		padding: 0 0 0 5px;
-	}
-}
-
-@media (max-width: 1250px) {
-  #bottom-right form label span {
-		display: none;
 	}
 }
 

@@ -4,7 +4,7 @@
     "id": 80911302,
     "linked": "scottpruittok",
     "name": "Scott Pruitt",
-    "title": "Environmental Protection Agency"
+    "title": "Administrator of the Environmental Protection Agency"
   },
   {
     "account": "donaldjtrumpjr",
@@ -39,7 +39,7 @@
     "id": 1180379185,
     "linked": "",
     "name": "Ben Carson",
-    "title": "Housing and Urban Development"
+    "title": "Secretary of Housing and Urban Development"
   },
   {
     "account": "realdonaldtrump",
@@ -53,14 +53,7 @@
     "id": 6577802,
     "linked": "",
     "name": "Tom Price",
-    "title": "Health and Human Services"
-  },
-  {
-    "account": "scottpruittok",
-    "id": 119463881,
-    "linked": "agscottpruitt",
-    "name": "Scott Pruitt",
-    "title": "Environmental Protection Agency"
+    "title": "Secretary of Health and Human Services"
   },
   {
     "account": "seanhannity",
@@ -74,21 +67,21 @@
     "id": 118845216,
     "linked": "",
     "name": "David A. Clarke",
-    "title": "sheriff / conservative personality"
+    "title": "Sheriff of Milwaukee County"
   },
   {
     "account": "stephenbannon",
     "id": 114547606,
     "linked": "",
     "name": "Stephen Bannon",
-    "title": "Senior Advisor"
+    "title": "Chief Strategist"
   },
   {
     "account": "andypuzder",
     "id": 17494466,
     "linked": "",
     "name": "Andy Puzder",
-    "title": "Labor"
+    "title": "Secretary of Labor"
   },
   {
     "account": "clewandowski_",
@@ -102,21 +95,14 @@
     "id": 88754581,
     "linked": "",
     "name": "Tom Coburn",
-    "title": "Senator"
+    "title": "former senator"
   },
   {
     "account": "governorperry",
     "id": 18906561,
     "linked": "",
     "name": "Rick Perry",
-    "title": "Energy"
-  },
-  {
-    "account": "govhaleysc",
-    "id": 720756469,
-    "linked": "nikkihaley",
-    "name": "Nikki Haley",
-    "title": "UN Ambassador"
+    "title": "Secretary of Energy"
   },
   {
     "account": "jasonmillerindc",
@@ -130,21 +116,21 @@
     "id": 471672239,
     "linked": "",
     "name": "Kellyanne Conway",
-    "title": "transition team"
+    "title": "Counselor to the President"
   },
   {
     "account": "larry_kudlow",
     "id": 44401911,
     "linked": "",
     "name": "Larry Kudlow",
-    "title": "NEC"
+    "title": "Council of Economic Advisers Chairman"
   },
   {
     "account": "nikkihaley",
     "id": 37666984,
     "linked": "govhaleysc",
     "name": "Nikki Haley",
-    "title": "UN Ambassador"
+    "title": "U.S. Ambassador to United Nations"
   },
   {
     "account": "petehoekstra",
@@ -165,14 +151,14 @@
     "id": 240385577,
     "linked": "",
     "name": "Mick Mulvaney",
-    "title": "Office of Management and Budget"
+    "title": "Director of Office of Management and Budget"
   },
   {
     "account": "repmikepompeo",
     "id": 244268646,
     "linked": "",
     "name": "Mike Pompeo",
-    "title": "CIA"
+    "title": "CIA Director"
   },
   {
     "account": "repmikerogers",
@@ -186,14 +172,14 @@
     "id": 1906282568,
     "linked": "",
     "name": "Ryan Zinke",
-    "title": "Interior"
+    "title": "Secretary of Interior"
   },
   {
     "account": "seanspicer",
     "id": 20776147,
     "linked": "",
     "name": "Sean Spicer",
-    "title": "transition team"
+    "title": "Press Secretary"
   },
   {
     "account": "senatorsessions",
@@ -214,6 +200,6 @@
     "id": 65522706,
     "linked": "",
     "name": "Linda McMahon",
-    "title": "Small Business Administration"
+    "title": "Administrator of the Small Business Administration"
   }
 ]
