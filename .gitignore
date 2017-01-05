@@ -1,5 +1,13 @@
 api_keys.json
-/pages/wip.html
 test.js
 *_long.json
 *_short.json
+highlights/wip.html
+
+.DS_Store
+._.DS_Store
+._highlights.html
+._index.html
+._style.css
+404.shtml
+old/
