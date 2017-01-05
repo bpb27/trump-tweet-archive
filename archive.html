@@ -19,8 +19,8 @@
 			<label class="total">Total: {{matches.length}}</label>
 		</div>
 		<div id="controls-middle" class="controls">
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending"> recent <span class="small-hide">first</span></label>
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets"> <span class="small-hide">show</span> retweets</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending">recent first</label>
+			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets">retweets</label>
 		</div>
 		<div id="controls-right" class="controls">
 			<input class="date-range" type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
@@ -32,14 +32,26 @@
       	<option ng-repeat="source in sources.options" value="{{source}}">{{source}}</option>
     	</select>
 			<label class="settings-check pointer" ng-click="showUrlToPage()">link to this search</label>
+			<label class="settings-check pointer" ng-click="showSearchTips()">search tips</label>
 		</div>
 	</div>
 	<ol id='fixed' when-scrolled="loadMore()">
 		<li ng-repeat="tweet in displayed">
 			<span class="tweet-date" ng-bind-html="tweet | dateformat"></span>
-			<span class="tweet-text" ng-bind-html="tweet | highlight:query"></span>
+			<span class="tweet-text" ng-bind-html="tweet | highlight:query:deepQuery"></span>
 			<span class="tweet-source">[{{tweet.source}}]</span>
 			<a href="https://twitter.com/realDonaldTrump/status/{{tweet.id_str}}" target="_blank">↗</a>
 		</li>
 	</ol>
+	<div ng-if="showTips" id="search-tips">
+		<div>"bad && sad"</div>
+		<div>returns all tweets with both <i>bad</i> and <i>sad</i></div>
+		<div class="tip-space"></div>
+		<div>"bad || sad"</div>
+		<div>returns all tweets with either <i>bad</i> or <i>sad</i></div>
+		<div class="tip-space"></div>
+		<div>"bad && sad ~~ Mark Cuban"</div>
+		<div>returns all tweets with both <i>bad</i> and <i>sad</i> but not <i>Mark Cuban</i></div>
+		<button ng-click="showSearchTips()" class="pointer">close</button>
+	</div>
 </div>

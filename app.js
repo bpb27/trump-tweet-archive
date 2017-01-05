@@ -70,14 +70,8 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
         prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/highlights#' + $event.srcElement.parentElement.id);
     }
 
-    $scope.toggleArchives = function () {
-        $scope.showingArchives = !$scope.showingArchives;
-        $scope.showingQuicklinks = false;
-    }
-
     $scope.toggleQuicklinks = function () {
         $scope.showingQuicklinks = !$scope.showingQuicklinks;
-        $scope.showingArchives = false;
     }
 
     $scope.toggleReasons = function () {
@@ -106,11 +100,13 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     $scope.account = 'realdonaldtrump'
     $scope.all = [];
     $scope.dateRange = getDateRange();
+    $scope.deepQuery = {};
     $scope.loaded = [];
     $scope.increment = 100;
     $scope.query = getQuery();
     $scope.settings = getSettings();
     $scope.showModal = false;
+    $scope.showTips = false;
     $scope.sources = {
         source: getDevice(),
         options: []
@@ -130,6 +126,10 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     $scope.retryUrl = function (item) {
         requestTweets([item.year]);
+    }
+
+    $scope.showSearchTips = function () {
+        $scope.showTips = !$scope.showTips;
     }
 
     $scope.showUrlToPage = function () {
@@ -152,7 +152,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     $scope.$watchGroup([
 			'increment',
-			'settings.descending',
+      'settings.descending',
 			'settings.retweets',
 			'settings.caseSensitive',
 			'settings.exactMatch',
@@ -297,6 +297,14 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     function updateList(resetIncrement) {
 
         var query = $scope.query.toLowerCase();
+        var deepQuery = null;
+
+        if (symbolsPresent(query)) {
+            deepQuery = parser(query);
+            $scope.deepQuery = deepQuery;
+        } else {
+            $scope.deepQuery = {};
+        }
 
         $scope.matches = $scope.all.filter(function (item) {
 
@@ -314,6 +322,37 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
                 return true;
 
             var text = item.text.toLowerCase();
+
+
+            if (deepQuery) {
+
+                var andMatch = true;
+                var orMatch = true;
+                var notMatch = true;
+
+                if (deepQuery['and'].length) {
+                    andMatch = parseAndMatch(deepQuery, text);
+                    if (deepQuery['not'].length) {
+                        notMatch = parseNotMatch(deepQuery, text);
+                        return andMatch && notMatch;
+                    }
+                    return andMatch;
+                }
+
+                if (deepQuery['or'].length) {
+                    orMatch = parseOrMatch(deepQuery, text);
+                    if (deepQuery['not'].length) {
+                        notMatch = parseNotMatch(deepQuery, text);
+                        return orMatch && notMatch;
+                    }
+                    return orMatch;
+                }
+
+                if (deepQuery['not'].length) {
+                    notMatch = parseNotMatch(deepQuery, text);
+                    return notMatch;
+                }
+            }
 
             return text.indexOf(query) !== -1;
 
@@ -350,9 +389,17 @@ app.directive('whenScrolled', function () {
 
 
 app.filter('highlight', function ($sce, $filter) {
-    return function (tweet, phrase) {
-        if (phrase)
+    return function (tweet, phrase, deepQuery) {
+        if (phrase) {
+            if (Object.keys(deepQuery).length) {
+                var text = tweet.text;
+                deepQuery['and'].concat(deepQuery['or']).forEach(function (keyword) {
+                    text = text.replace(new RegExp('(' + esc(keyword) + ')', 'gi'), '<span class="highlighted">$1</span>');
+                });
+                return $sce.trustAsHtml(text);
+            }
             return $sce.trustAsHtml((tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>'));
+        }
         return $sce.trustAsHtml(tweet.text);
     }
 });
@@ -504,6 +551,28 @@ function parser(str) {
     }
 
     return hash;
+}
+
+function parseAndMatch(deepQuery, text) {
+    return deepQuery['and'].filter(function (word) {
+        return text.indexOf(word) !== -1;
+    }).length === deepQuery['and'].length;
+}
+
+function parseOrMatch(deepQuery, text) {
+    return deepQuery['or'].filter(function (word) {
+        return text.indexOf(word) !== -1;
+    }).length;
+}
+
+function parseNotMatch(deepQuery, text) {
+    return deepQuery['not'].filter(function (word) {
+        return text.indexOf(word) !== -1;
+    }).length === 0;
+}
+
+function symbolsPresent(str) {
+    return str.indexOf('&&') !== -1 || str.indexOf('||') !== -1 || str.indexOf('~~') !== -1;
 }
 
 var times = [

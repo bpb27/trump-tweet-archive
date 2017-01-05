@@ -165,10 +165,11 @@ label {
 
 #search-bar {
 	display: block;
-	width: 98.5%;
+	width: 98%;
 	font-size: 26px;
 	padding: 9px 0 6px 13px;
 	color: #686868;
+	margin: 24px 0 16px 3px;
 	margin-top: 24px;
 	margin-bottom: 16px;
 	border: 2px solid black;
@@ -191,7 +192,7 @@ label {
 }
 
 .settings-check {
-	margin-right: 20px;
+	margin-right: 10px;
 	font-size: 13px;
 }
 
@@ -202,10 +203,6 @@ label {
 	left: 10px;
 	font-size: 18px;
 	letter-spacing: 1px;
-}
-
-#controls-right {
-	margin-left: 10px;
 }
 
 #controls-right label {
@@ -222,7 +219,7 @@ label {
 	color: gray;
 	border: 1px solid black;
 	border-radius: 2px;
-	margin-right: 20px;
+	margin-right: 10px;
 	max-width: 134px;
 }
 
@@ -263,6 +260,32 @@ span.tweet-date {
 
 span.tweet-source {
     color: gray;
+}
+
+#search-tips {
+	position: absolute;
+	top: 0;
+	background: #8a8a8a;
+	color: white;
+	border: 2px solid black;
+	padding: 10px;
+	letter-spacing: 1px;
+	font-size: 16px;
+}
+
+#search-tips button {
+	float: right;
+	margin-top: 15px;
+	border: none;
+	padding: 5px 10px;
+	color: white;
+	background: #ff5d5d;
+	border-radius: 4px;
+	font-size: 10px;
+}
+
+#search-tips .tip-space {
+  height: 20px;
 }
 
 #highlights {
@@ -425,18 +448,6 @@ span.tweet-source {
 
 .pointer {
 	cursor: pointer;
-}
-
-@media (max-width: 1410px) {
-	.small-hide {
-		display: none;
-	}
-	.settings-check {
-		margin-right: 8px;
-	}
-	.date-range {
-		margin-right: 10px;
-	}
 }
 
 @media (max-width: 1170px) {
