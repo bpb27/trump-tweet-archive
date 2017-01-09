@@ -201,5 +201,33 @@
     "linked": "",
     "name": "Linda McMahon",
     "title": "Administrator of the Small Business Administration"
+  },
+  {
+    "account": "pambondi",
+    "id": 93755660,
+    "linked": "",
+    "name": "Pam Bondi",
+    "title": "Florida Attorney General"
+  },
+  {
+    "account": "sarahpalinusa",
+    "id": 65493023,
+    "linked": "",
+    "name": "Sarah Palin",
+    "title": "former Vice Presidential candidate"
+  },
+  {
+    "account": "danscavino",
+    "id": 620571475,
+    "linked": "",
+    "name": "Dan Scavino",
+    "title": "Director of Social Media"
+  },
+  {
+    "account": "sendancoats",
+    "id": 212262370,
+    "linked": "",
+    "name": "Dan Coats",
+    "title": "Director of National Intelligence"
   }
 ]
