@@ -32,14 +32,6 @@ auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
 auth.set_access_token(keys['access_token'], keys['access_token_secret'])
 api = tweepy.API(auth)
 
-users = [{
-    "account": "tedcruz",
-    "id": 23022687,
-    "linked": "",
-    "name": "Ted Cruz",
-    "title": "senator"
-}]
-
 for user_dict in users:
     user = user_dict['account']
     user_id = user_dict['id']
@@ -60,8 +52,8 @@ for user_dict in users:
 
     print('new tweets found: {}'.format(len(results)))
 
-    # if not len(results):
-    #     continue
+    if not len(results):
+        continue
 
     for tweet in results:
         tweet_dict = dict(tweet._json)
