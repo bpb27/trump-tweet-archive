@@ -8,6 +8,9 @@ from tweepy import TweepError
 from time import sleep
 from pprint import pprint
 
+# external path for larger data archives
+relative_path = '/Users/brendanbrown27/Desktop/political_twitter_archive'
+
 compression = zipfile.ZIP_DEFLATED
 fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at", "retweet_count", "id_str"]
 
@@ -32,11 +35,14 @@ api = tweepy.API(auth)
 
 user = 'realdonaldtrump'
 user_id = 25073877
-path = './data/realdonaldtrump/realdonaldtrump_long.json'
+path_long = './data/realdonaldtrump/realdonaldtrump_long.json'
 path_short = './data/realdonaldtrump/realdonaldtrump_short.json'
-path_ids = './data/realdonaldtrump/realdonaldtrump_ids.json'
+path_ids = relative_path + '/realdonaldtrump/realdonaldtrump_ids.json'
+path_csv = relative_path + '/realdonaldtrump/realdonaldtrump.csv'
+path_long_zip = relative_path + '/realdonaldtrump/realdonaldtrump_long.zip'
+path_short_zip = relative_path + '/realdonaldtrump/realdonaldtrump_short.zip'
 
-with open(path) as f:
+with open(path_long) as f:
     data = json.load(f)
 
 data = list(sorted(data, key=lambda x: parser.parse(x['created_at']), reverse=True))
@@ -59,7 +65,7 @@ if len(results):
             unique_data.append(tweet)
         all_ids.add(tweet["id_str"])
 
-    with open(path, 'w') as f:
+    with open(path_long, 'w') as f:
         json.dump(unique_data, f)
 
     short_dataset = []
@@ -84,18 +90,18 @@ if len(results):
         json.dump(ids, f)
 
     print('Creating CSV file for ', user)
-    f = csv.writer(open('./data/{}/{}.csv'.format(user, user), 'w'))
+    f = csv.writer(open(path_csv, 'w'))
     f.writerow(fields)
     for x in short_dataset:
         f.writerow([x["favorite_count"], x["source"], x["text"], x["in_reply_to_screen_name"], x["is_retweet"], x["created_at"], x["retweet_count"], x["id_str"]])
 
     print('Creating ZIP file for ', user)
-    zf = zipfile.ZipFile('./data/{}/{}_long.zip'.format(user, user), mode='w')
-    zf.write(path, compress_type=compression)
+    zf = zipfile.ZipFile(path_long_zip, mode='w')
+    zf.write(path_long, compress_type=compression)
     zf.close()
 
     print('Creating short ZIP file for ', user)
-    zf = zipfile.ZipFile('./data/{}/{}_short.zip'.format(user, user), mode='w')
+    zf = zipfile.ZipFile(path_short_zip, mode='w')
     zf.write(path_short, compress_type=compression)
     zf.close()
 

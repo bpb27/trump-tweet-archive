@@ -3,11 +3,13 @@ import json
 import csv
 import zipfile
 import zlib
+import datetime
 from dateutil import parser
 from tweepy import TweepError
 from time import sleep
 from pprint import pprint
 
+# external path for larger data archives
 relative_path = '/Users/brendanbrown27/Desktop/political_twitter_archive/'
 
 compression = zipfile.ZIP_DEFLATED
@@ -41,8 +43,8 @@ for user_dict in users:
     path_short = './data/{}/{}_short.json'.format(user, user)
     path_ids = '{}/{}/{}_ids.json'.format(relative_path, user, user)
     path_csv = '{}/{}/{}.csv'.format(relative_path, user, user)
-    path_zip_long = '{}/{}/{}_long.zip'.format(relative_path, user, user)
-    path_zip_short = '{}/{}/{}_short.zip'.format(relative_path, user, user)
+    path_long_zip = '{}/{}/{}_long.zip'.format(relative_path, user, user)
+    path_short_zip = '{}/{}/{}_short.zip'.format(relative_path, user, user)
 
     with open(path_long) as f:
         data = json.load(f)
@@ -52,8 +54,8 @@ for user_dict in users:
 
     print('new tweets found: {}'.format(len(results)))
 
-    if not len(results):
-        continue
+    # if not len(results):
+    #     continue
 
     for tweet in results:
         tweet_dict = dict(tweet._json)
@@ -100,15 +102,16 @@ for user_dict in users:
         f.writerow([x["favorite_count"], x["source"], x["text"], x["in_reply_to_screen_name"], x["is_retweet"], x["created_at"], x["retweet_count"], x["id_str"]])
 
     print('Creating ZIP file for ', user)
-    zf = zipfile.ZipFile(path_zip_long, mode='w')
-    zf.write(path_long, compress_type=compression)
+    zf = zipfile.ZipFile(path_long_zip, mode='w')
+    zf.write(path_long, arcname='./{}_long.json'.format(user), compress_type=compression)
     zf.close()
 
     print('Creating short ZIP file for ', user)
-    zf = zipfile.ZipFile(path_zip_short, mode='w')
-    zf.write(path_short, compress_type=compression)
+    zf = zipfile.ZipFile(path_short_zip, mode='w')
+    zf.write(path_short, arcname='./{}_short.json'.format(user), compress_type=compression)
     zf.close()
 
+    current_year = str(datetime.datetime.now().year)
     years = {
         "2009": [],
         "2010": [],
@@ -127,7 +130,15 @@ for user_dict in users:
             year = '2009'
         years[year].append(entry)
 
-    print('Creating year specific files for ', user)
-    for year in years.keys():
-        with open('./data/{}/{}.json'.format(user, year), 'w') as outfile:
-            json.dump(years[year], outfile)
+    try:
+        # check if year files are already created
+        with open('./data/{}/2009.json'.format(user)) as f:
+            pass
+        print('Creating year specific files for ', user)
+        with open('./data/{}/{}.json'.format(user, current_year), 'w') as outfile:
+            json.dump(years[current_year], outfile)
+    except FileNotFoundError:
+        print('Creating year specific files for ', user)
+        for year in years.keys():
+            with open('./data/{}/{}.json'.format(user, year), 'w') as outfile:
+                json.dump(years[year], outfile)
