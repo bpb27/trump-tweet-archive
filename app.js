@@ -87,9 +87,8 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
         $scope.media = results.data;
     });
 
-    TweetService.getAccounts(function (accounts) {
-        $scope.accounts = accounts;
-        $scope.$apply();
+    $http.get('/data/accounts.json').then(function (results) {
+        $scope.accounts = results.data;
     });
 
 }]);
@@ -424,7 +423,7 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
     this.getAccounts = function (successHandler) {
         if (this.accounts.length) {
-            return successHandler(this.accounts);
+            successHandler(this.accounts);
         } else {
             setTimeout(function () {
                 console.log("going again");

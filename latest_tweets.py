@@ -54,8 +54,8 @@ for user_dict in users:
 
     print('new tweets found: {}'.format(len(results)))
 
-    # if not len(results):
-    #     continue
+    if not len(results):
+        continue
 
     for tweet in results:
         tweet_dict = dict(tweet._json)
