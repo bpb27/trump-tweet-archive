@@ -89,6 +89,7 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 
     TweetService.getAccounts(function (accounts) {
         $scope.accounts = accounts;
+        $scope.$apply();
     });
 
 }]);
@@ -414,6 +415,10 @@ app.filter('dateformat', function ($sce, $filter) {
 
 app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
+    $http.get('./data/accounts.json').then(function (results) {
+        this.accounts = results.data;
+    }.bind(this));
+
     this.accounts = [];
     this.loaded = {};
 
@@ -421,17 +426,17 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
         if (this.accounts.length) {
             return successHandler(this.accounts);
         } else {
-            $http.get('./data/accounts.json').then(function (results) {
-                this.accounts = results.data;
-                successHandler(results.data);
-            }.bind(this));
+            setTimeout(function () {
+                console.log("going again");
+                this.getAccounts(successHandler);
+            }.bind(this), 100);
         }
     }
 
     this.load = function (user, url, year, successHandler, errorHandler) {
 
         this.getAccounts(function (accounts) {
-            var linked = user.linked;
+            var linked = findAccount(user, accounts).linked
 
             if (!Object.keys(this.loaded).length) {
                 accounts.forEach(function (account) {
@@ -489,7 +494,7 @@ function esc(str) {
 function findAccount(name, accounts) {
     return accounts.filter(function (item) {
         return item.account === name;
-    })[0];
+    })[0] || '';
 }
 
 function parser(str) {

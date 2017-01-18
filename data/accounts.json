@@ -4,244 +4,295 @@
     "id": 80911302,
     "linked": "scottpruittok",
     "name": "Scott Pruitt",
-    "title": "Administrator of the Environmental Protection Agency"
+    "title": "Administrator of the Environmental Protection Agency",
+    "display": true
+  },
+  {
+    "account": "scottpruittok",
+    "id": 119463881,
+    "linked": "agscottpruitt",
+    "name": "Scott Pruitt (2nd account)",
+    "title": "Administrator of the Environmental Protection Agency",
+    "display": false
   },
   {
     "account": "donaldjtrumpjr",
     "id": 39344374,
     "linked": "",
     "name": "Donald Trump Jr.",
-    "title": "son"
+    "title": "son",
+    "display": true
   },
   {
     "account": "erictrump",
     "id": 39349894,
     "linked": "",
     "name": "Eric Trump",
-    "title": "son"
+    "title": "son",
+    "display": true
   },
   {
     "account": "genflynn",
     "id": 240454812,
     "linked": "",
     "name": "Michael Flynn",
-    "title": "National Security Advisor"
+    "title": "National Security Advisor",
+    "display": true
   },
   {
     "account": "ivankatrump",
     "id": 52544275,
     "linked": "",
     "name": "Ivanka Trump",
-    "title": "daughter"
+    "title": "daughter",
+    "display": true
   },
   {
     "account": "realbencarson",
     "id": 1180379185,
     "linked": "",
     "name": "Ben Carson",
-    "title": "Secretary of Housing and Urban Development"
+    "title": "Secretary of Housing and Urban Development",
+    "display": true
   },
   {
     "account": "realdonaldtrump",
     "id": 25073877,
     "linked": "",
     "name": "Donald Trump",
-    "title": "President"
+    "title": "President",
+    "display": true
   },
   {
     "account": "reptomprice",
     "id": 6577802,
     "linked": "",
     "name": "Tom Price",
-    "title": "Secretary of Health and Human Services"
+    "title": "Secretary of Health and Human Services",
+    "display": true
   },
   {
     "account": "seanhannity",
     "id": 41634520,
     "linked": "",
     "name": "Sean Hannity",
-    "title": "conservative commentator"
+    "title": "conservative commentator",
+    "display": true
   },
   {
     "account": "sheriffclarke",
     "id": 118845216,
     "linked": "",
     "name": "David A. Clarke",
-    "title": "Sheriff of Milwaukee County"
+    "title": "Sheriff of Milwaukee County",
+    "display": true
   },
   {
     "account": "stephenbannon",
     "id": 114547606,
     "linked": "",
     "name": "Stephen Bannon",
-    "title": "Chief Strategist"
+    "title": "Chief Strategist",
+    "display": true
   },
   {
     "account": "andypuzder",
     "id": 17494466,
     "linked": "",
     "name": "Andy Puzder",
-    "title": "Secretary of Labor"
+    "title": "Secretary of Labor",
+    "display": true
   },
   {
     "account": "clewandowski_",
     "id": 4121225056,
     "linked": "",
     "name": "Corey Lewandowski",
-    "title": "advisor"
+    "title": "advisor",
+    "display": true
   },
   {
     "account": "coburnforsenate",
     "id": 88754581,
     "linked": "",
     "name": "Tom Coburn",
-    "title": "former senator"
+    "title": "former senator",
+    "display": true
   },
   {
     "account": "governorperry",
     "id": 18906561,
     "linked": "",
     "name": "Rick Perry",
-    "title": "Secretary of Energy"
+    "title": "Secretary of Energy",
+    "display": true
   },
   {
     "account": "jasonmillerindc",
     "id": 1084375028,
     "linked": "",
     "name": "Jason Miller",
-    "title": "transition team"
+    "title": "transition team",
+    "display": true
   },
   {
     "account": "kellyannepolls",
     "id": 471672239,
     "linked": "",
     "name": "Kellyanne Conway",
-    "title": "Counselor to the President"
+    "title": "Counselor to the President",
+    "display": true
   },
   {
     "account": "larry_kudlow",
     "id": 44401911,
     "linked": "",
     "name": "Larry Kudlow",
-    "title": "economic analyst"
+    "title": "economic analyst",
+    "display": true
   },
   {
     "account": "nikkihaley",
     "id": 37666984,
     "linked": "govhaleysc",
     "name": "Nikki Haley",
-    "title": "U.S. Ambassador to United Nations"
+    "title": "U.S. Ambassador to United Nations",
+    "display": true
+  },
+  {
+    "account": "govhaleysc",
+    "id": 720756469,
+    "linked": "nikkihaley",
+    "name": "Nikki Haley",
+    "title": "U.S. Ambassador to United Nations (second account)",
+    "display": false
   },
   {
     "account": "petehoekstra",
     "id": 15661604,
     "linked": "",
     "name": "Pete Hoekstra",
-    "title": "former congressman"
+    "title": "former congressman",
+    "display": true
   },
   {
     "account": "reince",
     "id": 20733972,
     "linked": "",
     "name": "Reince Priebus",
-    "title": "Chief of Staff"
+    "title": "Chief of Staff",
+    "display": true
   },
   {
     "account": "repmickmulvaney",
     "id": 240385577,
     "linked": "",
     "name": "Mick Mulvaney",
-    "title": "Director of Office of Management and Budget"
+    "title": "Director of Office of Management and Budget",
+    "display": true
   },
   {
     "account": "repmikepompeo",
     "id": 244268646,
     "linked": "",
     "name": "Mike Pompeo",
-    "title": "CIA Director"
+    "title": "CIA Director",
+    "display": true
   },
   {
     "account": "repmikerogers",
     "id": 156703580,
     "linked": "",
     "name": "Mike Rogers",
-    "title": "congressman"
+    "title": "congressman",
+    "display": true
   },
   {
     "account": "ryanzinke",
     "id": 1906282568,
     "linked": "",
     "name": "Ryan Zinke",
-    "title": "Secretary of Interior"
+    "title": "Secretary of Interior",
+    "display": true
   },
   {
     "account": "seanspicer",
     "id": 20776147,
     "linked": "",
     "name": "Sean Spicer",
-    "title": "Press Secretary"
+    "title": "Press Secretary",
+    "display": true
   },
   {
     "account": "senatorsessions",
     "id": 47975734,
     "linked": "",
     "name": "Jeff Sessions",
-    "title": "Attorney General"
+    "title": "Attorney General",
+    "display": true
   },
   {
     "account": "rogerjstonejr",
     "id": 47253057,
     "linked": "",
     "name": "Roger Stone",
-    "title": "advisor"
+    "title": "advisor",
+    "display": true
   },
   {
     "account": "linda_mcmahon",
     "id": 65522706,
     "linked": "",
     "name": "Linda McMahon",
-    "title": "Administrator of the Small Business Administration"
+    "title": "Administrator of the Small Business Administration",
+    "display": true
   },
   {
     "account": "pambondi",
     "id": 93755660,
     "linked": "",
     "name": "Pam Bondi",
-    "title": "Florida Attorney General"
+    "title": "Florida Attorney General",
+    "display": true
   },
   {
     "account": "sarahpalinusa",
     "id": 65493023,
     "linked": "",
     "name": "Sarah Palin",
-    "title": "former Vice Presidential candidate"
+    "title": "former Vice Presidential candidate",
+    "display": true
   },
   {
     "account": "danscavino",
     "id": 620571475,
     "linked": "",
     "name": "Dan Scavino",
-    "title": "Director of Social Media"
+    "title": "Director of Social Media",
+    "display": true
   },
   {
     "account": "sendancoats",
     "id": 212262370,
     "linked": "",
     "name": "Dan Coats",
-    "title": "Director of National Intelligence"
+    "title": "Director of National Intelligence",
+    "display": true
   },
   {
     "account": "monicacrowley",
     "id": 166990746,
     "linked": "",
     "name": "Monica Crowley",
-    "title": "conservative commentator"
+    "title": "conservative commentator",
+    "display": true
   },
   {
     "account": "tedcruz",
     "id": 23022687,
     "linked": "",
     "name": "Ted Cruz",
-    "title": "senator"
+    "title": "senator",
+    "display": true
   }
 ]

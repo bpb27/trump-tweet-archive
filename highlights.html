@@ -217,7 +217,7 @@
   <div class="quote-list link-highlight">
     <h1 class="no-top-margin">Archived Accounts</h1>
     <ol>
-      <li ng-repeat="entry in accounts | orderBy:['name']">
+      <li ng-repeat="entry in accounts | orderBy:['name']" ng-if="entry.display">
         <a ng-href="#/archive/account/{{entry.account}}">{{entry.name}}</a> ({{entry.title}})
       </li>
     </ol>
