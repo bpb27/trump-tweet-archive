@@ -297,7 +297,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     function updateList(resetIncrement) {
 
         var query = $scope.query.toLowerCase();
+        var regEx = new RegExp('\\b' + query + '\\b', 'i');
         var deepQuery = null;
+        var exact = $scope.settings.exactMatch;
 
         if (symbolsPresent(query)) {
             deepQuery = parser(query);
@@ -323,7 +325,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
             var text = item.text.toLowerCase();
 
-
             if (deepQuery) {
 
                 var andMatch = true;
@@ -331,30 +332,30 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
                 var notMatch = true;
 
                 if (deepQuery['and'].length) {
-                    andMatch = parseAndMatch(deepQuery, text);
+                    andMatch = parseAndMatch(deepQuery, text, exact);
                     if (deepQuery['not'].length) {
-                        notMatch = parseNotMatch(deepQuery, text);
+                        notMatch = parseNotMatch(deepQuery, text, exact);
                         return andMatch && notMatch;
                     }
                     return andMatch;
                 }
 
                 if (deepQuery['or'].length) {
-                    orMatch = parseOrMatch(deepQuery, text);
+                    orMatch = parseOrMatch(deepQuery, text, exact);
                     if (deepQuery['not'].length) {
-                        notMatch = parseNotMatch(deepQuery, text);
+                        notMatch = parseNotMatch(deepQuery, text, exact);
                         return orMatch && notMatch;
                     }
                     return orMatch;
                 }
 
                 if (deepQuery['not'].length) {
-                    notMatch = parseNotMatch(deepQuery, text);
+                    notMatch = parseNotMatch(deepQuery, text, exact);
                     return notMatch;
                 }
             }
 
-            return text.indexOf(query) !== -1;
+            return exact ? regEx.test(text) : text.indexOf(query) !== -1;
 
         });
 
@@ -553,20 +554,26 @@ function parser(str) {
     return hash;
 }
 
-function parseAndMatch(deepQuery, text) {
+function parseAndMatch(deepQuery, text, exact) {
     return deepQuery['and'].filter(function (word) {
+        if (exact)
+            return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
         return text.indexOf(word) !== -1;
     }).length === deepQuery['and'].length;
 }
 
-function parseOrMatch(deepQuery, text) {
+function parseOrMatch(deepQuery, text, exact) {
     return deepQuery['or'].filter(function (word) {
+        if (exact)
+            return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
         return text.indexOf(word) !== -1;
     }).length;
 }
 
-function parseNotMatch(deepQuery, text) {
+function parseNotMatch(deepQuery, text, exact) {
     return deepQuery['not'].filter(function (word) {
+        if (exact)
+            return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
         return text.indexOf(word) !== -1;
     }).length === 0;
 }
