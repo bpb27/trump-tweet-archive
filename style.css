@@ -451,7 +451,7 @@ span.tweet-source {
 }
 
 @media (max-width: 1170px) {
-	.date-range:nth-child(3), .date-range:nth-child(4), .settings-check:nth-child(3), .settings-check:nth-child(4) {
+	.date-range:nth-child(3), .date-range:nth-child(4) {
 		display: none;
 	}
 

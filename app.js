@@ -407,7 +407,7 @@ app.filter('highlight', function ($sce, $filter) {
 
 app.filter('dateformat', function ($sce, $filter) {
     return function (tweet) {
-        return $sce.trustAsHtml($filter('date')(new Date(tweet.created_at), 'medium', '-0400'));
+        return $sce.trustAsHtml($filter('date')(new Date(tweet.created_at), 'medium', '-0500'));
     }
 });
 
