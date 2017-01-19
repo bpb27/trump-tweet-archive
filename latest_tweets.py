@@ -10,7 +10,7 @@ from time import sleep
 from pprint import pprint
 
 # external path for larger data archives
-relative_path = '/Users/brendanbrown27/Desktop/political_twitter_archive/'
+relative_path = '/Users/brendanbrown27/Desktop/political_twitter_archive'
 
 compression = zipfile.ZIP_DEFLATED
 fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at", "retweet_count", "id_str"]

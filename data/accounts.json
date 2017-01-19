@@ -294,5 +294,13 @@
     "name": "Ted Cruz",
     "title": "senator",
     "display": true
+  },
+  {
+    "account": "michaelcohen212",
+    "id": 52136185,
+    "linked": "",
+    "name": "Michael Cohen",
+    "title": "special counsel",
+    "display": true
   }
 ]

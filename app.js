@@ -426,7 +426,6 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
             successHandler(this.accounts);
         } else {
             setTimeout(function () {
-                console.log("going again");
                 this.getAccounts(successHandler);
             }.bind(this), 100);
         }

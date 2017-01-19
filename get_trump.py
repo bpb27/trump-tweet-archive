@@ -9,7 +9,8 @@ from time import sleep
 from pprint import pprint
 
 # external path for larger data archives
-relative_path = '/Users/brendanbrown27/Desktop/political_twitter_archive'
+external_path = '/Users/brendanbrown27/Desktop/political_twitter_archive'
+dir_path = '/Users/brendanbrown27/Desktop/trumper/'
 
 compression = zipfile.ZIP_DEFLATED
 fields = ["favorite_count", "source", "text", "in_reply_to_screen_name", "is_retweet", "created_at", "retweet_count", "id_str"]
@@ -26,7 +27,7 @@ def get_source(entry):
     else:
         return entry["source"]
 
-with open('api_keys.json') as f:
+with open(dir_path + 'api_keys.json') as f:
     keys = json.load(f)
 
 auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
@@ -37,10 +38,10 @@ user = 'realdonaldtrump'
 user_id = 25073877
 path_long = './data/realdonaldtrump/realdonaldtrump_long.json'
 path_short = './data/realdonaldtrump/realdonaldtrump_short.json'
-path_ids = relative_path + '/realdonaldtrump/realdonaldtrump_ids.json'
-path_csv = relative_path + '/realdonaldtrump/realdonaldtrump.csv'
-path_long_zip = relative_path + '/realdonaldtrump/realdonaldtrump_long.zip'
-path_short_zip = relative_path + '/realdonaldtrump/realdonaldtrump_short.zip'
+path_ids = external_path + '/realdonaldtrump/realdonaldtrump_ids.json'
+path_csv = external_path + '/realdonaldtrump/realdonaldtrump.csv'
+path_long_zip = external_path + '/realdonaldtrump/realdonaldtrump_long.zip'
+path_short_zip = external_path + '/realdonaldtrump/realdonaldtrump_short.zip'
 
 with open(path_long) as f:
     data = json.load(f)
