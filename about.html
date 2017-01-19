@@ -16,6 +16,23 @@
 
 <p>And if that feeling of numbness after the election ever abates and you feel an upswell of charity, perhaps consider supporting the site via the button below. It's hugely appreciated. Thanks for visiting. </p>
 
+<p>- BB</p>
+
+<hr>
+
+<h3 class="center">Frequently Asked Questions</h3>
+<p><u>Do you save deleted tweets? Why can't I find the "unpresidented" tweet in your archive?</u></p>
+<p>I collect the latest tweets a few times a day. It is not yet a real-time monitoring system. For the "unpresidented" tweet, he deleted it 30 minutes after tweeeting it. In that 30 minute window, I did not do any tweet collection, so I missed it. If I do collect a tweet, however, I have it archived forever, even if he deletes it later. Fortunately, there is a site called <a href="https://projects.propublica.org/politwoops/user/realDonaldTrump" target="_blank">Politiwoops</a> that does store his quickly deleted tweets.</p>
+
+<p><u>Can I use your data?</u></p>
+<p>Yes! It's <a href="https://github.com/bpb27/political_twitter_archive" target="_blank">here</a>. And let me know if you create anything cool.</p>
+
+<p><u>What's the deal with the timestamps? Are you sure they're accurate?</u></p>
+<p>I collect metadata on each tweet via Tweepy and Twitter's official API, which returns a "created_at" date in Greenwich Mean Time (GMT). All the raw data is stored with a GMT timestamp, and the website translates that to Eastern Standard Time, which is 5 hours behind. Unfortunately, not all his tweets come with location data, so I'm unable to further translate a tweet 3 more hours behind if he tweeted from California (PST). It's an imperfect system, but likely the most accurate.</p>
+
+<p><u>But when I look at a tweet timestamp on Twitter.com, it seems like it doesn't match with your site!</u></p>
+<p>That might be true. Twitter displays tweet times to me in PST even though I live on the east coast. So it's not a particularly accurate gauge, since it also attempts to do some time zone adjustment itself.</p>
+
 <hr>
 
 <h3 class="center">Interviews</h3>
@@ -30,6 +47,7 @@
   <li>The Atlantic - <a href="http://www.theatlantic.com/notes/2016/09/can-you-handle-it-every-trump-tweet-in-a-big-searchable-database/500888/" target="_blank">Can You Handle It? Every Trump Tweet, in a Big Searchable Database</a></li>
   <li>The Atlantic - <a href="http://www.theatlantic.com/politics/archive/2016/10/what-trump-tweets-while-america-sleeps/503141/" target="_blank">What Trump Tweets While America Sleeps</a></li>
   <li>BBC - <a href="http://www.bbc.com/news/world-us-canada-38245530" target="_blank">Trump on Twitter: A history of the man and his medium</a></li>
+  <li>Boston Globe - <a href="https://www.bostonglobe.com/metro/2017/01/19/trump-tweets-are-unpredictable-ever-but-when-they-happen-has-become-more-routine/IR8hT4V99c0MXenTdKpDUI/story.html" target="_blank">Trump’s tweets are unpredictable. But when he sends them is a little more regular</a></li>
   <li>Buzzfeed News - <a href="https://www.buzzfeed.com/charliewarzel/trumps-information-universe?utm_term=.dgB5BwqNE#.vlPwDROKE" target="_blank">Where Does Trump Get His News?</a></li>
   <li>Buzzfeed News - <a href="https://www.buzzfeed.com/charliewarzel/here-are-the-294-accounts-donald-trump-retweeted-during-the?utm_term=.ogmoPXgqx#.ubweB7DKv" target="_blank">These Are All The Accounts Donald Trump Retweeted During The Campaign</a></li>
   <li>Daily Trojan - <a href="http://dailytrojan.com/2016/09/28/media-democratizes-fact-checking/" target="_blank">Media democratizes fact-checking</a></li>
@@ -47,6 +65,7 @@
   <li>Talking Points Memo - <a href="http://talkingpointsmemo.com/edblog/inside-the-trump-twitter-archive" target="_blank">Inside the Trump Twitter Archive</a></li>
   <li>Twitter - <a href="https://twitter.com/search?f=tweets&q=www.trumptwitterarchive.com&src=typd" target="_blank">Mentions</a></li>
   <li>The Week - <a href="http://theweek.com/speedreads/650261/trump-tweeted-more-about-rosie-odonnell-than-about-wife" target="_blank">Trump has tweeted more about Rosie O'Donnell than about his own wife</a></li>
+  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/19/donald-trump-has-only-called-15-people-lowlifes-on-twitter/?utm_term=.b06c813b3f7d" target="_blank">Donald Trump has called a surprisingly small number of people a ‘low life’ on Twitter</a></li>
   <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2016/09/22/does-donald-trump-actually-think-president-obama-was-born-in-the-u-s-er/" target="_blank">Donald Trump doesn’t actually seem to think President Obama was born in the U.S.</a></li>
   <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/06/why-donald-trumps-ratings-machine-tweets-are-so-revealing/?utm_term=.5ab05eece5bd" target="_blank">Why Donald Trump’s ‘ratings machine’ tweets are so very revealing</a></li>
   <li>USA Today - <a href="http://www.usatoday.com/story/news/politics/onpolitics/2016/09/21/top-5-insults-donald-trump-has-used-twitter/90797666/" target="_blank">Top 5 insults Donald Trump has used on Twitter</a></li>
@@ -56,17 +75,13 @@
 
 <hr>
 
-<p>Update 1/4 (New Years update): The archive is expanding to include a range of political figures associated with the Trump administration. If you have any accounts you'd like to see on here, please email me.</p>
+<h3 class="center">Updates:</h3>
 
-<hr>
+<p>Update 1/4 (New Years update): The archive is expanding to include a range of political figures associated with the Trump administration. If you have any accounts you'd like to see on here, please email me.</p>
 
 <p>Update 11/21: Uncovered 3000+ additional tweets using a process I detail <a href="https://github.com/bpb27/twitter_scraping">here</a>. The insult counters have been increased.</p>
 
-<hr>
-
-<p>Update 10/2: Two new updates: timestamps and device of origin. Timestamps are in Eastern Standard Time (translated -0400 from GMT). Device of origin shows what mobile or web device / platform Trump used to send the tweet.</p>
-
-<hr>
+<p>Update 10/2: Two new updates: timestamps and device of origin. Timestamps are in Eastern Standard Time (translated -0500 from GMT). Device of origin shows what mobile or web device / platform Trump used to send the tweet.</p>
 
 <p>Update 9/23: Almost 9000 more tweets have been found that did not originally appear via Twitter's search function. They have been added to the archive, and the totals and lists on the highlights page have been updated. Suspiciously, almost all the tweets with profanity did not appear in the original search. Fortunately, they're now available <a ng-href="/#/highlights/profanity">here</a>. Huge thanks to <a href="https://twitter.com/IgorBrigadir" target="_blank">@IgorBrigadir</a> for uncovering this and helping out. </p>
 
