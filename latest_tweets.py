@@ -53,7 +53,7 @@ for user_dict in users:
     results = api.user_timeline(user_id=user_id, since_id=int(data[0]['id_str']), count=100)
 
     print('new tweets found: {}'.format(len(results)))
-
+    
     if not len(results):
         continue
 
@@ -123,6 +123,11 @@ for user_dict in users:
         "2016": [],
         "2017": []
     }
+
+    for entry in short_dataset:
+        del entry['in_reply_to_screen_name']
+        del entry['favorite_count']
+        del entry['retweet_count']
 
     for entry in short_dataset:
         year = entry['created_at'].split(' ')[5]
