@@ -106,6 +106,7 @@ if len(results):
     zf.write(path_short, compress_type=compression)
     zf.close()
 
+    current_year = '2017'
     years = {
         "2009": [],
         "2010": [],
@@ -124,7 +125,11 @@ if len(results):
             year = '2009'
         years[year].append(entry)
 
-    print('Creating year specific files for ', user)
-    for year in years.keys():
-        with open('./data/{}/{}.json'.format(user, year), 'w') as outfile:
-            json.dump(years[year], outfile)
+    # print('Creating year specific files for ', user)
+    # for year in years.keys():
+    #     with open('./data/{}/{}.json'.format(user, year), 'w') as outfile:
+    #         json.dump(years[year], outfile)
+
+    print('Creating {} file'.format(current_year))
+    with open('./data/{}/{}.json'.format(user, current_year), 'w') as outfile:
+        json.dump(years[current_year], outfile)
