@@ -302,5 +302,13 @@
     "name": "Michael Cohen",
     "title": "special counsel",
     "display": true
+  },
+  {
+    "account": "ajitpaifcc",
+    "id": 575658149,
+    "linked": "",
+    "name": "Ajit Pai",
+    "title": "FCC Commissioner",
+    "display": true
   }
 ]
