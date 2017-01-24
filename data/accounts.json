@@ -310,5 +310,13 @@
     "name": "Ajit Pai",
     "title": "FCC Commissioner",
     "display": true
+  },
+  {
+    "account": "sebgorka",
+    "id": 2417586104,
+    "linked": "",
+    "name": "Sebastian Gorka",
+    "title": "National Security Council",
+    "display": true
   }
 ]

@@ -53,7 +53,7 @@ for user_dict in users:
     results = api.user_timeline(user_id=user_id, since_id=int(data[0]['id_str']), count=100)
 
     print('new tweets found: {}'.format(len(results)))
-    
+
     if not len(results):
         continue
 
