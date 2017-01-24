@@ -120,6 +120,9 @@ if len(results):
     }
 
     for entry in short_dataset:
+        del entry['in_reply_to_screen_name']
+        del entry['favorite_count']
+        del entry['retweet_count']
         year = entry['created_at'].split(' ')[5]
         if year in ['2006', '2007', '2008']:
             year = '2009'

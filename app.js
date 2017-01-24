@@ -390,16 +390,20 @@ app.directive('whenScrolled', function () {
 
 
 app.filter('highlight', function ($sce, $filter) {
-    return function (tweet, phrase, deepQuery) {
+    return function (tweet, phrase, deepQuery, exactMatch) {
         if (phrase) {
             if (Object.keys(deepQuery).length) {
                 var text = tweet.text;
                 deepQuery['and'].concat(deepQuery['or']).forEach(function (keyword) {
-                    text = text.replace(new RegExp('(' + esc(keyword) + ')', 'gi'), '<span class="highlighted">$1</span>');
+                    var re = exactMatch ? new RegExp('(\\b' + esc(keyword) + '\\b)', 'gi') : new RegExp('(' + esc(keyword) + ')', 'gi');
+                    text = text.replace(re, '<span class="highlighted">$1</span>');
                 });
                 return $sce.trustAsHtml(text);
+            } else if (exactMatch) {
+                return $sce.trustAsHtml((tweet.text).replace(new RegExp('(\\b' + esc(phrase) + '\\b)', 'gi'), '<span class="highlighted">$1</span>'));
+            } else {
+                return $sce.trustAsHtml((tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>'));
             }
-            return $sce.trustAsHtml((tweet.text).replace(new RegExp('(' + esc(phrase) + ')', 'gi'), '<span class="highlighted">$1</span>'));
         }
         return $sce.trustAsHtml(tweet.text);
     }
@@ -407,7 +411,7 @@ app.filter('highlight', function ($sce, $filter) {
 
 app.filter('dateformat', function ($sce, $filter) {
     return function (tweet) {
-        return $sce.trustAsHtml($filter('date')(new Date(tweet.created_at), 'medium', '-0500'));
+        return $sce.trustAsHtml($filter('date')(new Date(tweet.created_at), 'MMM d, y hh:mm:ss a', '-0500'));
     }
 });
 

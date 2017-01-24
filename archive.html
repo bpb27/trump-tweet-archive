@@ -39,7 +39,7 @@
 	<ol id='fixed' when-scrolled="loadMore()">
 		<li ng-repeat="tweet in displayed">
 			<span class="tweet-date" ng-bind-html="tweet | dateformat"></span>
-			<span class="tweet-text" ng-bind-html="tweet | highlight:query:deepQuery"></span>
+			<span class="tweet-text" ng-bind-html="tweet | highlight:query:deepQuery:settings.exactMatch"></span>
 			<span class="tweet-source">[{{tweet.source}}]</span>
 			<a href="https://twitter.com/realDonaldTrump/status/{{tweet.id_str}}" target="_blank">↗</a>
 		</li>
