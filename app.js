@@ -134,7 +134,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     $scope.showUrlToPage = function () {
         var paramString = encodeURI(createParams());
-        if ($scope.account === 'realDonaldTrump')
+        if ($scope.account.toLowerCase() === 'realdonaldtrump')
             prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + paramString);
         else
             prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/account/' + $scope.account + '/' + paramString);
@@ -418,7 +418,11 @@ app.filter('dateformat', function ($sce, $filter) {
 
 app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
-    $http.get('./data/accounts.json').then(function (results) {
+    $http({
+        url: './data/accounts.json',
+        method: 'GET',
+        cache: false
+    }).then(function (results) {
         this.accounts = results.data;
     }.bind(this));
 
