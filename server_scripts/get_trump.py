@@ -44,10 +44,6 @@ logging.info(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ': ' + str(len(results)) 
 
 if len(results):
 
-    all_ids = set()
-    unique_data = []
-    short_dataset = []
-
     with open(path_to_master) as f:
         data = json.load(f)
 
