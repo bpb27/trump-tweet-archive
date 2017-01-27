@@ -29,8 +29,8 @@ def get_source(entry):
 with open(path_to_api_keys) as f:
     keys = json.load(f)
 
-with open(path_to_master) as f:
-    data = json.load(f)
+with open(path_to_year_file) as f:
+    current_year_data = json.load(f)
 
 logging.basicConfig(filename=path_to_log,level=logging.INFO)
 auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
@@ -38,37 +38,34 @@ auth.set_access_token(keys['access_token'], keys['access_token_secret'])
 api = tweepy.API(auth)
 user = 'realdonaldtrump'
 user_id = 25073877
-data = list(sorted(data, key=lambda x: parser.parse(x['created_at']), reverse=True))
-results = api.user_timeline(user_id=user_id, since_id=int(data[0]['id_str']), count=100)
+latest_tweet = list(sorted(current_year_data, key=lambda x: parser.parse(x['created_at']), reverse=True))[0]['id_str']
+results = api.user_timeline(user_id=user_id, since_id=int(latest_tweet), count=100)
 logging.info(strftime("%Y-%m-%d %H:%M:%S", gmtime()) + ': ' + str(len(results)) + ' tweets found')
 
 if len(results):
+
     all_ids = set()
     unique_data = []
     short_dataset = []
 
+    with open(path_to_master) as f:
+        data = json.load(f)
+
     for tweet in results:
         tweet_dict = dict(tweet._json)
         data.append(tweet_dict)
-
-    for tweet in data:
-        if tweet['id_str'] not in all_ids:
-            unique_data.append(tweet)
-        all_ids.add(tweet['id_str'])
+        t = {
+            "created_at": tweet_dict["created_at"],
+            "text": tweet_dict["text"],
+            "source": get_source(tweet_dict),
+            "id_str": tweet_dict["id_str"],
+            "is_retweet": is_retweet(tweet_dict)
+        }
+        current_year_data.append(t)
 
     with open(path_to_master, 'w') as f:
-        json.dump(unique_data, f)
-
-    for entry in unique_data:
-        if entry['created_at'].split(' ')[5] == '2017':
-            t = {
-                "created_at": entry["created_at"],
-                "text": entry["text"],
-                "source": get_source(entry),
-                "id_str": entry["id_str"],
-                "is_retweet": is_retweet(entry)
-            }
-            short_dataset.append(t)
+        json.dump(data, f)
 
     with open(path_to_year_file, 'w') as outfile:
-        json.dump(short_dataset, outfile)
+        unique_data = list(map(lambda x: json.loads(x), set(map(lambda x: json.dumps(x), current_year_data))))
+        json.dump(unique_data, outfile)
