@@ -5,7 +5,8 @@
     "linked": "scottpruittok",
     "name": "Scott Pruitt",
     "title": "Administrator of the Environmental Protection Agency",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "scottpruittok",
@@ -13,7 +14,8 @@
     "linked": "agscottpruitt",
     "name": "Scott Pruitt (2nd account)",
     "title": "Administrator of the Environmental Protection Agency",
-    "display": false
+    "display": false,
+    "inactive": true
   },
   {
     "account": "donaldjtrumpjr",
@@ -21,7 +23,8 @@
     "linked": "",
     "name": "Donald Trump Jr.",
     "title": "son",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "erictrump",
@@ -29,7 +32,8 @@
     "linked": "",
     "name": "Eric Trump",
     "title": "son",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "genflynn",
@@ -37,7 +41,8 @@
     "linked": "",
     "name": "Michael Flynn",
     "title": "National Security Advisor",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "ivankatrump",
@@ -45,7 +50,8 @@
     "linked": "",
     "name": "Ivanka Trump",
     "title": "daughter",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "realbencarson",
@@ -53,7 +59,8 @@
     "linked": "",
     "name": "Ben Carson",
     "title": "Secretary of Housing and Urban Development",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "realdonaldtrump",
@@ -61,7 +68,8 @@
     "linked": "",
     "name": "Donald Trump",
     "title": "President",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "reptomprice",
@@ -69,7 +77,8 @@
     "linked": "",
     "name": "Tom Price",
     "title": "Secretary of Health and Human Services",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "seanhannity",
@@ -77,7 +86,8 @@
     "linked": "",
     "name": "Sean Hannity",
     "title": "conservative commentator",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "sheriffclarke",
@@ -85,7 +95,8 @@
     "linked": "",
     "name": "David A. Clarke",
     "title": "Sheriff of Milwaukee County",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "stephenbannon",
@@ -93,7 +104,8 @@
     "linked": "",
     "name": "Stephen Bannon",
     "title": "Chief Strategist",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "andypuzder",
@@ -101,7 +113,8 @@
     "linked": "",
     "name": "Andy Puzder",
     "title": "Secretary of Labor",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "clewandowski_",
@@ -109,7 +122,8 @@
     "linked": "",
     "name": "Corey Lewandowski",
     "title": "advisor",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "coburnforsenate",
@@ -117,7 +131,8 @@
     "linked": "",
     "name": "Tom Coburn",
     "title": "former senator",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "governorperry",
@@ -125,7 +140,8 @@
     "linked": "",
     "name": "Rick Perry",
     "title": "Secretary of Energy",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "jasonmillerindc",
@@ -133,7 +149,8 @@
     "linked": "",
     "name": "Jason Miller",
     "title": "transition team",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "kellyannepolls",
@@ -141,7 +158,8 @@
     "linked": "",
     "name": "Kellyanne Conway",
     "title": "Counselor to the President",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "larry_kudlow",
@@ -149,7 +167,8 @@
     "linked": "",
     "name": "Larry Kudlow",
     "title": "economic analyst",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "nikkihaley",
@@ -157,7 +176,8 @@
     "linked": "govhaleysc",
     "name": "Nikki Haley",
     "title": "U.S. Ambassador to United Nations",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "govhaleysc",
@@ -165,7 +185,8 @@
     "linked": "nikkihaley",
     "name": "Nikki Haley",
     "title": "U.S. Ambassador to United Nations (second account)",
-    "display": false
+    "display": false,
+    "inactive": true
   },
   {
     "account": "petehoekstra",
@@ -173,7 +194,8 @@
     "linked": "",
     "name": "Pete Hoekstra",
     "title": "former congressman",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "reince",
@@ -181,7 +203,8 @@
     "linked": "",
     "name": "Reince Priebus",
     "title": "Chief of Staff",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "repmickmulvaney",
@@ -189,7 +212,8 @@
     "linked": "",
     "name": "Mick Mulvaney",
     "title": "Director of Office of Management and Budget",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "repmikepompeo",
@@ -197,7 +221,8 @@
     "linked": "",
     "name": "Mike Pompeo",
     "title": "CIA Director",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "repmikerogers",
@@ -205,7 +230,8 @@
     "linked": "",
     "name": "Mike Rogers",
     "title": "congressman",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "ryanzinke",
@@ -213,7 +239,8 @@
     "linked": "",
     "name": "Ryan Zinke",
     "title": "Secretary of Interior",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "seanspicer",
@@ -221,7 +248,8 @@
     "linked": "",
     "name": "Sean Spicer",
     "title": "Press Secretary",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "senatorsessions",
@@ -229,7 +257,8 @@
     "linked": "",
     "name": "Jeff Sessions",
     "title": "Attorney General",
-    "display": true
+    "display": true,
+    "inactive": true
   },
   {
     "account": "rogerjstonejr",
@@ -237,7 +266,8 @@
     "linked": "",
     "name": "Roger Stone",
     "title": "advisor",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "linda_mcmahon",
@@ -245,7 +275,8 @@
     "linked": "",
     "name": "Linda McMahon",
     "title": "Administrator of the Small Business Administration",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "pambondi",
@@ -253,7 +284,8 @@
     "linked": "",
     "name": "Pam Bondi",
     "title": "Florida Attorney General",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "sarahpalinusa",
@@ -261,7 +293,8 @@
     "linked": "",
     "name": "Sarah Palin",
     "title": "former Vice Presidential candidate",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "danscavino",
@@ -269,7 +302,8 @@
     "linked": "",
     "name": "Dan Scavino",
     "title": "Director of Social Media",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "sendancoats",
@@ -277,7 +311,8 @@
     "linked": "",
     "name": "Dan Coats",
     "title": "Director of National Intelligence",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "monicacrowley",
@@ -285,7 +320,8 @@
     "linked": "",
     "name": "Monica Crowley",
     "title": "conservative commentator",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "tedcruz",
@@ -293,7 +329,8 @@
     "linked": "",
     "name": "Ted Cruz",
     "title": "senator",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "michaelcohen212",
@@ -301,7 +338,8 @@
     "linked": "",
     "name": "Michael Cohen",
     "title": "special counsel",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "ajitpaifcc",
@@ -309,7 +347,8 @@
     "linked": "",
     "name": "Ajit Pai",
     "title": "FCC Commissioner",
-    "display": true
+    "display": true,
+    "inactive": false
   },
   {
     "account": "sebgorka",
@@ -317,6 +356,7 @@
     "linked": "",
     "name": "Sebastian Gorka",
     "title": "National Security Council",
-    "display": true
+    "display": true,
+    "inactive": false
   }
 ]
