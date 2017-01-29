@@ -1,422 +1,462 @@
 [
   {
     "display": true,
-    "name": "Scott Pruitt",
-    "linked": "scottpruittok",
+    "starting_year": "2009",
     "id": 80911302,
+    "account": "agscottpruitt",
+    "linked": "scottpruittok",
     "inactive": true,
     "title": "Administrator of the Environmental Protection Agency",
-    "account": "agscottpruitt",
-    "starting_year": "2009"
+    "name": "Scott Pruitt"
   },
   {
     "display": false,
-    "name": "Scott Pruitt (2nd account)",
-    "linked": "agscottpruitt",
+    "starting_year": "2010",
     "id": 119463881,
+    "account": "scottpruittok",
+    "linked": "agscottpruitt",
     "inactive": true,
     "title": "Administrator of the Environmental Protection Agency",
-    "account": "scottpruittok",
-    "starting_year": "2010"
+    "name": "Scott Pruitt (2nd account)"
   },
   {
     "display": true,
-    "name": "Donald Trump Jr.",
-    "linked": "",
+    "starting_year": "2010",
     "id": 39344374,
-    "inactive": false,
-    "title": "son",
     "account": "donaldjtrumpjr",
-    "starting_year": "2010"
-  },
-  {
-    "display": true,
-    "name": "Eric Trump",
     "linked": "",
-    "id": 39349894,
     "inactive": false,
     "title": "son",
-    "account": "erictrump",
-    "starting_year": "2009"
+    "name": "Donald Trump Jr."
   },
   {
     "display": true,
-    "name": "Michael Flynn",
+    "starting_year": "2009",
+    "id": 39349894,
+    "account": "erictrump",
     "linked": "",
+    "inactive": false,
+    "title": "son",
+    "name": "Eric Trump"
+  },
+  {
+    "display": true,
+    "starting_year": "2011",
     "id": 240454812,
+    "account": "genflynn",
+    "linked": "",
     "inactive": true,
     "title": "National Security Advisor",
-    "account": "genflynn",
-    "starting_year": "2011"
+    "name": "Michael Flynn"
   },
   {
     "display": true,
-    "name": "Ivanka Trump",
-    "linked": "",
+    "starting_year": "2009",
     "id": 52544275,
+    "account": "ivankatrump",
+    "linked": "",
     "inactive": false,
     "title": "daughter",
-    "account": "ivankatrump",
-    "starting_year": "2009"
+    "name": "Ivanka Trump"
   },
   {
     "display": true,
-    "name": "Ben Carson",
-    "linked": "",
+    "starting_year": "2013",
     "id": 1180379185,
+    "account": "realbencarson",
+    "linked": "",
     "inactive": true,
     "title": "Secretary of Housing and Urban Development",
-    "account": "realbencarson",
-    "starting_year": "2013"
+    "name": "Ben Carson"
   },
   {
     "display": true,
-    "name": "Donald Trump",
-    "linked": "",
+    "starting_year": "2009",
     "id": 25073877,
+    "account": "realdonaldtrump",
+    "linked": "",
     "inactive": false,
     "title": "President",
-    "account": "realdonaldtrump",
-    "starting_year": "2009"
+    "name": "Donald Trump"
   },
   {
     "display": true,
-    "name": "Tom Price",
-    "linked": "",
+    "starting_year": "2009",
     "id": 6577802,
+    "account": "reptomprice",
+    "linked": "",
     "inactive": false,
     "title": "Secretary of Health and Human Services",
-    "account": "reptomprice",
-    "starting_year": "2009"
+    "name": "Tom Price"
   },
   {
     "display": true,
-    "name": "Sean Hannity",
-    "linked": "",
+    "starting_year": "2009",
     "id": 41634520,
+    "account": "seanhannity",
+    "linked": "",
     "inactive": false,
     "title": "conservative commentator",
-    "account": "seanhannity",
-    "starting_year": "2009"
+    "name": "Sean Hannity"
   },
   {
     "display": true,
-    "name": "David A. Clarke",
-    "linked": "",
+    "starting_year": "2014",
     "id": 118845216,
+    "account": "sheriffclarke",
+    "linked": "",
     "inactive": false,
     "title": "Sheriff of Milwaukee County",
-    "account": "sheriffclarke",
-    "starting_year": "2014"
+    "name": "David A. Clarke"
   },
   {
     "display": true,
-    "name": "Stephen Bannon",
-    "linked": "",
+    "starting_year": "2010",
     "id": 114547606,
+    "account": "stephenbannon",
+    "linked": "",
     "inactive": true,
     "title": "Chief Strategist",
-    "account": "stephenbannon",
-    "starting_year": "2010"
+    "name": "Stephen Bannon"
   },
   {
     "display": true,
-    "name": "Andy Puzder",
-    "linked": "",
+    "starting_year": "2011",
     "id": 17494466,
+    "account": "andypuzder",
+    "linked": "",
     "inactive": false,
     "title": "Secretary of Labor",
-    "account": "andypuzder",
-    "starting_year": "2011"
+    "name": "Andy Puzder"
   },
   {
     "display": true,
-    "name": "Corey Lewandowski",
-    "linked": "",
+    "starting_year": "2015",
     "id": 4121225056,
+    "account": "clewandowski_",
+    "linked": "",
     "inactive": false,
     "title": "advisor",
-    "account": "clewandowski_",
-    "starting_year": "2015"
+    "name": "Corey Lewandowski"
   },
   {
     "display": true,
-    "name": "Tom Coburn",
-    "linked": "",
+    "starting_year": "2010",
     "id": 88754581,
+    "account": "coburnforsenate",
+    "linked": "",
     "inactive": true,
     "title": "former senator",
-    "account": "coburnforsenate",
-    "starting_year": "2010"
+    "name": "Tom Coburn"
   },
   {
     "display": true,
-    "name": "Rick Perry",
-    "linked": "",
+    "starting_year": "2009",
     "id": 18906561,
+    "account": "governorperry",
+    "linked": "",
     "inactive": false,
     "title": "Secretary of Energy",
-    "account": "governorperry",
-    "starting_year": "2009"
+    "name": "Rick Perry"
   },
   {
     "display": true,
-    "name": "Jason Miller",
-    "linked": "",
+    "starting_year": "2013",
     "id": 1084375028,
+    "account": "jasonmillerindc",
+    "linked": "",
     "inactive": false,
     "title": "transition team",
-    "account": "jasonmillerindc",
-    "starting_year": "2013"
+    "name": "Jason Miller"
   },
   {
     "display": true,
-    "name": "Kellyanne Conway",
-    "linked": "",
+    "starting_year": "2012",
     "id": 471672239,
+    "account": "kellyannepolls",
+    "linked": "",
     "inactive": false,
     "title": "Counselor to the President",
-    "account": "kellyannepolls",
-    "starting_year": "2012"
+    "name": "Kellyanne Conway"
   },
   {
     "display": true,
-    "name": "Larry Kudlow",
-    "linked": "",
+    "starting_year": "2009",
     "id": 44401911,
+    "account": "larry_kudlow",
+    "linked": "",
     "inactive": false,
     "title": "economic analyst",
-    "account": "larry_kudlow",
-    "starting_year": "2009"
+    "name": "Larry Kudlow"
   },
   {
     "display": true,
-    "name": "Nikki Haley",
-    "linked": "govhaleysc",
+    "starting_year": "2012",
     "id": 37666984,
+    "account": "nikkihaley",
+    "linked": "govhaleysc",
     "inactive": false,
     "title": "U.S. Ambassador to United Nations",
-    "account": "nikkihaley",
-    "starting_year": "2012"
+    "name": "Nikki Haley"
   },
   {
     "display": false,
-    "name": "Nikki Haley",
-    "linked": "nikkihaley",
+    "starting_year": "2009",
     "id": 720756469,
+    "account": "govhaleysc",
+    "linked": "nikkihaley",
     "inactive": true,
     "title": "U.S. Ambassador to United Nations (second account)",
-    "account": "govhaleysc",
-    "starting_year": "2009"
+    "name": "Nikki Haley"
   },
   {
     "display": true,
-    "name": "Pete Hoekstra",
-    "linked": "",
+    "starting_year": "2009",
     "id": 15661604,
+    "account": "petehoekstra",
+    "linked": "",
     "inactive": false,
     "title": "former congressman",
-    "account": "petehoekstra",
-    "starting_year": "2009"
+    "name": "Pete Hoekstra"
   },
   {
     "display": true,
-    "name": "Reince Priebus",
-    "linked": "",
+    "starting_year": "2009",
     "id": 20733972,
+    "account": "reince",
+    "linked": "",
     "inactive": false,
     "title": "Chief of Staff",
-    "account": "reince",
-    "starting_year": "2009"
+    "name": "Reince Priebus"
   },
   {
     "display": true,
-    "name": "Mick Mulvaney",
-    "linked": "",
+    "starting_year": "2011",
     "id": 240385577,
+    "account": "repmickmulvaney",
+    "linked": "",
     "inactive": true,
     "title": "Director of Office of Management and Budget",
-    "account": "repmickmulvaney",
-    "starting_year": "2011"
+    "name": "Mick Mulvaney"
   },
   {
     "display": true,
-    "name": "Mike Pompeo",
-    "linked": "",
+    "starting_year": "2011",
     "id": 244268646,
+    "account": "repmikepompeo",
+    "linked": "",
     "inactive": true,
     "title": "CIA Director",
-    "account": "repmikepompeo",
-    "starting_year": "2011"
+    "name": "Mike Pompeo"
   },
   {
     "display": true,
-    "name": "Mike Rogers",
-    "linked": "",
+    "starting_year": "2011",
     "id": 156703580,
+    "account": "repmikerogers",
+    "linked": "",
     "inactive": false,
     "title": "congressman",
-    "account": "repmikerogers",
-    "starting_year": "2011"
+    "name": "Mike Rogers"
   },
   {
     "display": true,
-    "name": "Ryan Zinke",
-    "linked": "",
+    "starting_year": "2013",
     "id": 1906282568,
+    "account": "ryanzinke",
+    "linked": "",
     "inactive": false,
     "title": "Secretary of Interior",
-    "account": "ryanzinke",
-    "starting_year": "2013"
+    "name": "Ryan Zinke"
   },
   {
     "display": true,
-    "name": "Sean Spicer",
-    "linked": "",
+    "starting_year": "2009",
     "id": 20776147,
+    "account": "seanspicer",
+    "linked": "",
     "inactive": false,
     "title": "Press Secretary",
-    "account": "seanspicer",
-    "starting_year": "2009"
+    "name": "Sean Spicer"
   },
   {
     "display": true,
-    "name": "Jeff Sessions",
-    "linked": "",
+    "starting_year": "2009",
     "id": 47975734,
+    "account": "senatorsessions",
+    "linked": "",
     "inactive": true,
     "title": "Attorney General",
-    "account": "senatorsessions",
-    "starting_year": "2009"
+    "name": "Jeff Sessions"
   },
   {
     "display": true,
-    "name": "Roger Stone",
-    "linked": "",
+    "starting_year": "2009",
     "id": 47253057,
+    "account": "rogerjstonejr",
+    "linked": "",
     "inactive": false,
     "title": "advisor",
-    "account": "rogerjstonejr",
-    "starting_year": "2009"
+    "name": "Roger Stone"
   },
   {
     "display": true,
-    "name": "Linda McMahon",
-    "linked": "",
+    "starting_year": "2009",
     "id": 65522706,
+    "account": "linda_mcmahon",
+    "linked": "",
     "inactive": false,
     "title": "Administrator of the Small Business Administration",
-    "account": "linda_mcmahon",
-    "starting_year": "2009"
+    "name": "Linda McMahon"
   },
   {
     "display": true,
-    "name": "Pam Bondi",
-    "linked": "",
+    "starting_year": "2009",
     "id": 93755660,
+    "account": "pambondi",
+    "linked": "",
     "inactive": false,
     "title": "Florida Attorney General",
-    "account": "pambondi",
-    "starting_year": "2009"
+    "name": "Pam Bondi"
   },
   {
     "display": true,
-    "name": "Sarah Palin",
-    "linked": "",
+    "starting_year": "2009",
     "id": 65493023,
+    "account": "sarahpalinusa",
+    "linked": "",
     "inactive": false,
     "title": "former Vice Presidential candidate",
-    "account": "sarahpalinusa",
-    "starting_year": "2009"
+    "name": "Sarah Palin"
   },
   {
     "display": true,
-    "name": "Dan Scavino",
-    "linked": "",
+    "starting_year": "2013",
     "id": 620571475,
+    "account": "danscavino",
+    "linked": "",
     "inactive": false,
     "title": "Director of Social Media",
-    "account": "danscavino",
-    "starting_year": "2013"
+    "name": "Dan Scavino"
   },
   {
     "display": true,
-    "name": "Dan Coats",
-    "linked": "",
+    "starting_year": "2011",
     "id": 212262370,
+    "account": "sendancoats",
+    "linked": "",
     "inactive": false,
     "title": "Director of National Intelligence",
-    "account": "sendancoats",
-    "starting_year": "2011"
+    "name": "Dan Coats"
   },
   {
     "display": true,
-    "name": "Monica Crowley",
-    "linked": "",
+    "starting_year": "2011",
     "id": 166990746,
+    "account": "monicacrowley",
+    "linked": "",
     "inactive": false,
     "title": "conservative commentator",
-    "account": "monicacrowley",
-    "starting_year": "2011"
+    "name": "Monica Crowley"
   },
   {
     "display": true,
-    "name": "Ted Cruz",
-    "linked": "",
+    "starting_year": "2009",
     "id": 23022687,
+    "account": "tedcruz",
+    "linked": "",
     "inactive": false,
     "title": "senator",
-    "account": "tedcruz",
-    "starting_year": "2009"
+    "name": "Ted Cruz"
   },
   {
     "display": true,
-    "name": "Michael Cohen",
-    "linked": "",
+    "starting_year": "2012",
     "id": 52136185,
+    "account": "michaelcohen212",
+    "linked": "",
     "inactive": false,
     "title": "special counsel",
-    "account": "michaelcohen212",
-    "starting_year": "2012"
+    "name": "Michael Cohen"
   },
   {
     "display": true,
-    "name": "Ajit Pai",
-    "linked": "",
+    "starting_year": "2012",
     "id": 575658149,
+    "account": "ajitpaifcc",
+    "linked": "",
     "inactive": false,
     "title": "FCC Commissioner",
-    "account": "ajitpaifcc",
-    "starting_year": "2012"
+    "name": "Ajit Pai"
   },
   {
     "display": true,
-    "name": "Sebastian Gorka",
-    "linked": "",
+    "starting_year": "2014",
     "id": 2417586104,
+    "account": "sebgorka",
+    "linked": "",
     "inactive": false,
     "title": "National Security Council",
-    "account": "sebgorka",
-    "starting_year": "2014"
+    "name": "Sebastian Gorka"
   },
   {
     "display": true,
-    "name": "Mike Pence",
-    "linked": "",
+    "starting_year": "2009",
     "id": 15985455,
+    "account": "govpencein",
+    "linked": "",
     "inactive": true,
     "title": "Vice President",
-    "account": "govpencein",
-    "starting_year": "2009"
+    "name": "Mike Pence"
   },
   {
     "display": true,
-    "name": "Paul Ryan",
-    "linked": "",
+    "starting_year": "2009",
     "id": 18916432,
+    "account": "speakerryan",
+    "linked": "",
     "inactive": false,
     "title": "Speaker of the House",
-    "account": "speakerryan",
-    "starting_year": "2009"
+    "name": "Paul Ryan"
+  },
+  {
+    "display": true,
+    "starting_year": "2009",
+    "id": 432895323,
+    "account": "lindseygrahamsc",
+    "linked": "",
+    "inactive": false,
+    "title": "Senator",
+    "name": "Lindsey Graham"
+  },
+  {
+    "display": true,
+    "starting_year": "2009",
+    "id": 15745368,
+    "account": "marcorubio",
+    "linked": "",
+    "inactive": false,
+    "title": "Senator",
+    "name": "Marco Rubio"
+  },
+  {
+    "display": true,
+    "starting_year": "2009",
+    "id": 1249982359,
+    "account": "senatemajldr",
+    "linked": "",
+    "inactive": false,
+    "title": "Senate Majority Leader",
+    "name": "Mitch McConnell"
+  },
+  {
+    "display": true,
+    "starting_year": "2009",
+    "id": 19394188,
+    "inactive": false,
+    "linked": "",
+    "account": "senjohnmccain",
+    "title": "Senator",
+    "name": "John McCain"
   }
 ]
