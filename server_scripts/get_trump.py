@@ -11,7 +11,7 @@ from time import sleep
 
 path_to_api_keys = '/home/brendanbrown27/python_stuff/api_keys.json'
 path_to_log = '/home/brendanbrown27/python_stuff/you_devil.log'
-path_to_master = '/home/brendanbrown27/python_stuff/realdonaldtrump_long.json'
+path_to_master = '/home/brendanbrown27/python_stuff/data/realdonaldtrump_long.json'
 path_to_year_file = '/home/brendanbrown27/public_html/data/realdonaldtrump/2017.json'
 
 def is_retweet(entry):

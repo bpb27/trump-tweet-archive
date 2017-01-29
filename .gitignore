@@ -1,8 +1,10 @@
 api_keys.json
 test.js
+extract.sh
+update_masters.py
+shit.py
 *_long.json
 *_short.json
-highlights/wip.html
 wip/
 
 .DS_Store
@@ -12,3 +14,5 @@ wip/
 ._style.css
 404.shtml
 old/
+extraction_zone/
+server_scripts/
