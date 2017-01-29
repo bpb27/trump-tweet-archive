@@ -463,7 +463,7 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
                         }.bind(this), errorHandler);
                     }.bind(this), errorHandler);
                 }
-            } else if (this.loaded[user][year]) {
+            } else if (this.loaded[user] && this.loaded[user][year]) {
                 successHandler(this.loaded[user][year]);
             } else {
                 $http.get(url).then(function (results) {
