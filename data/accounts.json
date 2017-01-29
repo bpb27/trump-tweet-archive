@@ -426,7 +426,7 @@
     "account": "lindseygrahamsc",
     "linked": "",
     "inactive": false,
-    "title": "Senator",
+    "title": "senator",
     "name": "Lindsey Graham"
   },
   {
@@ -436,7 +436,7 @@
     "account": "marcorubio",
     "linked": "",
     "inactive": false,
-    "title": "Senator",
+    "title": "senator",
     "name": "Marco Rubio"
   },
   {
@@ -456,7 +456,7 @@
     "inactive": false,
     "linked": "",
     "account": "senjohnmccain",
-    "title": "Senator",
+    "title": "senator",
     "name": "John McCain"
   }
 ]
