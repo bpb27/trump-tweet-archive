@@ -219,7 +219,7 @@
     <h1 class="no-top-margin">Latest Tweets <span class="list-link"><a href="#/archive">(see all)</a></span></h1>
     <ol>
       <li ng-repeat="entry in latest">
-        <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - {{entry.text}}
+        <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - {{entry | highlight}}
       </li>
     </ol>
   </div>
