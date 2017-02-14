@@ -50,6 +50,10 @@ if len(results):
     for tweet in results:
         tweet_dict = dict(tweet._json)
         data.append(tweet_dict)
+
+    new_2017_data = []
+
+    for tweet_dict in data:
         t = {
             "created_at": tweet_dict["created_at"],
             "text": tweet_dict["text"],
@@ -57,11 +61,11 @@ if len(results):
             "id_str": tweet_dict["id_str"],
             "is_retweet": is_retweet(tweet_dict)
         }
-        current_year_data.append(t)
+        new_2017_data.append(t)
 
     with open(path_to_master, 'w') as f:
         json.dump(data, f)
 
     with open(path_to_year_file, 'w') as outfile:
-        unique_data = list(map(lambda x: json.loads(x), set(map(lambda x: json.dumps(x), current_year_data))))
+        unique_data = list(map(lambda x: json.loads(x), set(map(lambda x: json.dumps(x), new_2017_data))))
         json.dump(unique_data, outfile)
