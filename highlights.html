@@ -214,8 +214,18 @@
 </div> <!-- end of left side -->
 
 <div id="highlights-right">
+
+  <div class="quote-list">
+    <h1 class="no-top-margin">Latest Tweets <span class="list-link"><a href="#/archive">(see all)</a></span></h1>
+    <ol>
+      <li ng-repeat="entry in latest">
+        <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - {{entry.text}}
+      </li>
+    </ol>
+  </div>
+
   <div class="quote-list link-highlight">
-    <h1 class="no-top-margin">Archived Accounts</h1>
+    <h1>Archived Accounts</h1>
     <ol>
       <li ng-repeat="entry in accounts | orderBy:['name']" ng-if="entry.display">
         <a ng-href="#/archive/account/{{entry.account}}">{{entry.name}}</a> ({{entry.title}})

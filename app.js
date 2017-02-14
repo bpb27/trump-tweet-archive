@@ -62,6 +62,7 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
     document.querySelector('body').scrollTop = 0;
 
     $scope.accounts = [];
+    $scope.latest = [];
     $scope.media = [];
     $scope.showingReasons = false;
     $scope.showingQuicklinks = false;
@@ -89,6 +90,12 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 
     $http.get('/data/accounts.json').then(function (results) {
         $scope.accounts = results.data;
+    });
+
+    $http.get('/data/realdonaldtrump/2017.json').then(function (results) {
+        $scope.latest = results.data.sort(function (a, b) {
+            return new Date(a.created_at) < new Date(b.created_at) ? 1 : -1;
+        }).slice(0, 5);
     });
 
 }]);
