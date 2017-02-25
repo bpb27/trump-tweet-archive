@@ -52,7 +52,7 @@
 				var text = el.querySelector('.tweet-text').textContent;
 				allTweets.push({
 					id: el.getAttribute('data-item-id'),
-					timestamp: el.querySelector('a.tweet-timestamp').getAttribute('data-original-title'),
+					timestamp: el.querySelector('a.tweet-timestamp').getAttribute('data-original-title') || el.querySelector('a.tweet-timestamp').getAttribute('title'),
 					text: text,
 					link: 'https://twitter.com' + el.querySelector('div.tweet').getAttribute('data-permalink-path'),
 					is_retweet: el.querySelector('.js-retweet-text') ? true : false,
