@@ -1,0 +1,7 @@
+<div id="all-accounts" class="container" ng-controller="allAccountsCtrl">
+  <div class="row pointer" ng-repeat="entry in accounts | orderBy:['name']" ng-click="goToAccount(entry.account)">
+    <div class="col-md-4"><b>Name:</b> {{entry.name}}</div>
+    <div class="col-md-5"><b>Title:</b> {{entry.title}}</div>
+    <div class="col-md-3"><b>Account:</b> {{entry.account}}</div>
+  </div>
+</div>

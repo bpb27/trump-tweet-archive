@@ -1,433 +1,11 @@
-body, input {
-	font-family: 'Hind', sans-serif;
-	margin-left: 0;
-}
-
 body {
-	margin: 0;
+	font-family: 'Hind', sans-serif;
 	background-color: #fbfeff;
 	padding-bottom: 30px;
 }
 
 label {
 	display: inline-block;
-}
-
-.center {
-	text-align: center;
-}
-
-.top-banner {
-	padding: 10px 30px;
-	border-bottom: 5px solid #e41c1c;
-	background-color: #333535;
-	color: #faf8f8;
-	text-align: center;
-}
-
-.top-banner .site-name {
-	font-size: 2em;
-	letter-spacing: 3px;
-}
-
-#about .top-banner {
-	margin-bottom: 50px;
-}
-
-#bottom {
-  position: fixed;
-  bottom: 0;
-  display: block;
-  background-color: #333535;
-  width: 100%;
-  padding: 5px 0;
-	letter-spacing: 0.2px;
-	font-size: 1em;
-}
-
-#bottom #bottom-left {
-	display: inline-block;
-	text-align: left;
-	padding-top: 5px;
-	padding-left: 3px;
-}
-
-#bottom #bottom-right {
-	display: inline-block;
-	float: right;
-}
-
-#bottom, #bottom a {
-	  color: #ececec;
-}
-
-#bottom a {
-  padding: 5px 14px;
-  text-decoration: none;
-}
-
-#bottom form label {
-	margin-top: 5px;
-	margin-right: 10px;
-	vertical-align: top;
-}
-
-#bottom #pp-button {
-	transition: background-color 0.7s ease;
-	border: none;
-	height: 32px;
-	cursor: pointer;
-	width: 84px;
-	background: gold;
-	color: #333535;
-	font-size: 14px;
-	padding-top: 3px;
-	border-radius: 20px;
-	margin-right: 3px;
-}
-
-#bottom #pp-button:hover {
-	background-color: #85dcff;
-}
-
-#bottom #pp-button:focus {
-	outline: none;
-}
-
-#about {
-	text-align: center;
-}
-
-#about p, #about ul {
-	width: 50%;
-	text-align: left;
-	display: inline-block;
-}
-
-#about .coverage a {
-
-}
-
-#about hr {
-	width: 50%;
-	margin-top: 40px;
-	margin-bottom: 40px;
-}
-
-#loading-icon {
-	position: absolute;
-	right: 10px;
-}
-
-#loaded-dates {
-	position: absolute;
-	display: inline-block;
-	top: 98px;
-	right: 6px;
-	padding: 5px;
-	z-index: 2;
-	background-color: #424343;
-	color: #dfdbdb;
-}
-
-#loaded-dates button {
-	border: none;
-	background: #ff5d5d;
-	color: white;
-	border-radius: 3px;
-	cursor: pointer;
-	display: block;
-	width: 100%;
-	margin: 5px 0;
-}
-
-.date {
-	display: block;
-	padding: 5px;
-	text-transform: capitalize;
-}
-
-.date.success .mark-failure, .date.failure .mark-success {
-	display: none;
-}
-
-.mark-failure {
-	color: #ff5d5d;
-	float: right;
-	padding-left: 5px;
-}
-
-.mark-success {
-	color: green;
-	float: right;
-	padding-left: 5px;
-}
-
-#search-bar {
-	display: block;
-	width: 98%;
-	font-size: 26px;
-	padding: 9px 0 6px 13px;
-	color: #686868;
-	margin: 24px 0 16px 3px;
-	margin-top: 24px;
-	margin-bottom: 16px;
-	border: 2px solid black;
-	border-radius: 2px;
-  letter-spacing: 1px;
-}
-
-#control-bar {
-	min-width: 1150px;
-}
-
-.controls {
-	display: inline-block;
-}
-
-.total {
-	width: 130px;
-	margin-left: 24px;
-	font-size: 20px;
-}
-
-.settings-check {
-	margin-right: 10px;
-	font-size: 13px;
-}
-
-#account-name {
-	position: absolute;
-	top: 22px;
-	color: white;
-	left: 10px;
-	font-size: 18px;
-	letter-spacing: 1px;
-}
-
-#controls-right label {
-  background: #a18eff;
-  color: white;
-  padding: 2px 8px 1px 8px;
-  margin-top: 4px;
-  vertical-align: top;
-}
-
-.date-range {
-	font-size: 14px;
-	padding: 4px 0 2px 5px;
-	color: gray;
-	border: 1px solid black;
-	border-radius: 2px;
-	margin-right: 10px;
-	max-width: 134px;
-}
-
-#fixed {
-	height: 96vh;
-	overflow: auto;
-	margin: 0;
-	margin-top: 40px;
-	padding-bottom: 100px;
-}
-
-#fixed a {
-	text-decoration: none;
-	font-size: 12px;
-	background: #dcdcdc;
-	margin-left: 4px;
-	padding: 1px 1px 0 1px;
-	border-radius: 3px;
-	color: white;
-}
-
-#fixed li {
-	padding: 4px 0 1px 0;
-	font-size: 13px;
-	margin-bottom: 3px;
-  letter-spacing: 0.3px;
-}
-
-.highlighted {
-	background-color: yellow;
-}
-
-span.tweet-date {
-    width: 170px;
-    display: inline-block;
-    padding-left: 10px;
-}
-
-span.tweet-source {
-    color: gray;
-}
-
-#search-tips {
-	position: absolute;
-	top: 0;
-	background: #8a8a8a;
-	color: white;
-	border: 2px solid black;
-	padding: 10px;
-	letter-spacing: 1px;
-	font-size: 16px;
-}
-
-#search-tips button {
-	float: right;
-	margin-top: 15px;
-	border: none;
-	padding: 5px 10px;
-	color: white;
-	background: #ff5d5d;
-	border-radius: 4px;
-	font-size: 10px;
-}
-
-#search-tips .tip-space {
-  height: 20px;
-}
-
-#highlights {
-	margin-left: 3%;
-  margin-top: 3%;
-}
-
-#highlights h2 {
-	letter-spacing: 1px;
-	font-weight: 400;
-}
-
-#highlights-left h1, #highlights-right h1 {
-	letter-spacing: 1px;
-	font-weight: 400;
-	text-decoration: underline;
-}
-
-#archives-button {
-  cursor: pointer;
-  position: absolute;
-  right: 110px;
-  top: 80px;
-  padding-top: 5px;
-}
-
-#quicklinks-button {
-	cursor: pointer;
-	position: absolute;
-  right: 10px;
-  top: 80px;
-	padding-top: 5px;
-}
-
-.caret:hover {
-	color: red;
-}
-
-.caret {
-	font-size: 12px;
-}
-
-#additional-archives {
-	right: 120px;
-}
-
-#quicklinks {
-	right: 10px;
-}
-
-.dropdown {
-  position: absolute;
-  top: 110px;
-  background: white;
-  padding: 10px;
-  border: 1px solid black;
-}
-
-.dropdown .quicklink {
-	cursor: pointer;
-	display: block;
-	text-decoration: none;
-	color: black;
-}
-
-.dropdown .quicklink:hover {
-	color: red;
-}
-
-#highlights-left {
-	display: inline-block;
-	width: 40%;
-}
-
-#highlights-left a {
-  color: #e41c1c;
-	text-decoration: none;
-}
-
-#highlights-left .new-section {
-		margin-top: 70px;
-		margin-bottom: 30px;
-}
-
-#highlights-right {
-	display: inline-block;
-	width: 56%;
-	vertical-align: top;
-	margin-left: 3%;
-}
-
-#highlights-right a {
-  text-decoration: none;
-  color: black;
-	cursor: pointer;
-}
-
-#highlights-right h2 {
-  text-decoration: underline;;
-}
-
-#highlights-right .link-highlight a {
-  text-decoration: none;
-  color: #d30000;
-}
-
-#highlights-right .list-link {
-	font-size: 12px;
-	margin-left: 16px;
-	vertical-align: -webkit-baseline-middle;
-	cursor: pointer;
-}
-
-.quote-list ol li {
-	margin-bottom: 3px;
-	font-size: 14px;
-}
-
-.quote-list ul li {
-    font-size: 12px;
-    margin-top: 4px;
-}
-
-#tweet-panel {
-	background-color: #d3d3d3;
-  text-align: center;
-}
-
-#tweet-panel h2 {
-	border: 1px solid #333535;
-	background-color: #e41c1c;
-	color: #faf8f8;
-	margin: 25px 25% 25px 25%;
-	padding: 5px 30px;
-}
-
-.embedded-tweet {
-	display: inline-block;
-	vertical-align: top;
-	width: 33%;
-	width: 32%;
-  padding-left: 6px;
 }
 
 .strikethrough {
@@ -450,19 +28,282 @@ span.tweet-source {
 	cursor: pointer;
 }
 
+/* NAVBAR STYLES  ******************************* */
+
+.navbar {
+	border-radius: 0;
+	border-bottom: 3px solid red;
+	background: #424343;
+}
+
+.navbar-header a.navbar-brand {
+	color: white;
+}
+
+.navbar-header a.navbar-brand span {
+	color: red;
+}
+
+.navbar form .btn {
+	margin-right: 20px;
+}
+
+/* END NAVBAR STYLES ******************************* */
+
+
+/* HIGHLIGHTS PAGE STYLES ******************************* */
+
+#highlights {
+	margin-top: 80px;
+}
+
+#highlights-left {
+	border-right: 2px solid gray;
+}
+
+#highlights-left h2 {
+  display: inline-block;
+}
+
+#highlights-left a {
+  color: black;
+}
+
+#highlights-left .link-highlight a {
+  color: #d30000;
+}
+
+#highlights-right a {
+  color: #e41c1c;
+}
+
+#highlights-right .new-section {
+	margin-top: 70px;
+	margin-bottom: 30px;
+}
+
+.quote-list ol li {
+	margin-bottom: 3px;
+}
+
+/* END HIGHLIGHTS PAGE ******************************* */
+
+
+
+/* ABOUT PAGE STYLES ******************************* */
+
+#about h4 {
+	margin-top: 30px;
+	text-decoration: underline;
+	line-height: 24px;
+}
+
+/* END ABOUT PAGE STYLES ******************************* */
+
+
+/* ARCHIVE PAGE STYLES ******************************* */
+
+#archive {
+	margin-top: 80px;
+}
+
+#search-bar #sizing-addon1 {
+	min-width: 78px;
+}
+
+#search-bar #sizing-addon1.pointer:hover {
+	color: #5252f1;
+	text-decoration: underline;
+}
+
+#search-bar .input-group-btn button {
+	border-radius: 0;
+	border-left: 0;
+	border-right: 1px solid #cccccc;
+	background: #eeeeee;
+}
+
+#search-bar .dropdown-menu span {
+  min-width: 100px;
+  display: inline-block;
+	border-right: 1px solid grey;
+	margin-right: 7px;
+}
+
+#control-bar {
+	margin: 10px 0;
+	text-align: center;
+}
+
+#control-buttons, #control-dates, #control-selects {
+	display: inline-block;
+	margin: 0 15px;
+}
+
+#control-bar button, #control-bar select, #control-bar input {
+	height: 38px;
+	margin: 0 2px;
+	min-width: 100px;
+	max-width: 200px;
+}
+
+#control-bar button.btn span {
+	vertical-align: -webkit-baseline-middle;
+}
+
+#fixed {
+	height: 96vh;
+	overflow: auto;
+	margin: 0;
+	margin-top: 20px;
+	padding-bottom: 100px;
+}
+
+#fixed li {
+	padding: 4px 0 1px 0;
+	font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+#fixed button.btn-xs {
+	font-size: 10px;
+	color: black;
+	background: #e4e4e4;
+}
+
+.highlighted {
+	background-color: yellow;
+}
+
+span.tweet-date {
+  width: 170px;
+  display: inline-block;
+  padding-left: 10px;
+}
+
+span.tweet-source {
+  color: gray;
+}
+
+#loading-icon {
+	position: absolute;
+	right: 10px;
+}
+
+#loaded-dates {
+	position: absolute;
+	display: inline-block;
+	top: 150px;
+	right: 10px;
+	padding: 5px;
+	z-index: 10;
+	background-color: #424343;
+	color: #dfdbdb;
+}
+
+#loaded-dates button {
+	width: 100%;
+}
+
+#loaded-dates .date {
+	display: block;
+	padding: 5px;
+	text-transform: capitalize;
+}
+
+#loaded-dates .date.success .mark-failure, #loaded-dates .date.failure .mark-success {
+	display: none;
+}
+
+.mark-failure {
+	color: #ff5d5d;
+	float: right;
+	padding-left: 5px;
+}
+
+.mark-success {
+	color: green;
+	float: right;
+	padding-left: 5px;
+}
+
+/* END ARCHIVE PAGE STYLES ******************************* */
+
+
+/* COLLECTION PAGE STYLES ******************************* */
+
+#tweet-panel {
+	padding-top: 50px;
+}
+
+#tweet-panel h2 {
+	text-align: center;
+	text-decoration: underline;
+}
+
+#tweet-panel .embedded-tweet {
+	width: 33%;
+	display: inline-flex;
+}
+
+/* END COLLECTION PAGE STYLES ******************************* */
+
+
+/* ALL ACCOUNTS PAGE STYLES ******************************* */
+
+#all-accounts {
+	padding-top: 80px;
+}
+
+#all-accounts .row {
+	padding: 6px 0;
+}
+
+#all-accounts .row:nth-child(odd) {
+  background: #ececec;
+}
+
+#all-accounts .row:hover {
+    background: #ff9393;
+}
+
+/* END ALL ACCOUNTS PAGE STYLES ******************************* */
+
+
+/* DEVICE WIDTH RULES ******************************* */
+
 @media (max-width: 1170px) {
-	.date-range:nth-child(3), .date-range:nth-child(4) {
+	.navbar-header .navbar-text {
 		display: none;
 	}
-
 	span.tweet-date {
 		font-size: inherit;
     text-decoration: underline;
     width: inherit;
     display: inline;
 	}
+	#control-selects {
+		display: none;
+	}
+	#highlights-left {
+		border-right: 0;
+	}
+}
 
-	#control-bar {
-    min-width: inherit;
+@media (max-width: 800px) {
+	.input-group-btn, #sizing-addon2, #control-dates {
+		display: none;
+	}
+	#tweet-panel .embedded-tweet {
+		width: 49%;
+	}
+}
+
+@media (max-width: 600px) {
+	#tweet-panel .embedded-tweet {
+		width: 100%;
+	}
+	#control-buttons button {
+    min-width: 50px;
 	}
 }

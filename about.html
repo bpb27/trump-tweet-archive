@@ -1,108 +1,82 @@
-<div id="about">
+<div id="about" class="container">
 
-<div class="top-banner">
-  <span class="site-name">Trump Twitter Archive - @realtrumptweet</span>
-</div>
+  <div class="col-md-6 col-md-offset-3">
+    <h2 class="center">FAQs</h2>
+    <h4>Can I use your data?</h4>
+    <p>Yes. You can find it <a href="https://github.com/bpb27/political_twitter_archive" target="_blank">here</a>. Let me know if you create anything cool.</p>
+    <h4>How did you collect this data?</h4>
+    <p>If you have some programming experience, use <a href="https://github.com/bpb27/twitter_scraping" target="_blank">this</a>. Otherwise, follow <a href="http://trumptwitterarchive.com/howto/all_tweets.html" target="_blank">these steps</a>.</p>
+    <h4>Who made this site?</h4>
+    <p>Name is Brendan Brown. Feel free to reach out - trumptwitterarchive@gmail.com. And check out my other website - <a href="http://www.contactingcongress.org" target="_blank">www.contactingcongress.org</a>.</p>
+    <h4>Do you save deleted tweets? Why can't I find the "unpresidented" tweet in your archive?</h4>
+    <p>As of 1/27/17, the site monitors his twitter feed in real time. Prior to this, tweets were collected a few times a day. For the "unpresidented" tweet, he deleted it 30 minutes after tweeeting it. In that 30 minute window, I did not do any tweet collection, so I missed it. Fortunately, that won't happen anymore.</p>
+    <h4>If he deletes a tweet, is it removed from your archive?</h4>
+    <p>No. It's there forever.</p>
+    <h4>How comprehensive is your archive?</h4>
+    <p>I am missing approximately 4000 tweets. I also don't have any tweets he deleted prior to September 2016.</p>
+    <h4>If I see a screenshot of a tweet but don't see the text in your archive, is it real?</h4>
+    <p>It's possible. It's either one that I missed, a fake, or a deleted tweet that someone screenshotted. Check reputable news sources to see if they reference the tweet as real. Here's an <a href="http://nymag.com/daily/intelligencer/2012/11/trump-is-election-nights-most-unhinged-goper.html">example</a>.</p>
+    <h4>What's the deal with the timestamps? Are you sure they're accurate?</h4>
+    <p>I collect metadata on each tweet via Tweepy and Twitter's official API, which returns a "created_at" date in Greenwich Mean Time (GMT). All the raw data is stored with a GMT timestamp, and the website translates that to Eastern Standard Time, which is 5 hours behind. Unfortunately, not all his tweets come with location data, so I'm unable to further translate a tweet 3 more hours behind if he tweeted from California (PST). It's an imperfect system, but likely the most accurate.</p>
+    <h4>But when I look at a tweet timestamp on Twitter.com, it seems like it doesn't match with your site...</h4>
+    <p>That might be true. Twitter displays tweet times to me in PST even though I live on the east coast. So it's not a particularly accurate gauge, since it also attempts to do some time zone adjustment itself.</p>
+  </div>
 
-<p>The Trump Twitter Archive contains almost every tweet from @realdonaldtrump since he joined in 2009 and will remain current and up-to-the-minute until <span class="strikethrough">election day</span> the end of his presidency. If any tweets are retroactively deleted, they will remain in the archive. There are also 50 additional archived accounts from various politicians and Trump allies.</p>
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="center">Interviews</h2>
+    <ul class="coverage">
+      <li>Palm Beach Post - <a href="http://www.palmbeachpost.com/news/national/will-donald-trump-restrained-tweeter-chief/muFxaf2NZ82PYENF953bwL/" target="_blank">Will Donald Trump be ‘restrained’ as tweeter in chief?</a></li>
+      <li>NPR Phoenix KJZZ - <a href="http://theshow.kjzz.org/content/425264/trump-and-twitter-how-presidents-communicate-public" target="_blank">Trump And Twitter: How Presidents Communicate With The Public</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-intersect/wp/2016/09/22/a-look-at-the-170-times-donald-trump-has-tweeted-about-the-losers/" target="_blank">A look at the 170 times Donald Trump has tweeted about the ‘losers’</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-intersect/wp/2016/11/30/is-a-retweet-an-endorsement-from-president-elect-trump/" target="_blank">Is a retweet an endorsement from President-elect Trump?</a></li>
+    </ul>
+  </div>
 
-<p>The goal of this site is to make it easy for anyone to instantly search through all of Trump's 30,000+ tweets. Type in any keyword and you'll immediately see every tweet that contains that word or phrase: <i>Obama</i>, <i>the worst</i>, <i>Mexico</i>, <i>rosie</i>, etc. There are a variety of filters to make the search more precise. If you find anything interesting, hit the <i>link to this search</i> button and share the results with your friends and political nemeses. And hit the <i>search tips</i> button for more powerful searching.</p>
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="center">Coverage / Shoutouts / Projects</h2>
+    <ul class="coverage">
+      <li>The Atlantic - <a href="http://www.theatlantic.com/notes/2016/09/can-you-handle-it-every-trump-tweet-in-a-big-searchable-database/500888/" target="_blank">Can You Handle It? Every Trump Tweet, in a Big Searchable Database</a></li>
+      <li>The Atlantic - <a href="http://www.theatlantic.com/politics/archive/2016/10/what-trump-tweets-while-america-sleeps/503141/" target="_blank">What Trump Tweets While America Sleeps</a></li>
+      <li>Aaron Hoffman Sizzle Analytics - <a href="https://www.sizzleanalytics.com/Boards/aaronhoffman/Trump-Tweets/2ad55f62-6697-4704-9208-7b38c747425f" target="_blank">An awesome visualization and breakdown of all of Trump's tweets</a></li>
+      <li>BBC - <a href="http://www.bbc.com/news/world-us-canada-38245530" target="_blank">Trump on Twitter: A history of the man and his medium</a></li>
+      <li>Boston Globe - <a href="https://www.bostonglobe.com/metro/2017/01/19/trump-tweets-are-unpredictable-ever-but-when-they-happen-has-become-more-routine/IR8hT4V99c0MXenTdKpDUI/story.html" target="_blank">Trump’s tweets are unpredictable. But when he sends them is a little more regular</a></li>
+      <li>Buzzfeed News - <a href="https://www.buzzfeed.com/charliewarzel/trumps-information-universe?utm_term=.dgB5BwqNE#.vlPwDROKE" target="_blank">Where Does Trump Get His News?</a></li>
+      <li>Buzzfeed News - <a href="https://www.buzzfeed.com/charliewarzel/here-are-the-294-accounts-donald-trump-retweeted-during-the?utm_term=.ogmoPXgqx#.ubweB7DKv" target="_blank">These Are All The Accounts Donald Trump Retweeted During The Campaign</a></li>
+      <li>Daily Trojan - <a href="http://dailytrojan.com/2016/09/28/media-democratizes-fact-checking/" target="_blank">Media democratizes fact-checking</a></li>
+      <li>Esquire - <a href="http://www.esquire.com/news-politics/news/a48793/trump-tweet-database/" target="_blank">There Is Now a Searchable Database of Donald Trump's Tweets</a></li>
+      <li>The Guardian - <a href="https://www.theguardian.com/us-news/live/2016/sep/21/donald-trump-news-live-hillary-clinton-us-election?page=with:block-57e2c73de4b080d3ee88b0ce#block-57e2c73de4b080d3ee88b0ce" target="_blank">2016 Election Blog</a></li>
+      <li>Mashable - <a href="http://mashable.com/2016/09/21/trump-twitter-archive/#edpR7uOLqOqK" target="_blank">We now know exactly how many times Trump has tweeted his favorite insults</a></li>
+      <li>Mashable - <a href="http://mashable.com/2016/12/22/trump-loves-exclamation-points-in-2016/" target="_blank">In 2016, Donald Trump's favorite thing other than himself was the exclamation point</a></li>
+      <li>Mother Jones - <a href="http://www.motherjones.com/politics/2016/12/russian-intelligence-trump-moscow" target="_blank">Did Russia Spy on Donald Trump When He Visited Moscow?</a></li>
+      <li>NASDAQ - <a href="http://www.nasdaq.com/article/follow-donald-trumps-evolution-on-twitter-inc-twtr-cm720717" target="_blank">Follow Donald Trump’s Evolution On Twitter Inc (TWTR)</a></li>
+      <li>New Jersey Star Ledger Editorial - <a href="http://www.nj.com/opinion/index.ssf/2016/11/does_melania_trump_know_she_lives_with_a_troll_edi.html" target="_blank">Does Melania Trump know she lives with a troll?</a></li>
+      <li>Quartz - <a href="http://qz.com/842865/hamilton-and-25-other-things-that-are-overrated-or-boring-according-to-art-critic-donald-trump/" target="_blank">“Hamilton” and 20 other things that are “overrated” or “boring,” according to art critic Donald Trump</a></li>
+      <li>Recode - <a href="http://www.recode.net/2016/9/23/13026706/recode-daily-yahoo-data-breach-questions#this_is_cool" target="_blank">Daily Rundown: This is cool</a></li>
+      <li>SF Gate - <a href="http://www.sfgate.com/opinion/openforum/article/Why-I-will-go-to-Washington-to-protest-against-10838130.php" target="_blank">Why I will go to Washington to protest against Trump</a></li>
+      <li>Source - <a href="https://source.opennews.org/en-US/articles/twitterverse-donald-trump/" target="_blank">The Twitterverse of Donald Trump, in 26,234 Tweets</a></li>
+      <li>Talking Points Memo - <a href="http://talkingpointsmemo.com/edblog/inside-the-trump-twitter-archive" target="_blank">Inside the Trump Twitter Archive</a></li>
+      <li>Twitter - <a href="https://twitter.com/search?f=tweets&q=www.trumptwitterarchive.com&src=typd" target="_blank">Mentions</a></li>
+      <li>The Week - <a href="http://theweek.com/speedreads/650261/trump-tweeted-more-about-rosie-odonnell-than-about-wife" target="_blank">Trump has tweeted more about Rosie O'Donnell than about his own wife</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/politics/wp/2017/02/21/how-donald-trump-spent-his-first-month-in-office-by-the-numbers/?utm_term=.bb06cb02c7ce" target="_blank">How Trump spent his first month in office, by the numbers</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/politics/wp/2017/02/09/what-president-trump-is-supposed-to-be-doing-while-hes-tweeting/?utm_term=.a183332ede37" target="_blank">What President Trump is supposed to be doing while he’s tweeting</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/18/trump-says-he-dislikes-tweeting-america-says-it-dislikes-his-tweets/?utm_term=.f98e2a767ff9" target="_blank">Trump says he dislikes tweeting. America says it dislikes his tweets.</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/19/donald-trump-has-only-called-15-people-lowlifes-on-twitter/?utm_term=.b06c813b3f7d" target="_blank">Donald Trump has called a surprisingly small number of people a ‘low life’ on Twitter</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2016/09/22/does-donald-trump-actually-think-president-obama-was-born-in-the-u-s-er/" target="_blank">Donald Trump doesn’t actually seem to think President Obama was born in the U.S.</a></li>
+      <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/06/why-donald-trumps-ratings-machine-tweets-are-so-revealing/?utm_term=.5ab05eece5bd" target="_blank">Why Donald Trump’s ‘ratings machine’ tweets are so very revealing</a></li>
+      <li>USA Today - <a href="http://www.usatoday.com/story/news/politics/onpolitics/2016/09/21/top-5-insults-donald-trump-has-used-twitter/90797666/" target="_blank">Top 5 insults Donald Trump has used on Twitter</a></li>
+      <li>Variety - <a href="http://variety.com/2017/biz/news/oscars-donald-trump-sean-spicer-1201993901/" target="_blank">President Trump Probably Won’t Watch the Oscars, Sean Spicer Says</a></li>
+      <li>Vice - <a href="http://www.vice.com/read/someone-made-a-searchable-archive-of-trumps-tweets-vgtrn" target="_blank">Someone Made a Searchable Archive of Donald Trump's Tweets</a></li>
+      <li>YouTube NerdWriter1 - <a href="https://www.youtube.com/watch?v=geEVwslL-YY" target="_blank">How Donald Trump Tweets</a></li>
+    </ul>
+  </div>
 
-<p>I ended up reading (almost) every tweet, and grouped various quotes and tweets together on the highlights page. I'll let readers draw their own conclusions. </p>
-
-<p>If you're interested in getting around Twitter's 3200 tweet retrieval limit, see the process <a href="http://trumptwitterarchive.com/howto/all_tweets.html" target="_blank">here</a>. There is also a more thorough, yet more technical way detailed <a href="https://github.com/bpb27/twitter_scraping" target="_blank">here</a>.</p>
-
-<p>If you're interested in the raw data, it's freely <a href="https://github.com/bpb27/political_twitter_archive" target="_blank">available</a> in both JSON format and CSV format. If you're using it for a project or something cool, let me know.</p>
-
-<p>And if that feeling of numbness after the election ever abates and you feel an upswell of charity, perhaps consider supporting the site via the button below. It's hugely appreciated. Thanks for visiting. </p>
-
-<p>While you're here, see my other site: <a href="http://www.contactingcongress.org" target="_blank">www.contactingcongress.org</a></p>
-
-<p>- Brendan</p>
-
-<hr>
-
-<h3 class="center">Frequently Asked Questions</h3>
-<p><u>Do you save deleted tweets? Why can't I find the "unpresidented" tweet in your archive?</u></p>
-<p>As of 1/27/17, the site monitors his twitter feed in real time. Prior to this, tweets were collected a few times a day. For the "unpresidented" tweet, he deleted it 30 minutes after tweeeting it. In that 30 minute window, I did not do any tweet collection, so I missed it. If I do collect a tweet, however, I have it archived forever, even if he deletes it later. Fortunately, there is a site called <a href="https://projects.propublica.org/politwoops/user/realDonaldTrump" target="_blank">Politiwoops</a> that archives his deleted tweets.</p>
-
-<p><u>How comprehensive is your archive?</u></p>
-<p>I am missing approximately 4000 tweets. I also don't have any tweets he deleted prior to September 2016.</p>
-
-<p><u>If I see a screenshot of a tweet but don't see the text in your archive, is it real?</u></p>
-<p>It's possible. It's either one that I missed, a fake, or a deleted tweet that someone screenshotted. Check reputable news sources to see if they reference the tweet as real. Here's an <a href="http://nymag.com/daily/intelligencer/2012/11/trump-is-election-nights-most-unhinged-goper.html">example</a>.</p>
-
-<p><u>Can I use your data?</u></p>
-<p>Yes! It's <a href="https://github.com/bpb27/political_twitter_archive" target="_blank">here</a>. And let me know if you create anything cool.</p>
-
-<p><u>What's the deal with the timestamps? Are you sure they're accurate?</u></p>
-<p>I collect metadata on each tweet via Tweepy and Twitter's official API, which returns a "created_at" date in Greenwich Mean Time (GMT). All the raw data is stored with a GMT timestamp, and the website translates that to Eastern Standard Time, which is 5 hours behind. Unfortunately, not all his tweets come with location data, so I'm unable to further translate a tweet 3 more hours behind if he tweeted from California (PST). It's an imperfect system, but likely the most accurate.</p>
-
-<p><u>But when I look at a tweet timestamp on Twitter.com, it seems like it doesn't match with your site!</u></p>
-<p>That might be true. Twitter displays tweet times to me in PST even though I live on the east coast. So it's not a particularly accurate gauge, since it also attempts to do some time zone adjustment itself.</p>
-
-<hr>
-
-<h3 class="center">Interviews</h3>
-<ul class="coverage">
-  <li>Palm Beach Post - <a href="http://www.palmbeachpost.com/news/national/will-donald-trump-restrained-tweeter-chief/muFxaf2NZ82PYENF953bwL/" target="_blank">Will Donald Trump be ‘restrained’ as tweeter in chief?</a></li>
-  <li>NPR Phoenix KJZZ - <a href="http://theshow.kjzz.org/content/425264/trump-and-twitter-how-presidents-communicate-public" target="_blank">Trump And Twitter: How Presidents Communicate With The Public</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-intersect/wp/2016/09/22/a-look-at-the-170-times-donald-trump-has-tweeted-about-the-losers/" target="_blank">A look at the 170 times Donald Trump has tweeted about the ‘losers’</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-intersect/wp/2016/11/30/is-a-retweet-an-endorsement-from-president-elect-trump/" target="_blank">Is a retweet an endorsement from President-elect Trump?</a></li>
-</ul>
-
-<h3 class="center">Coverage / Shoutouts</h3>
-<ul class="coverage">
-  <li>The Atlantic - <a href="http://www.theatlantic.com/notes/2016/09/can-you-handle-it-every-trump-tweet-in-a-big-searchable-database/500888/" target="_blank">Can You Handle It? Every Trump Tweet, in a Big Searchable Database</a></li>
-  <li>The Atlantic - <a href="http://www.theatlantic.com/politics/archive/2016/10/what-trump-tweets-while-america-sleeps/503141/" target="_blank">What Trump Tweets While America Sleeps</a></li>
-  <li>Aaron Hoffman Sizzle Analytics - <a href="https://www.sizzleanalytics.com/Boards/aaronhoffman/Trump-Tweets/2ad55f62-6697-4704-9208-7b38c747425f" target="_blank">An awesome visualization and breakdown of all of Trump's tweets</a></li>
-  <li>BBC - <a href="http://www.bbc.com/news/world-us-canada-38245530" target="_blank">Trump on Twitter: A history of the man and his medium</a></li>
-  <li>Boston Globe - <a href="https://www.bostonglobe.com/metro/2017/01/19/trump-tweets-are-unpredictable-ever-but-when-they-happen-has-become-more-routine/IR8hT4V99c0MXenTdKpDUI/story.html" target="_blank">Trump’s tweets are unpredictable. But when he sends them is a little more regular</a></li>
-  <li>Buzzfeed News - <a href="https://www.buzzfeed.com/charliewarzel/trumps-information-universe?utm_term=.dgB5BwqNE#.vlPwDROKE" target="_blank">Where Does Trump Get His News?</a></li>
-  <li>Buzzfeed News - <a href="https://www.buzzfeed.com/charliewarzel/here-are-the-294-accounts-donald-trump-retweeted-during-the?utm_term=.ogmoPXgqx#.ubweB7DKv" target="_blank">These Are All The Accounts Donald Trump Retweeted During The Campaign</a></li>
-  <li>Daily Trojan - <a href="http://dailytrojan.com/2016/09/28/media-democratizes-fact-checking/" target="_blank">Media democratizes fact-checking</a></li>
-  <li>Esquire - <a href="http://www.esquire.com/news-politics/news/a48793/trump-tweet-database/" target="_blank">There Is Now a Searchable Database of Donald Trump's Tweets</a></li>
-  <li>The Guardian - <a href="https://www.theguardian.com/us-news/live/2016/sep/21/donald-trump-news-live-hillary-clinton-us-election?page=with:block-57e2c73de4b080d3ee88b0ce#block-57e2c73de4b080d3ee88b0ce" target="_blank">2016 Election Blog</a></li>
-  <li>Mashable - <a href="http://mashable.com/2016/09/21/trump-twitter-archive/#edpR7uOLqOqK" target="_blank">We now know exactly how many times Trump has tweeted his favorite insults</a></li>
-  <li>Mashable - <a href="http://mashable.com/2016/12/22/trump-loves-exclamation-points-in-2016/" target="_blank">In 2016, Donald Trump's favorite thing other than himself was the exclamation point</a></li>
-  <li>Mother Jones - <a href="http://www.motherjones.com/politics/2016/12/russian-intelligence-trump-moscow" target="_blank">Did Russia Spy on Donald Trump When He Visited Moscow?</a></li>
-  <li>NASDAQ - <a href="http://www.nasdaq.com/article/follow-donald-trumps-evolution-on-twitter-inc-twtr-cm720717" target="_blank">Follow Donald Trump’s Evolution On Twitter Inc (TWTR)</a></li>
-  <li>New Jersey Star Ledger Editorial - <a href="http://www.nj.com/opinion/index.ssf/2016/11/does_melania_trump_know_she_lives_with_a_troll_edi.html" target="_blank">Does Melania Trump know she lives with a troll?</a></li>
-  <li>Quartz - <a href="http://qz.com/842865/hamilton-and-25-other-things-that-are-overrated-or-boring-according-to-art-critic-donald-trump/" target="_blank">“Hamilton” and 20 other things that are “overrated” or “boring,” according to art critic Donald Trump</a></li>
-  <li>Recode - <a href="http://www.recode.net/2016/9/23/13026706/recode-daily-yahoo-data-breach-questions#this_is_cool" target="_blank">Daily Rundown: This is cool</a></li>
-  <li>SF Gate - <a href="http://www.sfgate.com/opinion/openforum/article/Why-I-will-go-to-Washington-to-protest-against-10838130.php" target="_blank">Why I will go to Washington to protest against Trump</a></li>
-  <li>Source - <a href="https://source.opennews.org/en-US/articles/twitterverse-donald-trump/" target="_blank">The Twitterverse of Donald Trump, in 26,234 Tweets</a></li>
-  <li>Talking Points Memo - <a href="http://talkingpointsmemo.com/edblog/inside-the-trump-twitter-archive" target="_blank">Inside the Trump Twitter Archive</a></li>
-  <li>Twitter - <a href="https://twitter.com/search?f=tweets&q=www.trumptwitterarchive.com&src=typd" target="_blank">Mentions</a></li>
-  <li>The Week - <a href="http://theweek.com/speedreads/650261/trump-tweeted-more-about-rosie-odonnell-than-about-wife" target="_blank">Trump has tweeted more about Rosie O'Donnell than about his own wife</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/politics/wp/2017/02/21/how-donald-trump-spent-his-first-month-in-office-by-the-numbers/?utm_term=.bb06cb02c7ce" target="_blank">How Trump spent his first month in office, by the numbers</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/politics/wp/2017/02/09/what-president-trump-is-supposed-to-be-doing-while-hes-tweeting/?utm_term=.a183332ede37" target="_blank">What President Trump is supposed to be doing while he’s tweeting</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/18/trump-says-he-dislikes-tweeting-america-says-it-dislikes-his-tweets/?utm_term=.f98e2a767ff9" target="_blank">Trump says he dislikes tweeting. America says it dislikes his tweets.</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/19/donald-trump-has-only-called-15-people-lowlifes-on-twitter/?utm_term=.b06c813b3f7d" target="_blank">Donald Trump has called a surprisingly small number of people a ‘low life’ on Twitter</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2016/09/22/does-donald-trump-actually-think-president-obama-was-born-in-the-u-s-er/" target="_blank">Donald Trump doesn’t actually seem to think President Obama was born in the U.S.</a></li>
-  <li>Washington Post - <a href="https://www.washingtonpost.com/news/the-fix/wp/2017/01/06/why-donald-trumps-ratings-machine-tweets-are-so-revealing/?utm_term=.5ab05eece5bd" target="_blank">Why Donald Trump’s ‘ratings machine’ tweets are so very revealing</a></li>
-  <li>USA Today - <a href="http://www.usatoday.com/story/news/politics/onpolitics/2016/09/21/top-5-insults-donald-trump-has-used-twitter/90797666/" target="_blank">Top 5 insults Donald Trump has used on Twitter</a></li>
-  <li>Variety - <a href="http://variety.com/2017/biz/news/oscars-donald-trump-sean-spicer-1201993901/" target="_blank">President Trump Probably Won’t Watch the Oscars, Sean Spicer Says</a></li>
-  <li>Vice - <a href="http://www.vice.com/read/someone-made-a-searchable-archive-of-trumps-tweets-vgtrn" target="_blank">Someone Made a Searchable Archive of Donald Trump's Tweets</a></li>
-  <li>YouTube NerdWriter1 - <a href="https://www.youtube.com/watch?v=geEVwslL-YY" target="_blank">How Donald Trump Tweets</a></li>
-</ul>
-
-<hr>
-
-<h3 class="center">Updates:</h3>
-
-<p>Update 1/27: The tweet collection process now happens in real time. Trump's account is checked every 1 minute, and any new tweets are automatically added to the site. No more missing deleted typo tweets.</p>
-
-<p>Update 1/4: The archive is expanding to include a range of political figures associated with the Trump administration. If you have any accounts you'd like to see on here, please email me.</p>
-
-<p>Update 11/21: Uncovered 3000+ additional tweets using a process I detail <a href="https://github.com/bpb27/twitter_scraping">here</a>. The insult counters have been increased.</p>
-
-<p>Update 10/2: Two new updates: timestamps and device of origin. Timestamps are in Eastern Standard Time (translated -0500 from GMT). Device of origin shows what mobile or web device / platform Trump used to send the tweet.</p>
-
-<p>Update 9/23: Almost 9000 more tweets have been found that did not originally appear via Twitter's search function. They have been added to the archive, and the totals and lists on the highlights page have been updated. Suspiciously, almost all the tweets with profanity did not appear in the original search. Fortunately, they're now available <a ng-href="/#/highlights/profanity">here</a>. Huge thanks to <a href="https://twitter.com/IgorBrigadir" target="_blank">@IgorBrigadir</a> for uncovering this and helping out. </p>
-
-<hr>
-
-<h3 class="center">The End?</h3>
+  <div class="col-md-8 col-md-offset-2">
+    <h3 class="center">Updates:</h3>
+    <p>Update 1/27: The tweet collection process now happens in real time. Trump's account is checked every 1 minute, and any new tweets are automatically added to the site. No more missing deleted typo tweets.</p>
+    <p>Update 1/4: The archive is expanding to include a range of political figures associated with the Trump administration. If you have any accounts you'd like to see on here, please email me.</p>
+    <p>Update 11/21: Uncovered 3000+ additional tweets using a process I detail <a href="https://github.com/bpb27/twitter_scraping">here</a>. The insult counters have been increased.</p>
+    <p>Update 10/2: Two new updates: timestamps and device of origin. Timestamps are in Eastern Standard Time (translated -0500 from GMT). Device of origin shows what mobile or web device / platform Trump used to send the tweet.</p>
+    <p>Update 9/23: Almost 9000 more tweets have been found that did not originally appear via Twitter's search function. They have been added to the archive, and the totals and lists on the highlights page have been updated. Suspiciously, almost all the tweets with profanity did not appear in the original search. Fortunately, they're now available <a ng-href="/#/highlights/profanity">here</a>. Huge thanks to <a href="https://twitter.com/IgorBrigadir" target="_blank">@IgorBrigadir</a> for uncovering this and helping out. </p>
+  </div>
 
 </div>

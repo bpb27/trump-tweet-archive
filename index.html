@@ -6,40 +6,93 @@
 		<meta name="description" content="All 30,000+ of Trump's tweets, instantly searchable">
 		<meta name="Keywords" content="donald trump, twitter, tweets, archive, all tweets, realDonaldTrump, politics, hillary clinton, barack obama, president, presidential race, GOP, republican, democrat"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
+		<base href="/">
+		<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+		<script>
+			if (window.location && window.location.hash) {
+				window.location = window.location.href.replace('#/', '');
+			}
+		</script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="http://platform.twitter.com/widgets.js" charset="utf-8" async></script>
+		<script src="app.js"></script>
 	</head>
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
-	  (adsbygoogle = window.adsbygoogle || []).push({
-	    google_ad_client: "ca-pub-1190314047382764",
-	    enable_page_level_ads: true
-	  });
-	</script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-	<script src="app.js"></script>
-	<script src="http://platform.twitter.com/widgets.js" charset="utf-8" async></script>
 	<body ng-app="myApp" >
+		<nav class="navbar navbar-fixed-top navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/"><span>Trump</span> Twitter Archive</a>
+					<a class="navbar-text" href="/archive">search through all of Trump's tweets</a></p>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							  <li><a ng-href="/archive">Full Archive</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a ng-href="/highlights/authoritarianism">Authoritarianism</a></li>
+							  <li><a ng-href="/highlights/birtherism">Birtherism</a></li>
+								<li><a ng-href="/archive/global%20warming/ftff">Global Warming</a></li>
+							  <li><a ng-href="/highlights/retaliation">Retaliation</a></li>
+							  <li><a ng-href="/highlights/profanity">Profanity</a></li>
+							  <li><a ng-href="/highlights/vaccines">Vaccines</a></li>
+							  <li><a ng-href="/highlights/women">Women</a></li>
+								<li role="separator" class="divider"></li>
+							  <li><a ng-href="/archive/@Lord_Sugar/ftff">Feud: Lord Sugar</a></li>
+							  <li><a ng-href="/archive/@rosie/ftff">Feud: Rosie O'Donnell</a></li>
+							  <li><a ng-href="/archive/@macmiller/ftff">Feud: Mac Miller</a></li>
+							  <li><a ng-href="/archive/@toure/ftff">Feud: Toure</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Additional Accounts <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a ng-href="/allaccounts">See full list (50+)</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a ng-href="/archive/account/potus">Donald Trump @potus</a></li>
+								<li><a ng-href="/archive/account/donaldjtrumpjr">Donald Trump Jr. @donaldjtrumpjr</a></li>
+								<li><a ng-href="/archive/account/erictrump">Eric Trump @erictrump</a></li>
+								<li><a ng-href="/archive/account/ivankatrump">Ivanka Trump @ivankatrump</a></li>
+								<li><a ng-href="/archive/account/genflynn">Mike Flynn @genflynn</a></li>
+								<li><a ng-href="/archive/account/govpencein">Mike Pence @govpencein</a></li>
+								<li><a ng-href="/archive/account/vp">Mike Pence @vp</a></li>
+								<li><a ng-href="/archive/account/senatemajldr">Mitch McConnell @senatemajldr</a></li>
+								<li><a ng-href="/archive/account/speakerryan">Paul Ryan @speakerryan</a></li>
+								<li><a ng-href="/archive/account/rogerjstonejr">Roger Stone @rogerjstonejr</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAQs <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/about">FAQs</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a>trumptwitterarchive@gmail.com</a></li>
+								<li><a>@realtrumptweet</a></li>
+							</ul>
+						</li>
+						<form class="navbar-form navbar-right" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+							<input type="submit" value="Support" class="btn btn-sm btn-primary">
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
 		<div ng-view class="view-frame"></div>
-		<div id="bottom">
-			<div id="bottom-left">
-				<a ng-href="#/" class="pointer">Home</a>
-				<span class="spacer">|</span>
-				<a ng-href="#/about" class="pointer">About</a>
-				<span class="spacer">|</span>
-				<a ng-href="#/archive" class="pointer">Search Trump Archive</a>
-			</div>
-			<div id="bottom-right">
-				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-					<label>TrumpTwitterArchive@gmail.com</label>
-					<input type="hidden" name="cmd" value="_s-xclick">
-					<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
-					<input type="submit" value="Support" id="pp-button">
-					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-				</form>
-			</div>
-		</div>
 	</body>
 </html>

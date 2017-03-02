@@ -1,9 +1,9 @@
 var app = angular.module('myApp', ['ngRoute']);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "highlights.html"
+            templateUrl: "/highlights.html"
         })
         .when("/about", {
             templateUrl: "about.html"
@@ -38,6 +38,9 @@ app.config(function ($routeProvider) {
         .when("/archive/:search/:params/:dates/:time/:device", {
             templateUrl: "archive.html"
         })
+        .when("/allaccounts", {
+            templateUrl: "allaccounts.html"
+        })
         .when("/highlights", {
             templateUrl: "highlights.html"
         })
@@ -49,6 +52,8 @@ app.config(function ($routeProvider) {
         .otherwise({
             templateUrl: "highlights.html"
         });
+
+    $locationProvider.html5Mode(true).hashPrefix('!');
 });
 
 
@@ -57,26 +62,24 @@ app.controller('tweetPanelCtrl', ['TweetService', function (TweetService) {
     TweetService.transform();
 }]);
 
+app.controller('allAccountsCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+    $scope.accounts = [];
+    $scope.goToAccount = function (account) {
+        $location.path('/archive/account/' + account);
+    }
+    $http.get('/data/accounts.json').then(function (results) {
+        $scope.accounts = results.data;
+    });
+}]);
 
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
-    document.querySelector('body').scrollTop = 0;
 
     $scope.accounts = [];
     $scope.latest = [];
     $scope.media = [];
-    $scope.showingReasons = false;
-    $scope.showingQuicklinks = false;
 
     $scope.showUrlToPage = function ($event) {
-        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/highlights#' + $event.srcElement.parentElement.id);
-    }
-
-    $scope.toggleQuicklinks = function () {
-        $scope.showingQuicklinks = !$scope.showingQuicklinks;
-    }
-
-    $scope.toggleReasons = function () {
-        $scope.showingReasons = !$scope.showingReasons;
+        prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#' + $event.srcElement.id);
     }
 
     TweetService.transform();
@@ -88,14 +91,10 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
         $scope.media = results.data;
     });
 
-    $http.get('/data/accounts.json').then(function (results) {
-        $scope.accounts = results.data;
-    });
-
     $http.get('/data/realdonaldtrump/2017.json').then(function (results) {
         $scope.latest = results.data.sort(function (a, b) {
             return new Date(a.created_at) < new Date(b.created_at) ? 1 : -1;
-        }).slice(0, 5);
+        }).slice(0, 10);
     });
 
 }]);
@@ -142,9 +141,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     $scope.showUrlToPage = function () {
         var paramString = encodeURI(createParams());
         if ($scope.account.toLowerCase() === 'realdonaldtrump')
-            prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/' + paramString);
+            prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/archive/' + paramString);
         else
-            prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#/archive/account/' + $scope.account + '/' + paramString);
+            prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/archive/account/' + $scope.account + '/' + paramString);
     }
 
     $scope.$watch('query', function () {
@@ -154,7 +153,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             if (query === $scope.query) {
                 updateList(true);
             }
-        }, 120);
+        }, 333);
     });
 
     $scope.$watchGroup([
@@ -488,9 +487,9 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
         $timeout(transformTweets, 100);
 
         function transformTweets() {
-            if (window.twttr && window.twttr.widgets && window.twttr.widgets.load)
+            if (window.twttr && window.twttr.widgets && window.twttr.widgets.load) {
                 window.twttr.widgets.load();
-            else if (attempts) {
+            } else if (attempts) {
                 attempts -= 1;
                 $timeout(transformTweets, 100);
             }
@@ -628,4 +627,4 @@ var times = [
   '11:00pm',
 ];
 
-console.log("Whoa there, Carla Console-Checker")
+console.log("Looky Loo");
