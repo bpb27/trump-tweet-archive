@@ -1,6 +1,56 @@
-<div ng-controller="archiveCtrl" class="container">
-	<div class="top-banner">
-			<span class="site-name">Trump Twitter Archive - @{{account}}</span>
+<div ng-controller="archiveCtrl" id="archive" class="container-fluid">
+	<div id="search-bar" class="col-md-12 input-group input-group-lg">
+		<span class="input-group-addon pointer" id="sizing-addon1" ng-click="showUrlToPage()" title="click for link to this search">{{matches.length}}</span>
+		<input class="form-control" type="text" tabindex='1' placeholder="Search..." ng-model="query" aria-describedby="sizing-addon1">
+		<div class="input-group-btn">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tips <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li><a href="#"><span>obama && golf</span> all tweets with both obama <b>and</b> golf</a></li>
+        <li><a href="#"><span>bad || sad</span> all tweets with either bad <b>or</b> sad</a></li>
+        <li><a href="#"><span>loser ~~ closer</span> all tweets with loser but <b>not</b> closer</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">try combining operators</a></li>
+      </ul>
+    </div>
+		<span class="input-group-addon" id="sizing-addon2">@{{account}}</span>
+	</div>
+	<div id="control-bar" class="col-md-12">
+		<div id="control-buttons">
+			<button class="btn btn-danger" ng-click="settings.descending = !settings.descending">
+				<span ng-if="settings.descending">latest</span>
+				<span ng-if="!settings.descending">earliest</span>
+			</button>
+			<button class="btn btn-danger" ng-click="settings.retweets = !settings.retweets">
+				<span ng-if="settings.retweets">retweets</span>
+				<span ng-if="!settings.retweets">no retweets</span>
+			</button>
+			<button class="btn btn-danger" ng-click="settings.exactMatch = !settings.exactMatch">
+				<span ng-if="settings.exactMatch">exact</span>
+				<span ng-if="!settings.exactMatch">not exact</span>
+			</button>
+		</div>
+		<div id="control-dates">
+			<input type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
+			<input type="date" ng-model="dateRange.end" placeholder="yyyy-MM-dd">
+		</div>
+		<div id="control-selects">
+			<select ng-model="times.time">
+	    	<option ng-repeat="hour in times.options" value="{{hour}}">{{hour}}</option>
+	  	</select>
+			<select ng-model="sources.source">
+	    	<option ng-repeat="source in sources.options" value="{{source}}">{{source}}</option>
+	  	</select>
+		</div>
+	</div>
+	<div id="results" class="col-md-12">
+		<ol id='fixed' when-scrolled="loadMore()">
+			<li ng-repeat="tweet in displayed">
+				<span class="tweet-date" ng-bind-html="tweet | dateformat"></span>
+				<span class="tweet-text" ng-bind-html="tweet | highlight:query:deepQuery:settings.exactMatch"></span>
+				<span class="tweet-source">[{{tweet.source}}]</span>
+				<a href="https://twitter.com/{{account}}/status/{{tweet.id_str}}" target="_blank"><button class="btn btn-xs">link</button></a>
+			</li>
+		</ol>
 	</div>
 	<div ng-hide="loaded.length" id="loading-icon">
 		<svg width='120px' height='120px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-default"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(0 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(30 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.08333333333333333s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(60 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.16666666666666666s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(90 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.25s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(120 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.3333333333333333s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(150 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.4166666666666667s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(180 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(210 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5833333333333334s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(240 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.6666666666666666s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(270 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.75s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(300 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.8333333333333334s' repeatCount='indefinite'/></rect><rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#00b2ff' transform='rotate(330 50 50) translate(0 -30)'>  <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.9166666666666666s' repeatCount='indefinite'/></rect></svg>
@@ -11,48 +61,6 @@
 			<span class="mark-success">✓</span>
 			<span class="mark-failure pointer" ng-click="retryUrl(date)">✕</span>
 		</span>
-		<button ng-click="removeDatesModal()" class="pointer">close</button>
-	</div>
-	<input id="search-bar" type="text" tabindex='1' placeholder="Search..." ng-model="query">
-	<div id="control-bar">
-		<div id="controls-left" class="controls">
-			<label class="total">Total: {{matches.length}}</label>
-		</div>
-		<div id="controls-middle" class="controls">
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.descending">recent first</label>
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.retweets">retweets</label>
-			<label class="settings-check pointer"><input type="checkbox" ng-model="settings.exactMatch">exact</label>
-		</div>
-		<div id="controls-right" class="controls">
-			<input class="date-range" type="date" ng-model="dateRange.start" placeholder="yyyy-MM-dd">
-			<input class="date-range" type="date" ng-model="dateRange.end" placeholder="yyyy-MM-dd">
-			<select class="date-range" ng-model="times.time">
-      	<option ng-repeat="hour in times.options" value="{{hour}}">{{hour}}</option>
-    	</select>
-			<select class="date-range" ng-model="sources.source">
-      	<option ng-repeat="source in sources.options" value="{{source}}">{{source}}</option>
-    	</select>
-			<label class="settings-check pointer" ng-click="showUrlToPage()">link to this search</label>
-			<label class="settings-check pointer" ng-click="showSearchTips()">search tips</label>
-		</div>
-	</div>
-	<ol id='fixed' when-scrolled="loadMore()">
-		<li ng-repeat="tweet in displayed">
-			<span class="tweet-date" ng-bind-html="tweet | dateformat"></span>
-			<span class="tweet-text" ng-bind-html="tweet | highlight:query:deepQuery:settings.exactMatch"></span>
-			<span class="tweet-source">[{{tweet.source}}]</span>
-			<a href="https://twitter.com/{{account}}/status/{{tweet.id_str}}" target="_blank">↗</a>
-		</li>
-	</ol>
-	<div ng-if="showTips" id="search-tips">
-		<div>"bad && sad"</div>
-		<div>returns all tweets with both <i>bad</i> and <i>sad</i></div>
-		<div class="tip-space"></div>
-		<div>"bad || sad"</div>
-		<div>returns all tweets with either <i>bad</i> or <i>sad</i></div>
-		<div class="tip-space"></div>
-		<div>"bad && sad ~~ Mark Cuban"</div>
-		<div>returns all tweets with both <i>bad</i> and <i>sad</i> but not <i>Mark Cuban</i></div>
-		<button ng-click="showSearchTips()" class="pointer">close</button>
+		<button ng-click="removeDatesModal()" class="btn btn-xs btn-danger">close</button>
 	</div>
 </div>
