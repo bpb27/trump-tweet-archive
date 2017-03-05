@@ -384,17 +384,11 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     function getTime(routeParams) {
-        var defaultTime = 'any time';
-        if (routeParams && routeParams.time && times.indexOf(routeParams.time) !== -1)
-            return routeParams.time;
-        return defaultTime;
+        return routeParams && routeParams.time ? routeParams.time : 'any time';
     }
 
     function getDevice(routeParams) {
-        var defaultDevice = 'all devices';
-        if (routeParams && routeParams.device && sources.indexOf(routeParams.device) !== -1)
-            return routeParams.device;
-        return defaultDevice;
+        return routeParams && routeParams.device ? routeParams.device : 'all devices';
     }
 
     function timeOutOfRange(date, time) {
