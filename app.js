@@ -119,7 +119,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     };
     $scope.times = {
         time: getTime(),
-        options: times
+        options: appUtils.times
     };
 
     $scope.loadMore = function () {
@@ -233,12 +233,22 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         $scope.settings.caseSensitive ? params += 't' : params += 'f';
         params += parseDateRange();
 
-        if ($scope.times.time === 'any time' && $scope.sources.source === 'all devices')
+        if ($scope.times.time === 'any time' && $scope.sources.source === 'all devices') {
             return params;
-        else if (parseDateRange())
+        } else if (parseDateRange()) {
             return params + '/' + $scope.times.time + '/' + $scope.sources.source;
-        else
+        } else {
             return params + '/none/' + $scope.times.time + '/' + $scope.sources.source;
+        }
+
+        function parseDateRange() {
+            var str = '/' + parseDate($scope.dateRange.start) + '_' + parseDate($scope.dateRange.end);
+            return str.length === 2 ? '' : str;
+
+            function parseDate(d) {
+                return !d ? '' : [d.getMonth() + 1, d.getDate(), d.getFullYear()].join('-');
+            }
+        }
     }
 
     function getDateRange() {
@@ -310,15 +320,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         return defaultDevice;
     }
 
-    function parseDateRange() {
-        var str = '/' + parseDate($scope.dateRange.start) + '_' + parseDate($scope.dateRange.end);
-        return str.length === 2 ? '' : str;
-
-        function parseDate(d) {
-            return !d ? '' : [d.getMonth() + 1, d.getDate(), d.getFullYear()].join('-');
-        }
-    }
-
     function timeOutOfRange(date, time) {
         var s = $filter('date')(new Date(date), 'medium', '-0400');
         if (s[s.length - 2].toLowerCase() !== time[time.length - 2].toLowerCase())
@@ -334,8 +335,8 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         var deepQuery = null;
         var exact = $scope.settings.exactMatch;
 
-        if (symbolsPresent(query)) {
-            deepQuery = parser(query);
+        if (appUtils.symbolsPresent(query)) {
+            deepQuery = appUtils.parser(query);
             $scope.deepQuery = deepQuery;
         } else {
             $scope.deepQuery = {};
@@ -365,25 +366,25 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
                 var notMatch = true;
 
                 if (deepQuery['and'].length) {
-                    andMatch = parseAndMatch(deepQuery, text, exact);
+                    andMatch = appUtils.parseAndMatch(deepQuery, text, exact);
                     if (deepQuery['not'].length) {
-                        notMatch = parseNotMatch(deepQuery, text, exact);
+                        notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
                         return andMatch && notMatch;
                     }
                     return andMatch;
                 }
 
                 if (deepQuery['or'].length) {
-                    orMatch = parseOrMatch(deepQuery, text, exact);
+                    orMatch = appUtils.parseOrMatch(deepQuery, text, exact);
                     if (deepQuery['not'].length) {
-                        notMatch = parseNotMatch(deepQuery, text, exact);
+                        notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
                         return orMatch && notMatch;
                     }
                     return orMatch;
                 }
 
                 if (deepQuery['not'].length) {
-                    notMatch = parseNotMatch(deepQuery, text, exact);
+                    notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
                     return notMatch;
                 }
             }
@@ -424,6 +425,7 @@ app.directive('whenScrolled', function () {
 
 
 app.filter('highlight', function ($sce, $filter) {
+    var esc = appUtils.esc;
     return function (tweet, phrase, deepQuery, exactMatch) {
         if (phrase) {
             if (Object.keys(deepQuery).length) {
@@ -511,133 +513,122 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
 }]);
 
+var appUtils = {
+    esc: function (str) {
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    },
+    parser: function (str) {
 
-function esc(str) {
-    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-}
+        str = andor(str)[1] + str;
 
-function findAccount(name, accounts) {
-    return accounts.filter(function (item) {
-        return item.account === name;
-    })[0] || '';
-}
+        var hash = { 'and': [], 'or': [], 'not': [] };
+        var symbol = andor(str)[0];
+        var marker = 0;
 
-function parser(str) {
-
-    str = andor(str)[1] + str;
-
-    var hash = { 'and': [], 'or': [], 'not': [] };
-    var symbol = andor(str)[0];
-    var marker = 0;
-
-    for (var i = 0; i < str.length; i++) {
-        if (str[i] == '&' && str[i + 1] == '&') {
-            step();
-            symbol = 'and';
-        } else if (str[i] == '|' && str[i + 1] == '|') {
-            step();
-            symbol = 'or';
-        } else if (str[i] == '~' && str[i + 1] == '~') {
-            step();
-            symbol = 'not';
-        } else if (i === str.length - 1) {
-            step();
+        for (var i = 0; i < str.length; i++) {
+            if (str[i] == '&' && str[i + 1] == '&') {
+                step();
+                symbol = 'and';
+            } else if (str[i] == '|' && str[i + 1] == '|') {
+                step();
+                symbol = 'or';
+            } else if (str[i] == '~' && str[i + 1] == '~') {
+                step();
+                symbol = 'not';
+            } else if (i === str.length - 1) {
+                step();
+            }
         }
-    }
 
-    hash['and'] = clean(hash['and']);
-    hash['or'] = clean(hash['or']);
-    hash['not'] = clean(hash['not']);
+        hash['and'] = clean(hash['and']);
+        hash['or'] = clean(hash['or']);
+        hash['not'] = clean(hash['not']);
 
-    function andor(str) {
-        var or = ['or', '||'];
-        var and = ['and', '&&'];
+        function andor(str) {
+            var or = ['or', '||'];
+            var and = ['and', '&&'];
 
-        if (str.indexOf('||') !== -1) {
-            if (str.indexOf('&&') !== -1) {
-                if (str.indexOf('||') < str.indexOf('&&')) {
-                    return or;
+            if (str.indexOf('||') !== -1) {
+                if (str.indexOf('&&') !== -1) {
+                    if (str.indexOf('||') < str.indexOf('&&')) {
+                        return or;
+                    } else {
+                        return and;
+                    }
                 } else {
-                    return and;
+                    return or;
                 }
             } else {
-                return or;
+                return and;
             }
-        } else {
-            return and;
         }
-    }
 
-    function clean(list) {
-        return list.map(function (item) {
-            return item.replace(/[|&~]/g, '').trim();
-        }).filter(function (item) {
-            return item;
-        });
-    }
+        function clean(list) {
+            return list.map(function (item) {
+                return item.replace(/[|&~]/g, '').trim();
+            }).filter(function (item) {
+                return item;
+            });
+        }
 
-    function step() {
-        hash[symbol].push(str.slice(marker, i + 1));
-        marker = i + 1;
-    }
+        function step() {
+            hash[symbol].push(str.slice(marker, i + 1));
+            marker = i + 1;
+        }
 
-    return hash;
+        return hash;
+    },
+    parseAndMatch: function (deepQuery, text, exact) {
+        return deepQuery['and'].filter(function (word) {
+            if (exact)
+                return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
+            return text.indexOf(word) !== -1;
+        }).length === deepQuery['and'].length;
+    },
+    parseOrMatch: function (deepQuery, text, exact) {
+        return deepQuery['or'].filter(function (word) {
+            if (exact)
+                return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
+            return text.indexOf(word) !== -1;
+        }).length;
+    },
+    parseNotMatch: function (deepQuery, text, exact) {
+        return deepQuery['not'].filter(function (word) {
+            if (exact)
+                return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
+            return text.indexOf(word) !== -1;
+        }).length === 0;
+    },
+    symbolsPresent: function (str) {
+        return str.indexOf('&&') !== -1 || str.indexOf('||') !== -1 || str.indexOf('~~') !== -1;
+    },
+    times: [
+      'any time',
+      '12:00am',
+      '1:00am',
+      '2:00am',
+      '3:00am',
+      '4:00am',
+      '5:00am',
+      '6:00am',
+      '7:00am',
+      '8:00am',
+      '9:00am',
+      '10:00am',
+      '11:00am',
+      '12:00pm',
+      '1:00pm',
+      '2:00pm',
+      '3:00pm',
+      '4:00pm',
+      '5:00pm',
+      '6:00pm',
+      '7:00pm',
+      '8:00pm',
+      '9:00pm',
+      '10:00pm',
+      '11:00pm',
+    ]
 }
 
-function parseAndMatch(deepQuery, text, exact) {
-    return deepQuery['and'].filter(function (word) {
-        if (exact)
-            return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
-        return text.indexOf(word) !== -1;
-    }).length === deepQuery['and'].length;
-}
-
-function parseOrMatch(deepQuery, text, exact) {
-    return deepQuery['or'].filter(function (word) {
-        if (exact)
-            return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
-        return text.indexOf(word) !== -1;
-    }).length;
-}
-
-function parseNotMatch(deepQuery, text, exact) {
-    return deepQuery['not'].filter(function (word) {
-        if (exact)
-            return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
-        return text.indexOf(word) !== -1;
-    }).length === 0;
-}
-
-function symbolsPresent(str) {
-    return str.indexOf('&&') !== -1 || str.indexOf('||') !== -1 || str.indexOf('~~') !== -1;
-}
-
-var times = [
-  'any time',
-  '12:00am',
-  '1:00am',
-  '2:00am',
-  '3:00am',
-  '4:00am',
-  '5:00am',
-  '6:00am',
-  '7:00am',
-  '8:00am',
-  '9:00am',
-  '10:00am',
-  '11:00am',
-  '12:00pm',
-  '1:00pm',
-  '2:00pm',
-  '3:00pm',
-  '4:00pm',
-  '5:00pm',
-  '6:00pm',
-  '7:00pm',
-  '8:00pm',
-  '9:00pm',
-  '10:00pm',
-  '11:00pm',
-];
-
-console.log("Looky Loo");
+console.log("Goddamn Looky Loo");
