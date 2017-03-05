@@ -208,23 +208,23 @@ span.tweet-source {
 #loaded-dates .date {
 	display: block;
 	padding: 5px;
-	text-transform: capitalize;
 }
 
-#loaded-dates .date.success .mark-failure, #loaded-dates .date.failure .mark-success {
-	display: none;
+#loaded-dates .date span {
+	float: right;
+	padding-left: 5px;
+}
+
+.mark-loading {
+	color: #286090;
 }
 
 .mark-failure {
 	color: #ff5d5d;
-	float: right;
-	padding-left: 5px;
 }
 
 .mark-success {
 	color: green;
-	float: right;
-	padding-left: 5px;
 }
 
 /* END ARCHIVE PAGE STYLES ******************************* */

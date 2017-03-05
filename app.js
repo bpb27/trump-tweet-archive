@@ -103,7 +103,7 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routeParams', '$filter', 'TweetService', function ($scope, $http, $timeout, $sce, $routeParams, $filter, TweetService) {
     document.querySelector('body').scrollTop = 0;
 
-    $scope.account = 'realdonaldtrump'
+    $scope.account = $routeParams && $routeParams.account ? $routeParams.account : 'realdonaldtrump';
     $scope.all = [];
     $scope.dateRange = getDateRange();
     $scope.deepQuery = {};
@@ -130,12 +130,45 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         $scope.showModal = false;
     }
 
-    $scope.retryUrl = function (item) {
-        requestTweets([item.year]);
+    $scope.requestTweets = function (years) {
+        var baseUrl = '/data/' + $scope.account + '/';
+        var loadedYears = 0;
+
+        $scope.showModal = true;
+
+        // condition is here for retries
+        if (!$scope.loaded.length) {
+            $scope.loaded = years.map(function (year) {
+                return { 'year': year, 'url': baseUrl + year + '.json', 'status': 'loading' }
+            });
+        }
+
+        years.forEach(function (year) {
+            var url = baseUrl + year + '.json';
+            TweetService.load($scope.account, url, year, function (data) {
+                $scope.all = $scope.all.concat(data);
+                $scope.sources.options = getSources(data, $scope.sources.options);
+                $scope.increment += 1;
+                $scope.showModal = true;
+                $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'success' });
+                loadedYears += 1;
+                if (loadedYears === years.length) {
+                    $scope.removeDatesModal();
+                }
+            }, function (error) {
+                $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'failure' });
+            });
+        });
+
+        function removeExisting(url, items) {
+            return items.filter(function (item) {
+                return item.url !== url;
+            });
+        }
     }
 
-    $scope.showSearchTips = function () {
-        $scope.showTips = !$scope.showTips;
+    $scope.retryUrl = function (year) {
+        $scope.requestTweets([year]);
     }
 
     $scope.showUrlToPage = function () {
@@ -156,23 +189,41 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         }, 333);
     });
 
+    $scope.$watch('dateRange.start', function () {
+        var d = $scope.dateRange.start;
+        if (!d) {
+            updateList();
+        }
+        if (d && Object.prototype.toString.call(d) === '[object Date]' && d.getFullYear() > 2000) {
+            updateList();
+        }
+    });
+
+    $scope.$watch('dateRange.end', function () {
+        var d = $scope.dateRange.start;
+        if (!d) {
+            updateList();
+        }
+        if (d && Object.prototype.toString.call(d) === '[object Date]' && d.getFullYear() > 2000) {
+            updateList();
+        }
+    });
+
     $scope.$watchGroup([
 			'increment',
       'settings.descending',
 			'settings.retweets',
 			'settings.caseSensitive',
 			'settings.exactMatch',
-			'dateRange.start',
-			'dateRange.end',
       'times.time',
       'sources.source'
 		], function () {
         updateList();
     });
 
-
-    requestTweets(years()); // kick off
-
+    TweetService.getAccount($scope.account, function (account) {
+        $scope.requestTweets(years(account.startingYear));
+    });
 
     function createParams() {
         var params = ($scope.query || 'none') + '/';
@@ -268,30 +319,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
         }
     }
 
-    function requestTweets(years) {
-        if ($routeParams && $routeParams.account)
-            $scope.account = $routeParams.account
-
-        years.forEach(function (year) {
-            var url = '/data/' + $scope.account + '/' + year + '.json';
-            TweetService.load($scope.account, url, year, function (data) {
-                $scope.all = $scope.all.concat(data);
-                $scope.sources.options = getSources(data, $scope.sources.options);
-                $scope.increment += 1;
-                $scope.showModal = true;
-                $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'success' });
-            }, function (error) {
-                $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'failure' });
-            });
-        });
-
-        function removeExisting(url, items) {
-            return items.filter(function (item) {
-                return item.url !== url;
-            });
-        }
-    }
-
     function timeOutOfRange(date, time) {
         var s = $filter('date')(new Date(date), 'medium', '-0400');
         if (s[s.length - 2].toLowerCase() !== time[time.length - 2].toLowerCase())
@@ -377,8 +404,9 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     }
 
-    function years() {
-        return [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017];
+    function years(startingYear) {
+        var all = ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017'];
+        return all.indexOf(startingYear) ? all.slice(all.indexOf(startingYear)) : all;
     }
 
 }]);
@@ -424,16 +452,17 @@ app.filter('dateformat', function ($sce, $filter) {
 
 app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 
-    $http({
-        url: './data/accounts.json',
-        method: 'GET',
-        cache: false
-    }).then(function (results) {
-        this.accounts = results.data;
-    }.bind(this));
-
     this.accounts = [];
     this.loaded = {};
+
+    this.getAccount = function (username, successHandler) {
+        this.getAccounts(function (accounts) {
+            var target = accounts.filter(function (account) {
+                return account.account === username;
+            })[0];
+            successHandler(target);
+        })
+    }
 
     this.getAccounts = function (successHandler) {
         if (this.accounts.length) {
@@ -446,30 +475,8 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
     }
 
     this.load = function (user, url, year, successHandler, errorHandler) {
-
         this.getAccounts(function (accounts) {
-            var linked = findAccount(user, accounts).linked
-
-            if (!Object.keys(this.loaded).length) {
-                accounts.forEach(function (account) {
-                    this.loaded[account.account] = {};
-                }.bind(this));
-            }
-
-            if (linked) {
-                var linkedUrl = url.replace(user, linked);
-                if (this.loaded[user][year] && this.loaded[linked][year]) {
-                    successHandler(this.loaded[user][year].concat(this.loaded[linked][year]));
-                } else {
-                    $http.get(url).then(function (results) {
-                        this.loaded[user][year] = results.data;
-                        $http.get(linkedUrl).then(function (secondResults) {
-                            this.loaded[linked][year] = secondResults.data;
-                            successHandler(results.data.concat(secondResults.data));
-                        }.bind(this), errorHandler);
-                    }.bind(this), errorHandler);
-                }
-            } else if (this.loaded[user] && this.loaded[user][year]) {
+            if (this.loaded[user] && this.loaded[user][year]) {
                 successHandler(this.loaded[user][year]);
             } else {
                 $http.get(url).then(function (results) {
@@ -478,12 +485,11 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
                 }.bind(this), errorHandler);
             }
         }.bind(this));
-
     }
 
     this.transform = function () {
-        var attempts = 100;
 
+        var attempts = 100;
         $timeout(transformTweets, 100);
 
         function transformTweets() {
@@ -495,6 +501,13 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
             }
         }
     }
+
+    $http({ url: './data/accounts.json', method: 'GET', cache: false }).then(function (results) {
+        this.accounts = results.data;
+        results.data.forEach(function (account) {
+            this.loaded[account.account] = {};
+        }.bind(this));
+    }.bind(this));
 
 }]);
 
