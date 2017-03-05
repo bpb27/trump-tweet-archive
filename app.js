@@ -105,20 +105,20 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     $scope.account = $routeParams && $routeParams.account ? $routeParams.account : 'realdonaldtrump';
     $scope.all = [];
-    $scope.dateRange = getDateRange();
+    $scope.dateRange = getDateRange($routeParams);
     $scope.deepQuery = {};
     $scope.loaded = [];
     $scope.increment = 100;
-    $scope.query = getQuery();
-    $scope.settings = getSettings();
+    $scope.query = getQuery($routeParams);
+    $scope.settings = getSettings($routeParams);
     $scope.showModal = false;
     $scope.showTips = false;
     $scope.sources = {
-        source: getDevice(),
+        source: getDevice($routeParams),
         options: []
     };
     $scope.times = {
-        time: getTime(),
+        time: getTime($routeParams),
         options: appUtils.times
     };
 
@@ -172,163 +172,14 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     }
 
     $scope.showUrlToPage = function () {
-        var paramString = encodeURI(createParams());
+        var paramString = createParams($scope.query, $scope.settings, $scope.times, $scope.sources, $scope.dateRange);
         if ($scope.account.toLowerCase() === 'realdonaldtrump')
             prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/archive/' + paramString);
         else
             prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/archive/account/' + $scope.account + '/' + paramString);
     }
 
-    $scope.$watch('query', function () {
-        var query = $scope.query;
-        $scope.showModal = false;
-        $timeout(function () {
-            if (query === $scope.query) {
-                updateList(true);
-            }
-        }, 333);
-    });
-
-    $scope.$watch('dateRange.start', function () {
-        var d = $scope.dateRange.start;
-        if (!d) {
-            updateList();
-        }
-        if (d && Object.prototype.toString.call(d) === '[object Date]' && d.getFullYear() > 2000) {
-            updateList();
-        }
-    });
-
-    $scope.$watch('dateRange.end', function () {
-        var d = $scope.dateRange.start;
-        if (!d) {
-            updateList();
-        }
-        if (d && Object.prototype.toString.call(d) === '[object Date]' && d.getFullYear() > 2000) {
-            updateList();
-        }
-    });
-
-    $scope.$watchGroup([
-			'increment',
-      'settings.descending',
-			'settings.retweets',
-			'settings.caseSensitive',
-			'settings.exactMatch',
-      'times.time',
-      'sources.source'
-		], function () {
-        updateList();
-    });
-
-    TweetService.getAccount($scope.account, function (account) {
-        $scope.requestTweets(years(account.startingYear));
-    });
-
-    function createParams() {
-        var params = ($scope.query || 'none') + '/';
-        $scope.settings.descending ? params += 't' : params += 'f';
-        $scope.settings.retweets ? params += 't' : params += 'f';
-        $scope.settings.exactMatch ? params += 't' : params += 'f';
-        $scope.settings.caseSensitive ? params += 't' : params += 'f';
-        params += parseDateRange();
-
-        if ($scope.times.time === 'any time' && $scope.sources.source === 'all devices') {
-            return params;
-        } else if (parseDateRange()) {
-            return params + '/' + $scope.times.time + '/' + $scope.sources.source;
-        } else {
-            return params + '/none/' + $scope.times.time + '/' + $scope.sources.source;
-        }
-
-        function parseDateRange() {
-            var str = '/' + parseDate($scope.dateRange.start) + '_' + parseDate($scope.dateRange.end);
-            return str.length === 2 ? '' : str;
-
-            function parseDate(d) {
-                return !d ? '' : [d.getMonth() + 1, d.getDate(), d.getFullYear()].join('-');
-            }
-        }
-    }
-
-    function getDateRange() {
-        var defaultDates = { start: null, end: null };
-        if ($routeParams && $routeParams.dates && $routeParams.dates !== 'none') {
-            try {
-                var paramDates = $routeParams.dates.split('_');
-                defaultDates.start = createDate(paramDates[0]);
-                defaultDates.end = createDate(paramDates[1]);
-            } catch (error) {}
-        }
-
-        return defaultDates;
-
-        function createDate(d) {
-            if (!d) return null;
-            if (d.length < 8) return null;
-            if (!isNaN(new Date(d).getTime())) return new Date(d);
-            return null;
-        }
-    }
-
-    function getQuery() {
-        if ($routeParams && $routeParams.search && $routeParams.search !== 'none')
-            return $routeParams.search;
-        return '';
-    }
-
-    function getSettings() {
-        var defaultSettings = { descending: true, retweets: true, exactMatch: false, caseSensitive: false };
-
-        if (!$routeParams)
-            return defaultSettings;
-        if (!$routeParams.params || $routeParams.params.length !== 4)
-            return defaultSettings;
-
-        var p = $routeParams.params;
-        return { descending: parse(p[0]), retweets: parse(p[1]), exactMatch: parse(p[2]), caseSensitive: parse(p[3]) };
-
-        function parse(letter) {
-            return letter === 't';
-        }
-    }
-
-    function getSources(data, previous) {
-        var sources = {
-            'all devices': true
-        };
-        previous.forEach(function (item) {
-            if (item) sources[item] = true;
-        });
-        data.forEach(function (item) {
-            if (item.source) sources[item.source] = true;
-        });
-        return Object.keys(sources).sort()
-    }
-
-    function getTime() {
-        var defaultTime = 'any time';
-        if ($routeParams && $routeParams.time && times.indexOf($routeParams.time) !== -1)
-            return $routeParams.time;
-        return defaultTime;
-    }
-
-    function getDevice() {
-        var defaultDevice = 'all devices';
-        if ($routeParams && $routeParams.device && sources.indexOf($routeParams.device) !== -1)
-            return $routeParams.device;
-        return defaultDevice;
-    }
-
-    function timeOutOfRange(date, time) {
-        var s = $filter('date')(new Date(date), 'medium', '-0400');
-        if (s[s.length - 2].toLowerCase() !== time[time.length - 2].toLowerCase())
-            return true;
-        if (s.split(' ')[3].split(':')[0] !== time.split(':')[0])
-            return true;
-    }
-
-    function updateList(resetIncrement) {
+    $scope.updateList = function (resetIncrement) {
 
         var query = $scope.query.toLowerCase();
         var regEx = new RegExp('\\b' + query + '\\b', 'i');
@@ -403,6 +254,155 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             $scope.increment = 100;
         $scope.displayed = $scope.matches.slice(0, $scope.increment);
 
+    }
+
+    $scope.$watch('query', function () {
+        var query = $scope.query;
+        $scope.showModal = false;
+        $timeout(function () {
+            if (query === $scope.query) {
+                $scope.updateList(true);
+            }
+        }, 333);
+    });
+
+    $scope.$watch('dateRange.start', function () {
+        var d = $scope.dateRange.start;
+        if (!d) {
+            $scope.updateList();
+        }
+        if (d && Object.prototype.toString.call(d) === '[object Date]' && d.getFullYear() > 2000) {
+            $scope.updateList();
+        }
+    });
+
+    $scope.$watch('dateRange.end', function () {
+        var d = $scope.dateRange.start;
+        if (!d) {
+            $scope.updateList();
+        }
+        if (d && Object.prototype.toString.call(d) === '[object Date]' && d.getFullYear() > 2000) {
+            $scope.updateList();
+        }
+    });
+
+    $scope.$watchGroup([
+			'increment',
+      'settings.descending',
+			'settings.retweets',
+			'settings.caseSensitive',
+			'settings.exactMatch',
+      'times.time',
+      'sources.source'
+		], function () {
+        $scope.updateList();
+    });
+
+    TweetService.getAccount($scope.account, function (account) {
+        $scope.requestTweets(years(account.startingYear));
+    });
+
+    function createParams(query, settings, times, sources, dateRange) {
+        var params = (query || 'none') + '/';
+        settings.descending ? params += 't' : params += 'f';
+        settings.retweets ? params += 't' : params += 'f';
+        settings.exactMatch ? params += 't' : params += 'f';
+        settings.caseSensitive ? params += 't' : params += 'f';
+        params += parseDateRange();
+
+        if (times.time === 'any time' && sources.source === 'all devices') {
+            return encodeURI(params);
+        } else if (parseDateRange()) {
+            return encodeURI(params + '/' + times.time + '/' + sources.source);
+        } else {
+            return encodeURI(params + '/none/' + times.time + '/' + sources.source);
+        }
+
+        function parseDateRange() {
+            var str = '/' + parseDate(dateRange.start) + '_' + parseDate(dateRange.end);
+            return str.length === 2 ? '' : str;
+
+            function parseDate(d) {
+                return !d ? '' : [d.getMonth() + 1, d.getDate(), d.getFullYear()].join('-');
+            }
+        }
+    }
+
+    function getDateRange(routeParams) {
+        var defaultDates = { start: null, end: null };
+        if (routeParams && routeParams.dates && routeParams.dates !== 'none') {
+            try {
+                var paramDates = routeParams.dates.split('_');
+                defaultDates.start = createDate(paramDates[0]);
+                defaultDates.end = createDate(paramDates[1]);
+            } catch (error) {}
+        }
+
+        return defaultDates;
+
+        function createDate(d) {
+            if (!d) return null;
+            if (d.length < 8) return null;
+            if (!isNaN(new Date(d).getTime())) return new Date(d);
+            return null;
+        }
+    }
+
+    function getQuery(routeParams) {
+        if (routeParams && routeParams.search && routeParams.search !== 'none')
+            return routeParams.search;
+        return '';
+    }
+
+    function getSettings(routeParams) {
+        var defaultSettings = { descending: true, retweets: true, exactMatch: false, caseSensitive: false };
+
+        if (!$routeParams)
+            return defaultSettings;
+        if (!routeParams.params || routeParams.params.length !== 4)
+            return defaultSettings;
+
+        var p = routeParams.params;
+        return { descending: parse(p[0]), retweets: parse(p[1]), exactMatch: parse(p[2]), caseSensitive: parse(p[3]) };
+
+        function parse(letter) {
+            return letter === 't';
+        }
+    }
+
+    function getSources(data, previous) {
+        var sources = {
+            'all devices': true
+        };
+        previous.forEach(function (item) {
+            if (item) sources[item] = true;
+        });
+        data.forEach(function (item) {
+            if (item.source) sources[item.source] = true;
+        });
+        return Object.keys(sources).sort()
+    }
+
+    function getTime(routeParams) {
+        var defaultTime = 'any time';
+        if (routeParams && routeParams.time && times.indexOf(routeParams.time) !== -1)
+            return routeParams.time;
+        return defaultTime;
+    }
+
+    function getDevice(routeParams) {
+        var defaultDevice = 'all devices';
+        if (routeParams && routeParams.device && sources.indexOf(routeParams.device) !== -1)
+            return routeParams.device;
+        return defaultDevice;
+    }
+
+    function timeOutOfRange(date, time) {
+        var s = $filter('date')(new Date(date), 'medium', '-0400');
+        if (s[s.length - 2].toLowerCase() !== time[time.length - 2].toLowerCase())
+            return true;
+        if (s.split(' ')[3].split(':')[0] !== time.split(':')[0])
+            return true;
     }
 
     function years(startingYear) {
