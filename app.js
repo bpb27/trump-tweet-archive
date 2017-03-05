@@ -112,7 +112,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     $scope.query = getQuery($routeParams);
     $scope.settings = getSettings($routeParams);
     $scope.showModal = false;
-    $scope.showTips = false;
     $scope.sources = {
         source: getDevice($routeParams),
         options: []
@@ -277,7 +276,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     });
 
     $scope.$watch('dateRange.end', function () {
-        var d = $scope.dateRange.start;
+        var d = $scope.dateRange.end;
         if (!d) {
             $scope.updateList();
         }
