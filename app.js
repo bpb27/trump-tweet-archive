@@ -213,36 +213,10 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             var text = item.text.toLowerCase();
 
             if (deepQuery) {
-
-                var andMatch = true;
-                var orMatch = true;
-                var notMatch = true;
-
-                if (deepQuery['and'].length) {
-                    andMatch = appUtils.parseAndMatch(deepQuery, text, exact);
-                    if (deepQuery['not'].length) {
-                        notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
-                        return andMatch && notMatch;
-                    }
-                    return andMatch;
-                }
-
-                if (deepQuery['or'].length) {
-                    orMatch = appUtils.parseOrMatch(deepQuery, text, exact);
-                    if (deepQuery['not'].length) {
-                        notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
-                        return orMatch && notMatch;
-                    }
-                    return orMatch;
-                }
-
-                if (deepQuery['not'].length) {
-                    notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
-                    return notMatch;
-                }
+                return appUtils.deepQueryParse(deepQuery, text, exact);
+            } else {
+                return exact ? regEx.test(text) : text.indexOf(query) !== -1;
             }
-
-            return exact ? regEx.test(text) : text.indexOf(query) !== -1;
 
         });
 
@@ -511,6 +485,34 @@ app.service('TweetService', ['$http', '$timeout', function ($http, $timeout) {
 var appUtils = {
     esc: function (str) {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    },
+    deepQueryParse: function (deepQuery, text, exact) {
+        var andMatch = true;
+        var orMatch = true;
+        var notMatch = true;
+
+        if (deepQuery['and'].length) {
+            andMatch = appUtils.parseAndMatch(deepQuery, text, exact);
+            if (deepQuery['not'].length) {
+                notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
+                return andMatch && notMatch;
+            }
+            return andMatch;
+        }
+
+        if (deepQuery['or'].length) {
+            orMatch = appUtils.parseOrMatch(deepQuery, text, exact);
+            if (deepQuery['not'].length) {
+                notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
+                return orMatch && notMatch;
+            }
+            return orMatch;
+        }
+
+        if (deepQuery['not'].length) {
+            notMatch = appUtils.parseNotMatch(deepQuery, text, exact);
+            return notMatch;
+        }
     },
     parser: function (str) {
 
