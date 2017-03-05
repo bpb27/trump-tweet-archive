@@ -3,7 +3,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "/highlights.html"
+            templateUrl: "/archive.html"
         })
         .when("/about", {
             templateUrl: "about.html"
@@ -123,6 +123,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 
     $scope.loadMore = function () {
         $scope.increment += 100;
+        $scope.displayed = $scope.matches.slice(0, $scope.increment);
     }
 
     $scope.removeDatesModal = function () {
@@ -142,17 +143,19 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
             });
         }
 
-        years.forEach(function (year) {
+        years.forEach(function (year, i) {
             var url = baseUrl + year + '.json';
             TweetService.load($scope.account, url, year, function (data) {
                 $scope.all = $scope.all.concat(data);
                 $scope.sources.options = getSources(data, $scope.sources.options);
-                $scope.increment += 1;
                 $scope.showModal = true;
                 $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'success' });
                 loadedYears += 1;
                 if (loadedYears === years.length) {
                     $scope.removeDatesModal();
+                    $scope.updateList()
+                } else if (i === years.length - 1) {
+                    $scope.updateList();
                 }
             }, function (error) {
                 $scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'failure' });
@@ -286,7 +289,6 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
     });
 
     $scope.$watchGroup([
-			'increment',
       'settings.descending',
 			'settings.retweets',
 			'settings.caseSensitive',
