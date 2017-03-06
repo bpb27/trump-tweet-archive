@@ -142,6 +142,7 @@ label {
 
 #control-bar button, #control-bar select, #control-bar input {
 	height: 38px;
+	line-height: normal;
 	margin: 0 2px;
 	min-width: 100px;
 	max-width: 200px;
