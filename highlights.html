@@ -6,87 +6,54 @@
       <h2 class="no-top-margin">Latest Tweets - <a href="/archive">see all</a></h2>
       <ol>
         <li ng-repeat="entry in latest">
-          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - {{entry | highlight}}
+          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - {{entry.text}}
         </li>
       </ol>
     </div>
 
     <div class="quote-list link-highlight">
-      <h2 id="list-worst" ng-click="showUrlToPage($event)" title="click for link" class="pointer">What's the worst?</h2>
+      <h2 id="list-fakenews" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Fake News!</h2>
       <ol>
-        <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/732377163505225728" target="_blank">"is the worst president in U.S. history!"</a></li>
-        <li>Bill Clinton <a href="https://twitter.com/realDonaldTrump/status/732540713678819328" target="_blank">"the WORST abuser of woman in U.S. political history"</a></li>
-        <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/702833969537142788" target="_blank">"one of the dumbest and worst candidates in the history of Republican politics"</a></li>
-        <li>Mitt Romney's campaign <a href="https://twitter.com/realDonaldTrump/status/705352657234481152" target="_blank">"one of the worst races in presidential history"</a></li>
-        <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/668914875557629953" target="_blank">"one of the worst presidential candidates in history"</a></li>
-        <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/709595310939643905" target="_blank">"the worst voting record in the U.S. Senate in many years"</a></li>
-        <li>Ted Cruz <a href="https://twitter.com/realDonaldTrump/status/697998702477242369" target="_blank">"the worst liar"</a></li>
-        <li>George Pataki <a href="https://twitter.com/realDonaldTrump/status/616352974818906112" target="_blank">"one of the worst"</a> governors</li>
-        <li>Bill deBlasio <a href="https://twitter.com/realDonaldTrump/status/667797935686557696" target="_blank">"the worst Mayor in the U.S."</a></li>
-        <li>Eric Schneiderman <a href="https://twitter.com/realDonaldTrump/status/482153112279724032" target="_blank">"nation's worst AG"</a></li>
-        <li>NY Times <a href="https://twitter.com/realDonaldTrump/status/709089928324489216" target="_blank">"one of the worst newspapers"</a></li>
-        <li>The media pile on (against Trump) <a href="https://twitter.com/realDonaldTrump/status/768083669550366720" target="_blank">"the worst in American political history!"</a></li>
-        <li>Charles Krauthammer <a href="https://twitter.com/realDonaldTrump/status/606670546202411008" target="_blank">"one of the worst and most boring political pundits on television"</a></li>
-        <li>Florida Power and Light <a href="https://twitter.com/realDonaldTrump/status/387686602438234112" target="_blank">"one of the worst utility companies in the country"</a></li>
-        <li>celebrity doctors <a href="https://twitter.com/realDonaldTrump/status/506196759300038656" target="_blank">"the worst doctors (by far)"</a></li>
-        <li>Our Q1 GDP <a href="https://twitter.com/realDonaldTrump/status/482511973339656192" target="_blank">"worst in memory"</a></li>
-        <li>Macys <a href="https://twitter.com/realDonaldTrump/status/685057265989189632" target="_blank">"one of the worst performing stocks on the S&P last year"</a></li>
-        <li>The Oscars <a href="https://twitter.com/realDonaldTrump/status/569708741576286209" target="_blank">"worst graphics and stage backdrop ever"</a></li>
-        <li>The Emmys <a href="https://twitter.com/realDonaldTrump/status/250311855229255680" target="_blank">"the absolute worst show"</a></li>
-        <li>Hollywood's 2013 year <a href="https://twitter.com/realDonaldTrump/status/413055107127721984" target="_blank">"the worst year ever for Hollywood"</a></li>
-        <li>The Super Bowl <a href="https://twitter.com/realDonaldTrump/status/430266644569800704" target="_blank">"the worst Super Bowl in history"</a></li>
-        <li>Denver's Super Bowl performance <a href="https://twitter.com/realDonaldTrump/status/430158538326167552" target="_blank">"may be the worst football game ever played by one team"</a></li>
-        <li>Our foreign policy <a href="https://twitter.com/realDonaldTrump/status/368257823576436736" target="_blank">"worst in U.S. history"</a></li>
-        <li>Our negotiators <a href="https://twitter.com/realDonaldTrump/status/406014439960629248" target="_blank">"the worst and dumbest"</a></li>
-        <li>NAFTA <a href="https://twitter.com/realDonaldTrump/status/732576889538260992" target="_blank">"the worst economic deal in U.S. history?"</a></li>
-        <li>Congressional Republicans <a href="https://twitter.com/realDonaldTrump/status/293817480131002368" target="_blank">"the worst negotiators in history"</a></li>
-        <li>ObamaCare <a href="https://twitter.com/realDonaldTrump/status/400456453477388288" target="_blank">"one of the worst political disasters of all time"</a></li>
-        <li>Trump's spot at CPAC <a href="https://twitter.com/realDonaldTrump/status/312703094079229952" target="_blank">"the worst spot at CPAC"</a></li>
-        <li>Penn Jillette's Vegas show <a href="https://twitter.com/realDonaldTrump/status/621769901691113472" target="_blank">"worst show in Las Vegas"</a></li>
-        <li>CNBC ratings <a href="https://twitter.com/realDonaldTrump/status/373089917200777216" target="_blank">"worst in many years"</a></li>
-        <li>Karl Rove’s ads <a href="https://twitter.com/realDonaldTrump/status/306889406411845632" target="_blank">"the worst in political history"</a></li>
-        <li>Karl Rove’s strategy and commercials <a href="https://twitter.com/realDonaldTrump/status/299575808106844160" target="_blank">"the worst I have ever seen"</a></li>
-        <li>Chuck Hagel's confirmation hearings <a href="https://twitter.com/realDonaldTrump/status/503318071998971904" target="_blank">"the worst I have ever witnessed"</a></li>
-        <li>Chuck Hagel's performance at hearings <a href="https://twitter.com/realDonaldTrump/status/297339815937073152" target="_blank">"the worst I have ever seen before a committee"</a></li>
-        <li>Alan Sugar <a href="https://twitter.com/realDonaldTrump/status/278198760251727873" target="_blank">"the worst kind of loser"</a></li>
-        <li>Rick Reilly <a href="https://twitter.com/realDonaldTrump/status/172404730876792832" target="_blank">"may be the worst reporter in all of sports"</a></li>
-        <li>Jeff Horwitz <a href="https://twitter.com/realDonaldTrump/status/668827139232423936" target="_blank">"one of the worst reporters in the business"</a></li>
-        <li>Richard Roeper <a href="https://twitter.com/realDonaldTrump/status/328965175388536835" target="_blank">‏"one of the worst replacements in showbiz"</a></li>
-        <li>Graydon Carter's food <a href="https://twitter.com/realDonaldTrump/status/337372666728157185" target="_blank">"worst in town!"</a></li>
-        <li>30 For 30: Small Potatoes <a href="https://twitter.com/realDonaldTrump/status/334884647244804096" target="_blank">"one of the worst made and inaccurate documentaries I have ever seen"</a></li>
-        <li>Megyn Kelly <a href="https://twitter.com/realDonaldTrump/status/646137843232952320" target="_blank">"is the worst"</a></li>
-        <li>CNN <a href="https://twitter.com/realDonaldTrump/status/755142098190475265" target="_blank">"is the worst"</a></li>
+        <li ng-repeat="entry in fakeNews">
+          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - <span ng-bind-html="entry | highlight:'fake news':{}"></span>
+        </li>
       </ol>
     </div>
 
     <div class="quote-list link-highlight">
-      <h2 id="list-clues" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Who doesn't have a clue?</h2>
+      <h2 id="list-warming" ng-click="showUrlToPage($event)" title="click for link" class="pointer">On Global Warming</h2>
       <ol>
-        <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/754789482621243392" target="_blank">"doesn't have a clue"</a></li>
-        <li>Elizabeth Warren <a href="https://twitter.com/realDonaldTrump/status/730504511291265024" target="_blank">"doesn't have a clue"</a></li>
-        <li>David Brooks <a href="https://twitter.com/realDonaldTrump/status/706531140195196932" target="_blank">"doesn't have a clue"</a></li>
-        <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/710928141112332288" target="_blank">"doesn't have a clue"</a></li>
-        <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/660312839543005184" target="_blank">"doesn't have a clue"</a></li>
-        <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/647250131365036033" target="_blank">"doesn't have a clue"</a></li>
-        <li>Rich Lowry <a href="https://twitter.com/realDonaldTrump/status/646147515918761984" target="_blank">"doesn't have a clue"</a></li>
-        <li>Nicole Wallace <a href="https://twitter.com/realDonaldTrump/status/613891332944302080" target="_blank">"doesn't have a clue"</a></li>
-        <li>Karl Rove <a href="https://twitter.com/realDonaldTrump/status/559820576164831232" target="_blank">"doesn't have a clue"</a></li>
-        <li>Republican candidates <a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"don't have a clue"</a></li>
-        <li>Chuck Hagel <a href="https://twitter.com/realDonaldTrump/status/536892449181147136" target="_blank">"didn't have a clue"</a></li>
-        <li>someone ("I just had to fire") <a href="https://twitter.com/realDonaldTrump/status/256078510467215360" target="_blank">"didn't have a clue"</a></li>
-        <li>Hillary Clinton <a href="https://twitter.com/realDonaldTrump/status/728974420807581696" target="_blank">"has no clue"</a></li>
-        <li>Jeb Bush <a href="https://twitter.com/realDonaldTrump/status/699283203027292161" target="_blank">"has no clue"</a></li>
-        <li>Pamela Geller <a href="https://twitter.com/realDonaldTrump/status/595803825392459776" target="_blank">"doesn't have a clue"</a></li>
-        <li>S.E. Cupp <a href="https://twitter.com/realDonaldTrump/status/674777043163332608" target="_blank">"doesn't have a clue"</a></li>
-        <li>Errol Louis <a href="https://twitter.com/realDonaldTrump/status/671308887178551296" target="_blank">"doesn't have a clue"</a></li>
-        <li>Tim O'Brien <a href="https://twitter.com/realDonaldTrump/status/624166285363015681" target="_blank">"dumb guy with no clue!"</a></li>
-        <li>Hillary or Barack <a href="https://twitter.com/realDonaldTrump/status/640621490107490304" target="_blank">"neither of which has a clue!"</a></li>
+        <li>Global warming is an <a href="https://twitter.com/realDonaldTrump/status/428414113463955457" target="_blank">"expensive hoax!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/427226424987385856" target="_blank">"HOAX"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/408977616926830592" target="_blank">"total, and very expensive, hoax!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/416909004984844288" target="_blank">"total hoax!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/412017385345138688" target="_blank">"con"</a></li>
+        <li>Global warming, again, is a <a href="https://twitter.com/realDonaldTrump/status/440811151283486720" target="_blank">"con!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/417816035107299328" target="_blank">"total con job"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/431019797040869376" target="_blank">"truly STUPID"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/509436043368873984" target="_blank">"fictional"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264009741234221058" target="_blank">"mythical"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/418542137899491328" target="_blank">"bullshit"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264441602636906496" target="_blank">"based on faulty science and manipulated data"</a></li>
+        <li>Global warming has <a href="https://twitter.com/realDonaldTrump/status/185074709111644160" target="_blank">"been proven to be a canard repeatedly over and over again"</a></li>
+        <li>Global warming - <a href="https://twitter.com/realDonaldTrump/status/435741126440808448" target="_blank">"we didn't cause it"</a></li>
+        <li>Global warming was <a href="https://twitter.com/realDonaldTrump/status/265895292191248385" target="_blank">"created by and for the Chinese"</a></li>
       </ol>
     </div>
 
     <div class="quote-list link-highlight">
       <h2 id="list-alone" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Key to solving issues</h2>
       <ol>
+        <li><a href="https://twitter.com/realDonaldTrump/status/592698043629215746" target="_blank">"Nobody but Donald Trump will save Israel"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/685582649679867904" target="_blank">"Nobody knows jobs like I do!"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/602309292826468353" target="_blank">"Nobody understands politicians like I do"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/718530443272970240" target="_blank">"Nobody beats me on National Security"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/595404051925307395" target="_blank">"Nobody would fight harder for free speech than me"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/726461507601612800" target="_blank">"Nobody can beat me on the economy (and jobs)"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/713807872388440069" target="_blank">"Nobody will protect our Nation like Donald J. Trump"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/693801552855740416" target="_blank">"Nobody more against ObamaCare than me"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/713747213801938946" target="_blank">"Nobody has more respect for women than Donald Trump!"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/697031343272812544" target="_blank">"No-one has done more for people with disabilities than me"</a></li>
         <li>Illegal immigration <a href="https://twitter.com/realDonaldTrump/status/617093560123437056" target="_blank">"Our Southern border is unsecure. I am the only one that can fix it"</a></li>
         <li>Illegal immigration <a href="https://twitter.com/realDonaldTrump/status/769203012250112006" target="_blank">"Such a big problem for our country-I will solve"</a></li>
         <li>Infrastructure <a href="https://twitter.com/realDonaldTrump/status/598324947140902912" target="_blank">"The only one to fix the infrastructure of our country is me"</a></li>
@@ -108,16 +75,6 @@
         <li>Terrorism <a href="https://twitter.com/realDonaldTrump/status/713014127061544961" target="_blank">"TIME FOR A CHANGE, I WILL SOLVE - AND FAST!"</a></li>
         <li>Tough calls <a href="https://twitter.com/realDonaldTrump/status/151748731509800960" target="_blank">"Govt. collapsing in Iraq...Sadly, I called this one and please remember, I alone called it.</a></li>
         <li>Veterans Affairs <a href="https://twitter.com/realDonaldTrump/status/622545987219910656" target="_blank">"I will fix VA quickly."</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/592698043629215746" target="_blank">"Nobody but Donald Trump will save Israel"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/685582649679867904" target="_blank">"Nobody knows jobs like I do!"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/602309292826468353" target="_blank">"Nobody understands politicians like I do"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/718530443272970240" target="_blank">"Nobody beats me on National Security"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/595404051925307395" target="_blank">"Nobody would fight harder for free speech than me"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/726461507601612800" target="_blank">"Nobody can beat me on the economy (and jobs)"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/713807872388440069" target="_blank">"Nobody will protect our Nation like Donald J. Trump"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/693801552855740416" target="_blank">"Nobody more against ObamaCare than me"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/713747213801938946" target="_blank">"Nobody has more respect for women than Donald Trump!"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/697031343272812544" target="_blank">"No-one has done more for people with disabilities than me"</a></li>
         <li><a href="https://twitter.com/realDonaldTrump/status/370646948081975296" target="_blank">Why are people upset w/ me over Pres Obama’s birth certificate? I got him to release it, or whatever it was, when nobody else could!"</a></li>
       </ol>
     </div>
@@ -229,23 +186,75 @@
     </div>
 
     <div class="quote-list link-highlight">
-      <h2 id="list-warming" ng-click="showUrlToPage($event)" title="click for link" class="pointer">On Global Warming</h2>
+      <h2 id="list-worst" ng-click="showUrlToPage($event)" title="click for link" class="pointer">What's the worst?</h2>
       <ol>
-        <li>Global warming is an <a href="https://twitter.com/realDonaldTrump/status/428414113463955457" target="_blank">"expensive hoax!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/427226424987385856" target="_blank">"HOAX"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/408977616926830592" target="_blank">"total, and very expensive, hoax!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/416909004984844288" target="_blank">"total hoax!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/412017385345138688" target="_blank">"con"</a></li>
-        <li>Global warming, again, is a <a href="https://twitter.com/realDonaldTrump/status/440811151283486720" target="_blank">"con!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/417816035107299328" target="_blank">"total con job"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/431019797040869376" target="_blank">"truly STUPID"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/509436043368873984" target="_blank">"fictional"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264009741234221058" target="_blank">"mythical"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/418542137899491328" target="_blank">"bullshit"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264441602636906496" target="_blank">"based on faulty science and manipulated data"</a></li>
-        <li>Global warming has <a href="https://twitter.com/realDonaldTrump/status/185074709111644160" target="_blank">"been proven to be a canard repeatedly over and over again"</a></li>
-        <li>Global warming - <a href="https://twitter.com/realDonaldTrump/status/435741126440808448" target="_blank">"we didn't cause it"</a></li>
-        <li>Global warming was <a href="https://twitter.com/realDonaldTrump/status/265895292191248385" target="_blank">"created by and for the Chinese"</a></li>
+        <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/732377163505225728" target="_blank">"is the worst president in U.S. history!"</a></li>
+        <li>Bill Clinton <a href="https://twitter.com/realDonaldTrump/status/732540713678819328" target="_blank">"the WORST abuser of woman in U.S. political history"</a></li>
+        <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/702833969537142788" target="_blank">"one of the dumbest and worst candidates in the history of Republican politics"</a></li>
+        <li>Mitt Romney's campaign <a href="https://twitter.com/realDonaldTrump/status/705352657234481152" target="_blank">"one of the worst races in presidential history"</a></li>
+        <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/668914875557629953" target="_blank">"one of the worst presidential candidates in history"</a></li>
+        <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/709595310939643905" target="_blank">"the worst voting record in the U.S. Senate in many years"</a></li>
+        <li>Ted Cruz <a href="https://twitter.com/realDonaldTrump/status/697998702477242369" target="_blank">"the worst liar"</a></li>
+        <li>George Pataki <a href="https://twitter.com/realDonaldTrump/status/616352974818906112" target="_blank">"one of the worst"</a> governors</li>
+        <li>Bill deBlasio <a href="https://twitter.com/realDonaldTrump/status/667797935686557696" target="_blank">"the worst Mayor in the U.S."</a></li>
+        <li>Eric Schneiderman <a href="https://twitter.com/realDonaldTrump/status/482153112279724032" target="_blank">"nation's worst AG"</a></li>
+        <li>NY Times <a href="https://twitter.com/realDonaldTrump/status/709089928324489216" target="_blank">"one of the worst newspapers"</a></li>
+        <li>The media pile on (against Trump) <a href="https://twitter.com/realDonaldTrump/status/768083669550366720" target="_blank">"the worst in American political history!"</a></li>
+        <li>Charles Krauthammer <a href="https://twitter.com/realDonaldTrump/status/606670546202411008" target="_blank">"one of the worst and most boring political pundits on television"</a></li>
+        <li>Florida Power and Light <a href="https://twitter.com/realDonaldTrump/status/387686602438234112" target="_blank">"one of the worst utility companies in the country"</a></li>
+        <li>celebrity doctors <a href="https://twitter.com/realDonaldTrump/status/506196759300038656" target="_blank">"the worst doctors (by far)"</a></li>
+        <li>Our Q1 GDP <a href="https://twitter.com/realDonaldTrump/status/482511973339656192" target="_blank">"worst in memory"</a></li>
+        <li>Macys <a href="https://twitter.com/realDonaldTrump/status/685057265989189632" target="_blank">"one of the worst performing stocks on the S&P last year"</a></li>
+        <li>The Oscars <a href="https://twitter.com/realDonaldTrump/status/569708741576286209" target="_blank">"worst graphics and stage backdrop ever"</a></li>
+        <li>The Emmys <a href="https://twitter.com/realDonaldTrump/status/250311855229255680" target="_blank">"the absolute worst show"</a></li>
+        <li>Hollywood's 2013 year <a href="https://twitter.com/realDonaldTrump/status/413055107127721984" target="_blank">"the worst year ever for Hollywood"</a></li>
+        <li>The Super Bowl <a href="https://twitter.com/realDonaldTrump/status/430266644569800704" target="_blank">"the worst Super Bowl in history"</a></li>
+        <li>Denver's Super Bowl performance <a href="https://twitter.com/realDonaldTrump/status/430158538326167552" target="_blank">"may be the worst football game ever played by one team"</a></li>
+        <li>Our foreign policy <a href="https://twitter.com/realDonaldTrump/status/368257823576436736" target="_blank">"worst in U.S. history"</a></li>
+        <li>Our negotiators <a href="https://twitter.com/realDonaldTrump/status/406014439960629248" target="_blank">"the worst and dumbest"</a></li>
+        <li>NAFTA <a href="https://twitter.com/realDonaldTrump/status/732576889538260992" target="_blank">"the worst economic deal in U.S. history?"</a></li>
+        <li>Congressional Republicans <a href="https://twitter.com/realDonaldTrump/status/293817480131002368" target="_blank">"the worst negotiators in history"</a></li>
+        <li>ObamaCare <a href="https://twitter.com/realDonaldTrump/status/400456453477388288" target="_blank">"one of the worst political disasters of all time"</a></li>
+        <li>Trump's spot at CPAC <a href="https://twitter.com/realDonaldTrump/status/312703094079229952" target="_blank">"the worst spot at CPAC"</a></li>
+        <li>Penn Jillette's Vegas show <a href="https://twitter.com/realDonaldTrump/status/621769901691113472" target="_blank">"worst show in Las Vegas"</a></li>
+        <li>CNBC ratings <a href="https://twitter.com/realDonaldTrump/status/373089917200777216" target="_blank">"worst in many years"</a></li>
+        <li>Karl Rove’s ads <a href="https://twitter.com/realDonaldTrump/status/306889406411845632" target="_blank">"the worst in political history"</a></li>
+        <li>Karl Rove’s strategy and commercials <a href="https://twitter.com/realDonaldTrump/status/299575808106844160" target="_blank">"the worst I have ever seen"</a></li>
+        <li>Chuck Hagel's confirmation hearings <a href="https://twitter.com/realDonaldTrump/status/503318071998971904" target="_blank">"the worst I have ever witnessed"</a></li>
+        <li>Chuck Hagel's performance at hearings <a href="https://twitter.com/realDonaldTrump/status/297339815937073152" target="_blank">"the worst I have ever seen before a committee"</a></li>
+        <li>Alan Sugar <a href="https://twitter.com/realDonaldTrump/status/278198760251727873" target="_blank">"the worst kind of loser"</a></li>
+        <li>Rick Reilly <a href="https://twitter.com/realDonaldTrump/status/172404730876792832" target="_blank">"may be the worst reporter in all of sports"</a></li>
+        <li>Jeff Horwitz <a href="https://twitter.com/realDonaldTrump/status/668827139232423936" target="_blank">"one of the worst reporters in the business"</a></li>
+        <li>Richard Roeper <a href="https://twitter.com/realDonaldTrump/status/328965175388536835" target="_blank">‏"one of the worst replacements in showbiz"</a></li>
+        <li>Graydon Carter's food <a href="https://twitter.com/realDonaldTrump/status/337372666728157185" target="_blank">"worst in town!"</a></li>
+        <li>30 For 30: Small Potatoes <a href="https://twitter.com/realDonaldTrump/status/334884647244804096" target="_blank">"one of the worst made and inaccurate documentaries I have ever seen"</a></li>
+        <li>Megyn Kelly <a href="https://twitter.com/realDonaldTrump/status/646137843232952320" target="_blank">"is the worst"</a></li>
+        <li>CNN <a href="https://twitter.com/realDonaldTrump/status/755142098190475265" target="_blank">"is the worst"</a></li>
+      </ol>
+    </div>
+
+    <div class="quote-list link-highlight">
+      <h2 id="list-clues" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Who doesn't have a clue?</h2>
+      <ol>
+        <li>President Obama <a href="https://twitter.com/realDonaldTrump/status/754789482621243392" target="_blank">"doesn't have a clue"</a></li>
+        <li>Elizabeth Warren <a href="https://twitter.com/realDonaldTrump/status/730504511291265024" target="_blank">"doesn't have a clue"</a></li>
+        <li>David Brooks <a href="https://twitter.com/realDonaldTrump/status/706531140195196932" target="_blank">"doesn't have a clue"</a></li>
+        <li>Mitt Romney <a href="https://twitter.com/realDonaldTrump/status/710928141112332288" target="_blank">"doesn't have a clue"</a></li>
+        <li>John Kasich <a href="https://twitter.com/realDonaldTrump/status/660312839543005184" target="_blank">"doesn't have a clue"</a></li>
+        <li>Marco Rubio <a href="https://twitter.com/realDonaldTrump/status/647250131365036033" target="_blank">"doesn't have a clue"</a></li>
+        <li>Rich Lowry <a href="https://twitter.com/realDonaldTrump/status/646147515918761984" target="_blank">"doesn't have a clue"</a></li>
+        <li>Nicole Wallace <a href="https://twitter.com/realDonaldTrump/status/613891332944302080" target="_blank">"doesn't have a clue"</a></li>
+        <li>Karl Rove <a href="https://twitter.com/realDonaldTrump/status/559820576164831232" target="_blank">"doesn't have a clue"</a></li>
+        <li>Republican candidates <a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"don't have a clue"</a></li>
+        <li>Chuck Hagel <a href="https://twitter.com/realDonaldTrump/status/536892449181147136" target="_blank">"didn't have a clue"</a></li>
+        <li>someone ("I just had to fire") <a href="https://twitter.com/realDonaldTrump/status/256078510467215360" target="_blank">"didn't have a clue"</a></li>
+        <li>Hillary Clinton <a href="https://twitter.com/realDonaldTrump/status/728974420807581696" target="_blank">"has no clue"</a></li>
+        <li>Jeb Bush <a href="https://twitter.com/realDonaldTrump/status/699283203027292161" target="_blank">"has no clue"</a></li>
+        <li>Pamela Geller <a href="https://twitter.com/realDonaldTrump/status/595803825392459776" target="_blank">"doesn't have a clue"</a></li>
+        <li>S.E. Cupp <a href="https://twitter.com/realDonaldTrump/status/674777043163332608" target="_blank">"doesn't have a clue"</a></li>
+        <li>Errol Louis <a href="https://twitter.com/realDonaldTrump/status/671308887178551296" target="_blank">"doesn't have a clue"</a></li>
+        <li>Tim O'Brien <a href="https://twitter.com/realDonaldTrump/status/624166285363015681" target="_blank">"dumb guy with no clue!"</a></li>
+        <li>Hillary or Barack <a href="https://twitter.com/realDonaldTrump/status/640621490107490304" target="_blank">"neither of which has a clue!"</a></li>
       </ol>
     </div>
 

@@ -75,6 +75,7 @@ app.controller('allAccountsCtrl', ['$scope', '$http', '$location', function ($sc
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
 
     $scope.accounts = [];
+    $scope.fakeNews = [];
     $scope.latest = [];
     $scope.media = [];
 
@@ -92,9 +93,16 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
     });
 
     $http.get('/data/realdonaldtrump/2017.json').then(function (results) {
-        $scope.latest = results.data.sort(function (a, b) {
+        var tweets = results.data.sort(function (a, b) {
             return new Date(a.created_at) < new Date(b.created_at) ? 1 : -1;
-        }).slice(0, 10);
+        }).map(function(tweet){
+            tweet.text = tweet.text.replace('&amp;', '&');
+            return tweet;
+        });
+        $scope.latest = tweets.slice(0, 10);
+        $scope.fakeNews = tweets.filter(function(tweet){
+            return tweet.text.toLowerCase().indexOf('fake news') !== -1;
+        });
     });
 
 }]);
