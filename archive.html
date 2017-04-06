@@ -10,23 +10,44 @@
         <li><a href="#" ng-click="query = 'loser ~~ closer'"><span>loser ~~ closer</span> all tweets with loser but <b>not</b> closer</a></li>
         <li role="separator" class="divider"></li>
         <li><a href="#">try combining operators</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">click the number on the left for a link to your search</a></li>
       </ul>
     </div>
 		<span class="input-group-addon" id="sizing-addon2">@{{account}}</span>
 	</div>
 	<div id="control-bar" class="col-md-12">
 		<div id="control-buttons">
+			<div class="dropdown">
+			  <button class="btn btn-danger form-control" type="button" data-toggle="dropdown">Options
+			  <span class="caret"></span></button>
+			  <ul class="dropdown-menu">
+					<li>
+						<input type="checkbox" class="pointer" ng-model="settings.exactMatch">exact word search
+					</li>
+					<li>
+						<input type="checkbox" class="pointer" ng-model="settings.retweets">show retweets
+					</li>
+					<li>
+						<input type="checkbox" class="pointer" ng-model="settings.showManualRetweets">show manual retweets
+					</li>
+					<li ng-if="hasRetweetsAndFavorites">
+						<input type="checkbox" class="pointer" ng-model="settings.showRetweetCount">show retweet count
+					</li>
+					<li ng-if="hasRetweetsAndFavorites">
+						<input type="checkbox" class="pointer" ng-model="settings.showFavoriteCount">show favorite count
+					</li>
+					<li ng-if="hasRetweetsAndFavorites">
+						<input type="checkbox" class="pointer" ng-checked="orderBy === 'retweet_count'" ng-click="setOrder('retweet_count')">order by retweet count
+					</li>
+					<li ng-if="hasRetweetsAndFavorites">
+						<input type="checkbox" class="pointer" ng-checked="orderBy === 'favorite_count'" ng-click="setOrder('favorite_count')">order by favorite count
+					</li>
+			  </ul>
+			</div>
 			<button class="btn btn-danger" ng-click="settings.descending = !settings.descending">
-				<span ng-if="settings.descending">latest</span>
-				<span ng-if="!settings.descending">earliest</span>
-			</button>
-			<button class="btn btn-danger" ng-click="settings.retweets = !settings.retweets">
-				<span ng-if="settings.retweets">retweets</span>
-				<span ng-if="!settings.retweets">no retweets</span>
-			</button>
-			<button class="btn btn-danger" ng-click="settings.exactMatch = !settings.exactMatch">
-				<span ng-if="settings.exactMatch">exact</span>
-				<span ng-if="!settings.exactMatch">not exact</span>
+				<span ng-if="settings.descending">↓</span>
+				<span ng-if="!settings.descending">↑</span>
 			</button>
 		</div>
 		<div id="control-dates">
@@ -48,6 +69,8 @@
 				<span class="tweet-date" ng-bind-html="tweet | dateformat"></span>
 				<span class="tweet-text" ng-bind-html="tweet | highlight:query:deepQuery:settings.exactMatch"></span>
 				<span class="tweet-source">[{{tweet.source}}]</span>
+				<span class="tweet-source" ng-if="settings.showRetweetCount">[RT {{tweet.retweet_count}}]</span>
+				<span class="tweet-source" ng-if="settings.showFavoriteCount">[&#10084; {{tweet.favorite_count}}]</span>
 				<a href="https://twitter.com/{{account}}/status/{{tweet.id_str}}" target="_blank"><button class="btn btn-xs">link</button></a>
 			</li>
 		</ol>

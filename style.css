@@ -141,10 +141,28 @@ label {
 
 #control-buttons, #control-dates, #control-selects {
 	display: inline-block;
-	margin: 0 15px;
+	margin: 0 5px;
 }
 
-#control-bar button, #control-bar select, #control-bar input {
+#control-bar .dropdown {
+	display: inline-block;
+}
+
+#control-bar .dropdown li {
+	min-width: 180px;
+  margin: 3px;
+}
+
+#control-bar .dropdown input {
+  margin: 0 6px;
+}
+
+#control-bar button, #control-bar select, #control-dates input {
+	height: 38px;
+	margin: 0 2px;
+}
+
+#control-bar select, #control-dates input {
 	height: 38px;
 	margin: 0 2px;
 	min-width: 100px;
