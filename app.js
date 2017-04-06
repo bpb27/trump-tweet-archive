@@ -3,7 +3,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider, $locationProvider) {
 	$routeProvider
 		.when("/", {
-			templateUrl: "/archive.html"
+			templateUrl: "/home.html"
 		})
 		.when("/about", {
 			templateUrl: "about.html"
@@ -131,6 +131,10 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 		options: appUtils.times
 	};
 
+	$scope.missingProps = function (data) {
+		return data && data.length && data[0]['favorite_count'] === undefined;
+	}
+
 	$scope.loadMore = function () {
 		$scope.increment += 100;
 		$scope.displayed = $scope.matches.slice(0, $scope.increment);
@@ -163,9 +167,12 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 				loadedYears += 1;
 				if (loadedYears === years.length) {
 					$scope.removeDatesModal();
-					$scope.updateList()
+					$scope.updateList();
 				} else if (i === years.length - 1) {
 					$scope.updateList();
+				}
+				if ($scope.missingProps(data)) {
+					$scope.hasRetweetsAndFavorites = false;
 				}
 			}, function (error) {
 				$scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'failure' });
