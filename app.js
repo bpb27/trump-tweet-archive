@@ -145,7 +145,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 	}
 
 	$scope.requestTweets = function (years) {
-		var baseUrl = '/data/' + $scope.account + '/';
+		var account = $scope.account;
 		var loadedYears = 0;
 
 		$scope.showModal = true;
@@ -153,13 +153,13 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 		// condition is here for retries
 		if (!$scope.loaded.length) {
 			$scope.loaded = years.map(function (year) {
-				return { 'year': year, 'url': baseUrl + year + '.json', 'status': 'loading' }
+				return { 'year': year, 'url': buildDataRoute(year, account), 'status': 'loading' }
 			});
 		}
 
 		years.forEach(function (year, i) {
-			var url = baseUrl + year + '.json';
-			TweetService.load($scope.account, url, year, function (data) {
+			var url = buildDataRoute(year, account);
+			TweetService.load(account, url, year, function (data) {
 				$scope.all = $scope.all.concat(data);
 				$scope.sources.options = getSources(data, $scope.sources.options);
 				$scope.showModal = true;
@@ -178,6 +178,12 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 				$scope.loaded = removeExisting(url, $scope.loaded).concat({ year: year, url: url, status: 'failure' });
 			});
 		});
+
+		function buildDataRoute(year, account) {
+			var base = '/data/' + account + '/' + year + '.json';
+			var aws = 'http://trumptwitterarchivedata.s3-website-us-east-1.amazonaws.com';
+			return year === '2017' ? base : aws + base;
+		}
 
 		function removeExisting(url, items) {
 			return items.filter(function (item) {
