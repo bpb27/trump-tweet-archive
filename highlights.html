@@ -15,7 +15,7 @@
       <h2 id="list-fakenews" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Fake News!</h2>
       <ol>
         <li ng-repeat="entry in fakeNews">
-          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - <span ng-bind-html="entry | highlight:'fake news':{}"></span>
+          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - <span ng-bind-html="entry | highlight:'placeholder':{or: ['fakenews', 'fake news'], and: [], not: []}"></span>
         </li>
       </ol>
     </div>

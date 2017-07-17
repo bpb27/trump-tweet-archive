@@ -101,7 +101,8 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 		});
 		$scope.latest = tweets.slice(0, 10);
 		$scope.fakeNews = tweets.filter(function (tweet) {
-			return tweet.text.toLowerCase().indexOf('fake news') !== -1;
+			text = tweet.text.toLowerCase();
+			return text.indexOf('fake news') !== -1 || text.indexOf('fakenews') !== -1;
 		});
 	});
 
