@@ -111,6 +111,21 @@ label {
 	margin-top: 80px;
 }
 
+#export-options div {
+  display: inline-block;
+  margin: 10px 15px;
+}
+
+#export-options div label {
+  margin-left: 5px;
+}
+
+#export-box textarea {
+	width: 100%;
+	height: 130px;
+	margin-top: 20px;
+}
+
 #search-bar #sizing-addon1 {
 	min-width: 78px;
 }
@@ -155,6 +170,14 @@ label {
 
 #control-bar .dropdown input {
   margin: 0 6px;
+}
+
+#control-bar #exports-button .dropdown-menu {
+	width: 280px;
+}
+
+#control-bar #exports-button .pointer, #control-bar #exports-button b {
+	padding: 5px;
 }
 
 #control-bar button, #control-bar select, #control-dates input {

@@ -3,7 +3,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider, $locationProvider) {
 	$routeProvider
 		.when("/", {
-			templateUrl: "/highlights.html"
+			templateUrl: "/archive.html"
 		})
 		.when("/about", {
 			templateUrl: "about.html"
@@ -116,12 +116,15 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 	$scope.all = [];
 	$scope.dateRange = getDateRange($routeParams);
 	$scope.deepQuery = {};
+	$scope.exported = '';
+	$scope.exportSettings = {source: true, text: true, created_at: true, retweet_count: true, favorite_count: true, is_retweet: true, id_str: true};
 	$scope.hasRetweetsAndFavorites = $scope.account === 'realdonaldtrump';
 	$scope.loaded = [];
 	$scope.increment = 100;
 	$scope.orderBy = 'created_at_date';
 	$scope.query = getQuery($routeParams);
 	$scope.settings = getSettings($routeParams);
+	$scope.showExport = false;
 	$scope.showModal = false;
 	$scope.sources = {
 		source: getDevice($routeParams),
@@ -131,6 +134,39 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 		time: getTime($routeParams),
 		options: appUtils.times
 	};
+
+	$scope.export = function (format) {
+		$scope.showExport = true;
+
+		var requestedProps = Object.keys($scope.exportSettings).filter(function(setting){
+			return $scope.exportSettings[setting];
+		});
+
+		if (format === 'CSV') {
+			var months = appUtils.months;
+			var data = $scope.matches.map(function(item){
+				return requestedProps.map(function(prop){
+					if (prop === 'text')
+						return item[prop].replace(',', ' ');
+					else if (prop === 'created_at')
+						return appUtils.dateToExcelFormat(months, item[prop]);
+					else
+						return item[prop];
+				}).join(',');
+			});
+			$scope.exported = [requestedProps.join(',')].concat(data).join('\n');
+		}
+		else if (format === 'JSON') {
+			var parsedData = $scope.matches.map(function(item){
+				var parsedItem = {};
+				requestedProps.forEach(function(prop){
+					parsedItem[prop] = item[prop];
+				});
+				return parsedItem;
+			});
+			$scope.exported = JSON.stringify(parsedData);
+		}
+	}
 
 	$scope.missingProps = function (data) {
 		return data && data.length && data[0]['favorite_count'] === undefined;
@@ -643,33 +679,51 @@ var appUtils = {
 	symbolsPresent: function (str) {
 		return str.indexOf('&&') !== -1 || str.indexOf('||') !== -1 || str.indexOf('~~') !== -1;
 	},
+	dateToExcelFormat: function (ref, str) {
+		var list = str.split(' ');
+		return ref[list[1]] + '-' + list[2] + '-' + list[5] + ' ' + list[3];
+	},
 	times: [
-      'Any time',
-      '12:00am',
-      '1:00am',
-      '2:00am',
-      '3:00am',
-      '4:00am',
-      '5:00am',
-      '6:00am',
-      '7:00am',
-      '8:00am',
-      '9:00am',
-      '10:00am',
-      '11:00am',
-      '12:00pm',
-      '1:00pm',
-      '2:00pm',
-      '3:00pm',
-      '4:00pm',
-      '5:00pm',
-      '6:00pm',
-      '7:00pm',
-      '8:00pm',
-      '9:00pm',
-      '10:00pm',
-      '11:00pm',
-    ]
+    'Any time',
+    '12:00am',
+    '1:00am',
+    '2:00am',
+    '3:00am',
+    '4:00am',
+    '5:00am',
+    '6:00am',
+    '7:00am',
+    '8:00am',
+    '9:00am',
+    '10:00am',
+    '11:00am',
+    '12:00pm',
+    '1:00pm',
+    '2:00pm',
+    '3:00pm',
+    '4:00pm',
+    '5:00pm',
+    '6:00pm',
+    '7:00pm',
+    '8:00pm',
+    '9:00pm',
+    '10:00pm',
+    '11:00pm',
+  ],
+	months: {
+		'Jan': '01',
+		'Feb': '02',
+		'Mar': '03',
+		'Apr': '04',
+		'May': '05',
+		'Jun': '06',
+		'Jul': '07',
+		'Aug': '08',
+		'Sep': '09',
+		'Oct': '10',
+		'Nov': '11',
+		'Dec': '12'
+	}
 }
 
 console.log("Goddamn Looky Loo");
