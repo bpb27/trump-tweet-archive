@@ -117,6 +117,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 	$scope.dateRange = getDateRange($routeParams);
 	$scope.deepQuery = {};
 	$scope.exported = '';
+	$scope.exportSeparator = ',';
 	$scope.exportSettings = {source: true, text: true, created_at: true, retweet_count: true, favorite_count: true, is_retweet: true, id_str: true};
 	$scope.hasRetweetsAndFavorites = $scope.account === 'realdonaldtrump';
 	$scope.loaded = [];
@@ -143,18 +144,19 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 		});
 
 		if (format === 'CSV') {
+			var separator = $scope.exportSeparator;
 			var months = appUtils.months;
 			var data = $scope.matches.map(function(item){
 				return requestedProps.map(function(prop){
 					if (prop === 'text')
-						return item[prop].replace(/,/g, '').replace(/\n/g, '');
+						return separator === ',' ? item.text.replace(/,/g, '').replace(/\n/g, '') : item.text.replace(/\n/g, '');
 					else if (prop === 'created_at')
 						return appUtils.dateToExcelFormat(months, item[prop]);
 					else
 						return item[prop];
-				}).join(',');
+				}).join(separator);
 			});
-			$scope.exported = [requestedProps.join(',')].concat(data).join('\n');
+			$scope.exported = [requestedProps.join(separator)].concat(data).join('\n');
 		}
 		else if (format === 'JSON') {
 			var parsedData = $scope.matches.map(function(item){

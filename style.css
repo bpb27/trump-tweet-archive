@@ -111,6 +111,14 @@ label {
 	margin-top: 80px;
 }
 
+#export-box input[type="text"] {
+	background: white;
+	border: 1px solid;
+	width: 20px;
+	height: 34px;
+	text-align: center;
+}
+
 #export-options div {
   display: inline-block;
   margin: 10px 15px;
