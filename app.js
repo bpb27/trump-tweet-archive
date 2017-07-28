@@ -3,7 +3,7 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider, $locationProvider) {
 	$routeProvider
 		.when("/", {
-			templateUrl: "/archive.html"
+			templateUrl: "/highlights.html"
 		})
 		.when("/about", {
 			templateUrl: "about.html"
@@ -147,7 +147,7 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 			var data = $scope.matches.map(function(item){
 				return requestedProps.map(function(prop){
 					if (prop === 'text')
-						return item[prop].replace(',', ' ');
+						return item[prop].replace(/,/g, '').replace(/\n/g, '');
 					else if (prop === 'created_at')
 						return appUtils.dateToExcelFormat(months, item[prop]);
 					else
