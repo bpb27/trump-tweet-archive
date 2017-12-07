@@ -12,32 +12,39 @@
     </div>
 
     <div class="quote-list link-highlight">
-      <h2 id="list-fakenews" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Fake News!</h2>
-      <ol>
-        <li ng-repeat="entry in fakeNews">
-          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - <span ng-bind-html="entry | highlight:'placeholder':{or: ['fakenews', 'fake news'], and: [], not: []}"></span>
+      <h2 id="list-mentions" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Top 20 mentions as President</h2>
+      <ol class="column-list">
+        <li ng-repeat="entry in mentions">
+          <a href="/archive/{{entry.mention}}">{{entry.mention}}</a> ({{entry.number}})
         </li>
       </ol>
     </div>
 
     <div class="quote-list link-highlight">
-      <h2 id="list-warming" ng-click="showUrlToPage($event)" title="click for link" class="pointer">On Global Warming</h2>
+      <h2 id="list-fakenews" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Latest Fake News</h2>
       <ol>
-        <li>Global warming is an <a href="https://twitter.com/realDonaldTrump/status/428414113463955457" target="_blank">"expensive hoax!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/427226424987385856" target="_blank">"HOAX"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/408977616926830592" target="_blank">"total, and very expensive, hoax!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/416909004984844288" target="_blank">"total hoax!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/412017385345138688" target="_blank">"con"</a></li>
-        <li>Global warming, again, is a <a href="https://twitter.com/realDonaldTrump/status/440811151283486720" target="_blank">"con!"</a></li>
-        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/417816035107299328" target="_blank">"total con job"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/431019797040869376" target="_blank">"truly STUPID"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/509436043368873984" target="_blank">"fictional"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264009741234221058" target="_blank">"mythical"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/418542137899491328" target="_blank">"bullshit"</a></li>
-        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264441602636906496" target="_blank">"based on faulty science and manipulated data"</a></li>
-        <li>Global warming has <a href="https://twitter.com/realDonaldTrump/status/185074709111644160" target="_blank">"been proven to be a canard repeatedly over and over again"</a></li>
-        <li>Global warming - <a href="https://twitter.com/realDonaldTrump/status/435741126440808448" target="_blank">"we didn't cause it"</a></li>
-        <li>Global warming was <a href="https://twitter.com/realDonaldTrump/status/265895292191248385" target="_blank">"created by and for the Chinese"</a></li>
+        <li ng-repeat="entry in fakeNews">
+          <u><a href="https://twitter.com/realdonaldtrump/status/{{entry.id_str}}" target="_blank">{{entry | dateformat}}</a></u> - <span ng-bind-html="entry | highlight:'placeholder':{or: ['fakenews', 'fake news', 'fake media'], and: [], not: []}"></span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="quote-list">
+      <h2 id="list-superlatives" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Personal Superlatives</h2>
+      <ol>
+        <li><a href="https://twitter.com/realDonaldTrump/status/332308211321425920" target="_blank">"My I.Q. is one of the highest - and you all know it!"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/712729376207540226" target="_blank">"I will be the best by far in fighting terror"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/690896236765806592" target="_blank">"I will be the greatest job-producing president in American history"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"I am the BEST builder, just look at what I've built"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/263286265934381058" target="_blank">"I am the best builder but if that were my building with the crane mishap..."</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/645763590981611524" target="_blank">"I am attracting the biggest crowds, by far, and the best poll numbers, also by far."</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/741590381503086592" target="_blank">"I am least racist person there is"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/701750410621497345" target="_blank">"I am in Las Vegas, at the best hotel (by far), Trump International"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/706543741088067584" target="_blank">"I am at Trump National Doral-best resort in U.S."</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/523775993094602752" target="_blank">"Donald Trump's Palm Beach mansion...which I turned into the greatest club in the world"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/306797506791079938" target="_blank">"Many people have commented that my fragrance, “Success”  is the best scent & lasts the longest"</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/491324429184823296" target="_blank">"Many people have said I’m the world’s greatest writer of 140 character sentences."</a></li>
+        <li><a href="https://twitter.com/realDonaldTrump/status/267286471172562944" target="_blank">"Many are saying I'm the best 140 character writer in the world"</a></li>
       </ol>
     </div>
 
@@ -79,22 +86,24 @@
       </ol>
     </div>
 
-    <div class="quote-list">
-      <h2 id="list-superlatives" ng-click="showUrlToPage($event)" title="click for link" class="pointer">Personal Superlatives</h2>
+    <div class="quote-list link-highlight">
+      <h2 id="list-warming" ng-click="showUrlToPage($event)" title="click for link" class="pointer">On Global Warming</h2>
       <ol>
-        <li><a href="https://twitter.com/realDonaldTrump/status/332308211321425920" target="_blank">"My I.Q. is one of the highest - and you all know it!"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/712729376207540226" target="_blank">"I will be the best by far in fighting terror"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/690896236765806592" target="_blank">"I will be the greatest job-producing president in American history"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/598463630288560128" target="_blank">"I am the BEST builder, just look at what I've built"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/263286265934381058" target="_blank">"I am the best builder but if that were my building with the crane mishap..."</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/645763590981611524" target="_blank">"I am attracting the biggest crowds, by far, and the best poll numbers, also by far."</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/741590381503086592" target="_blank">"I am least racist person there is"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/701750410621497345" target="_blank">"I am in Las Vegas, at the best hotel (by far), Trump International"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/706543741088067584" target="_blank">"I am at Trump National Doral-best resort in U.S."</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/523775993094602752" target="_blank">"Donald Trump's Palm Beach mansion...which I turned into the greatest club in the world"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/306797506791079938" target="_blank">"Many people have commented that my fragrance, “Success”  is the best scent & lasts the longest"</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/491324429184823296" target="_blank">"Many people have said I’m the world’s greatest writer of 140 character sentences."</a></li>
-        <li><a href="https://twitter.com/realDonaldTrump/status/267286471172562944" target="_blank">"Many are saying I'm the best 140 character writer in the world"</a></li>
+        <li>Global warming is an <a href="https://twitter.com/realDonaldTrump/status/428414113463955457" target="_blank">"expensive hoax!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/427226424987385856" target="_blank">"HOAX"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/408977616926830592" target="_blank">"total, and very expensive, hoax!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/416909004984844288" target="_blank">"total hoax!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/412017385345138688" target="_blank">"con"</a></li>
+        <li>Global warming, again, is a <a href="https://twitter.com/realDonaldTrump/status/440811151283486720" target="_blank">"con!"</a></li>
+        <li>Global warming is a <a href="https://twitter.com/realDonaldTrump/status/417816035107299328" target="_blank">"total con job"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/431019797040869376" target="_blank">"truly STUPID"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/509436043368873984" target="_blank">"fictional"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264009741234221058" target="_blank">"mythical"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/418542137899491328" target="_blank">"bullshit"</a></li>
+        <li>Global warming is <a href="https://twitter.com/realDonaldTrump/status/264441602636906496" target="_blank">"based on faulty science and manipulated data"</a></li>
+        <li>Global warming has <a href="https://twitter.com/realDonaldTrump/status/185074709111644160" target="_blank">"been proven to be a canard repeatedly over and over again"</a></li>
+        <li>Global warming - <a href="https://twitter.com/realDonaldTrump/status/435741126440808448" target="_blank">"we didn't cause it"</a></li>
+        <li>Global warming was <a href="https://twitter.com/realDonaldTrump/status/265895292191248385" target="_blank">"created by and for the Chinese"</a></li>
       </ol>
     </div>
 
@@ -357,7 +366,24 @@
 
   <div id="highlights-right" class="col-md-5">
     <div>
-      <h3 class="no-top-margin"><a ng-href="/archive/loser%20~~closer">234 tweets</a> with "loser" </h3>
+      <h2 class="no-top-margin">Tweets as President ({{days}} days)</h2>
+      <h3><a ng-href="/archive/fake%20news%20%7C%7C%20fakenews%20%7C%7C%20fake%20media/ttff/1-19-2017_">{{count.fake}} tweets</a> about Fake News</h3>
+      <h3><a ng-href="/archive/cnn/ttff/1-19-2017_">{{count.cnn}} tweets</a> about CNN</h3>
+      <h3><a ng-href="/archive/nbc/ttff/1-19-2017_">{{count.nbc}} tweets</a> about NBC</h3>
+      <h3><a ng-href="/archive/nytimes%20%7C%7C%20new%20york%20times/ttff/1-19-2017_">{{count.nyt}} tweets</a> about the New York Times</h3>
+      <h3><a ng-href="/archive/@fox%20%7C%7C%20@seanhannity/ttff/1-19-2017_">{{count.fox}} tweets</a> about Fox News or Sean Hannity</h3>
+      <h3><a ng-href="/archive/russia%20%7C%7C%20putin/ttff/1-19-2017_">{{count.russia}} tweets</a> about Russia</h3>
+      <h3><a ng-href="/archive/clinton%20%7C%7C%20hillary/ttff/1-19-2017_">{{count.clinton}} tweets</a> about Clinton</h3>
+      <h3><a ng-href="/archive/obama%20~~obamacare/ttff/1-19-2017_">{{count.obama}} tweets</a> about Obama</h3>
+      <h3><a ng-href="/archive/obamacare/ttff/1-19-2017_">{{count.obamacare}} tweets</a> about Obamacare</h3>
+      <h3><a ng-href="/archive/nfl%20~~%20influ%20~~%20conflict/ttff/1-19-2017_">{{count.nfl}} tweets</a> about the NFL</h3>
+      <h3><a ng-href="/archive/deal/ttff/1-19-2017_">{{count.deal}} tweets</a> about deals</h3>
+      <h3><a ng-href="/archive/%23maga%20%7C%7C%20make%20america/ttff/1-19-2017_">{{count.maga}} tweets</a> about MAGA</h3>
+    </div>
+    <hr>
+    <h2>All Tweets</h2>
+    <div>
+      <h3><a ng-href="/archive/loser%20~~closer">234 tweets</a> with "loser" </h3>
       <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I feel sorry for Rosie &#39;s new partner in love whose parents are devastated at the thought of their daughter being with <a href="https://twitter.com/Rosie">@Rosie</a>--a true loser.</p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/146994336670822400" target="_blank">December 14, 2011</a></blockquote>
     </div>
     <div>

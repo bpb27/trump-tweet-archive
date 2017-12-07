@@ -75,9 +75,26 @@ app.controller('allAccountsCtrl', ['$scope', '$http', '$location', function ($sc
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
 
 	$scope.accounts = [];
+	$scope.days = Math.round((new Date() - new Date('01-20-2017'))/(1000*60*60*24));
 	$scope.fakeNews = [];
 	$scope.latest = [];
 	$scope.media = [];
+	$scope.mentions = [];
+	$scope.count = {
+		fake: 0,
+		cnn: 0,
+		nyt: 0,
+		nbc: 0,
+		fox: 0,
+		russia: 0,
+		deal: 0,
+		nfl: 0,
+		clinton: 0,
+		obama: 0,
+		obamacare: 0,
+		deal: 0,
+		maga: 0
+	};
 
 	$scope.showUrlToPage = function ($event) {
 		prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#' + $event.srcElement.id);
@@ -102,7 +119,30 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 		$scope.latest = tweets.slice(0, 10);
 		$scope.fakeNews = tweets.filter(function (tweet) {
 			text = tweet.text.toLowerCase();
-			return text.indexOf('fake news') !== -1 || text.indexOf('fakenews') !== -1;
+			return text.indexOf('fake news') !== -1 || text.indexOf('fakenews') !== -1 || text.indexOf('fake media') !== -1;
+		}).slice(0, 10);
+
+		var tweetsAsPresident = tweets.filter(function (tweet) {
+			return new Date('01-20-2017') < new Date(tweet.created_at);
+		});
+
+		$scope.mentions = appUtils.parseMentions(tweetsAsPresident);
+
+		tweetsAsPresident.forEach(function (tweet) {
+			if (new Date(tweet.created_at) < new Date('01-20-2017')) return;
+			var text = tweet.text.toLowerCase();
+			if (text.indexOf('fake news') !== -1 || text.indexOf('fakenews') !== -1 || text.indexOf('fake media') !== -1) $scope.count.fake++;
+			if (text.indexOf('@fox') !== -1 || text.indexOf('@seanhannity') !== -1) $scope.count.fox++;
+			if (text.indexOf('nytimes') !== -1 || text.indexOf('new york times') !== -1) $scope.count.nyt++;
+			if (text.indexOf('cnn') !== -1) $scope.count.cnn++;
+			if (text.indexOf('nbc') !== -1) $scope.count.nbc++;
+			if (text.indexOf('russia') !== -1 || text.indexOf('putin') !== -1) $scope.count.russia++;
+			if (text.indexOf('clinton') !== -1 || text.indexOf('hillary') !== -1) $scope.count.clinton++;
+			if (text.indexOf('obama') !== -1 && text.indexOf('obamacare') === -1) $scope.count.obama++;
+			if (text.indexOf('obamacare') !== -1) $scope.count.obamacare++;
+			if (text.indexOf('deal') !== -1) $scope.count.deal++;
+			if (text.indexOf('nfl') !== -1 && text.indexOf('influ') === -1 && text.indexOf('conflict') === -1) $scope.count.nfl++;
+			if (text.indexOf('#maga') !== -1 || text.indexOf('make america') !== -1) $scope.count.maga++;
 		});
 	});
 
@@ -677,6 +717,25 @@ var appUtils = {
 				return (new RegExp('\\b' + word + '\\b', 'i')).test(text);
 			return text.indexOf(word) !== -1;
 		}).length === 0;
+	},
+	parseMentions: function (list) {
+	  var hash = {};
+	  list.forEach(function(tweet){
+	    var parts = tweet.text.split(' ');
+	    parts.forEach(function(x){
+	      x = x.toLowerCase().replace(/[.!:]/g, '');
+	      if (x[0] !== '@' || x.length < 2) return;
+	      if (hash[x]) hash[x] = hash[x] + 1;
+	      else hash[x] = 1;
+	    });
+	  });
+	  return Object.keys(hash).map(function(key){
+	    return {mention: key, number: hash[key]}
+	  }).sort(function(a, b){
+	    if (a.number > b.number) return 1;
+	    else if (a.number < b.number) return -1;
+	    else return 0;
+	  }).reverse().slice(0, 20);
 	},
 	symbolsPresent: function (str) {
 		return str.indexOf('&&') !== -1 || str.indexOf('||') !== -1 || str.indexOf('~~') !== -1;

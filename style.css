@@ -32,6 +32,14 @@ label {
 	cursor: pointer;
 }
 
+.column-list {
+	columns: 3;
+	-moz-columns: 3;
+  -webkit-columns: 3;
+  list-style-position: inside;
+  padding: 0;
+}
+
 /* NAVBAR STYLES  ******************************* */
 
 .navbar {
@@ -354,6 +362,11 @@ span.tweet-source {
 	}
 	#highlights .col-md-12.right {
 		display: none;
+	}
+	.column-list {
+		columns: 2;
+		-moz-columns: 2;
+	  -webkit-columns: 2;
 	}
 }
 
