@@ -61,6 +61,10 @@ label {
 	margin-top: 60px;
 }
 
+#highlights .my-sites {
+	margin-bottom: 10px;
+}
+
 #highlights-left {
 	border-right: 2px solid gray;
 }
