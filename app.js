@@ -75,9 +75,26 @@ app.controller('allAccountsCtrl', ['$scope', '$http', '$location', function ($sc
 app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($scope, $http, TweetService) {
 
 	$scope.accounts = [];
+	$scope.days = Math.round((new Date() - new Date('01-20-2017'))/(1000*60*60*24));
 	$scope.fakeNews = [];
 	$scope.latest = [];
 	$scope.media = [];
+	$scope.mentions = [];
+	$scope.count = {
+		fake: 0,
+		cnn: 0,
+		nyt: 0,
+		nbc: 0,
+		fox: 0,
+		russia: 0,
+		deal: 0,
+		nfl: 0,
+		clinton: 0,
+		obama: 0,
+		obamacare: 0,
+		deal: 0,
+		maga: 0
+	};
 
 	$scope.showUrlToPage = function ($event) {
 		prompt('Copy text below (PC: ctrl + c) (Mac: cmd + c)', 'http://www.trumptwitterarchive.com/#' + $event.srcElement.id);
@@ -101,7 +118,31 @@ app.controller('highlightsCtrl', ['$scope', '$http', 'TweetService', function ($
 		});
 		$scope.latest = tweets.slice(0, 10);
 		$scope.fakeNews = tweets.filter(function (tweet) {
-			return tweet.text.toLowerCase().indexOf('fake news') !== -1;
+			text = tweet.text.toLowerCase();
+			return text.indexOf('fake news') !== -1 || text.indexOf('fakenews') !== -1 || text.indexOf('fake media') !== -1;
+		}).slice(0, 10);
+
+		var tweetsAsPresident = tweets.filter(function (tweet) {
+			return new Date('01-20-2017') < new Date(tweet.created_at);
+		});
+
+		$scope.mentions = appUtils.parseMentions(tweetsAsPresident);
+
+		tweetsAsPresident.forEach(function (tweet) {
+			if (new Date(tweet.created_at) < new Date('01-20-2017')) return;
+			var text = tweet.text.toLowerCase();
+			if (text.indexOf('fake news') !== -1 || text.indexOf('fakenews') !== -1 || text.indexOf('fake media') !== -1) $scope.count.fake++;
+			if (text.indexOf('@fox') !== -1 || text.indexOf('@seanhannity') !== -1) $scope.count.fox++;
+			if (text.indexOf('nytimes') !== -1 || text.indexOf('new york times') !== -1) $scope.count.nyt++;
+			if (text.indexOf('cnn') !== -1) $scope.count.cnn++;
+			if (text.indexOf('nbc') !== -1) $scope.count.nbc++;
+			if (text.indexOf('russia') !== -1 || text.indexOf('putin') !== -1) $scope.count.russia++;
+			if (text.indexOf('clinton') !== -1 || text.indexOf('hillary') !== -1) $scope.count.clinton++;
+			if (text.indexOf('obama') !== -1 && text.indexOf('obamacare') === -1) $scope.count.obama++;
+			if (text.indexOf('obamacare') !== -1) $scope.count.obamacare++;
+			if (text.indexOf('deal') !== -1) $scope.count.deal++;
+			if (text.indexOf('nfl') !== -1 && text.indexOf('influ') === -1 && text.indexOf('conflict') === -1) $scope.count.nfl++;
+			if (text.indexOf('#maga') !== -1 || text.indexOf('make america') !== -1) $scope.count.maga++;
 		});
 	});
 
@@ -115,12 +156,16 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 	$scope.all = [];
 	$scope.dateRange = getDateRange($routeParams);
 	$scope.deepQuery = {};
+	$scope.exported = '';
+	$scope.exportSeparator = ',';
+	$scope.exportSettings = {source: true, text: true, created_at: true, retweet_count: true, favorite_count: true, is_retweet: true, id_str: true};
 	$scope.hasRetweetsAndFavorites = $scope.account === 'realdonaldtrump';
 	$scope.loaded = [];
 	$scope.increment = 100;
 	$scope.orderBy = 'created_at_date';
 	$scope.query = getQuery($routeParams);
 	$scope.settings = getSettings($routeParams);
+	$scope.showExport = false;
 	$scope.showModal = false;
 	$scope.sources = {
 		source: getDevice($routeParams),
@@ -130,6 +175,40 @@ app.controller('archiveCtrl', ['$scope', '$http', '$timeout', '$sce', '$routePar
 		time: getTime($routeParams),
 		options: appUtils.times
 	};
+
+	$scope.export = function (format) {
+		$scope.showExport = true;
+
+		var requestedProps = Object.keys($scope.exportSettings).filter(function(setting){
+			return $scope.exportSettings[setting];
+		});
+
+		if (format === 'CSV') {
+			var separator = $scope.exportSeparator;
+			var months = appUtils.months;
+			var data = $scope.matches.map(function(item){
+				return requestedProps.map(function(prop){
+					if (prop === 'text')
+						return separator === ',' ? item.text.replace(/,/g, '').replace(/\n/g, '') : item.text.replace(/\n/g, '');
+					else if (prop === 'created_at')
+						return appUtils.dateToExcelFormat(months, item[prop]);
+					else
+						return item[prop];
+				}).join(separator);
+			});
+			$scope.exported = [requestedProps.join(separator)].concat(data).join('\n');
+		}
+		else if (format === 'JSON') {
+			var parsedData = $scope.matches.map(function(item){
+				var parsedItem = {};
+				requestedProps.forEach(function(prop){
+					parsedItem[prop] = item[prop];
+				});
+				return parsedItem;
+			});
+			$scope.exported = JSON.stringify(parsedData);
+		}
+	}
 
 	$scope.missingProps = function (data) {
 		return data && data.length && data[0]['favorite_count'] === undefined;
@@ -639,36 +718,73 @@ var appUtils = {
 			return text.indexOf(word) !== -1;
 		}).length === 0;
 	},
+	parseMentions: function (list) {
+	  var hash = {};
+	  list.forEach(function(tweet){
+	    var parts = tweet.text.split(' ');
+	    parts.forEach(function(x){
+	      x = x.toLowerCase().replace(/[.!:]/g, '');
+	      if (x[0] !== '@' || x.length < 2) return;
+	      if (hash[x]) hash[x] = hash[x] + 1;
+	      else hash[x] = 1;
+	    });
+	  });
+	  return Object.keys(hash).map(function(key){
+	    return {mention: key, number: hash[key]}
+	  }).sort(function(a, b){
+	    if (a.number > b.number) return 1;
+	    else if (a.number < b.number) return -1;
+	    else return 0;
+	  }).reverse().slice(0, 20);
+	},
 	symbolsPresent: function (str) {
 		return str.indexOf('&&') !== -1 || str.indexOf('||') !== -1 || str.indexOf('~~') !== -1;
 	},
+	dateToExcelFormat: function (ref, str) {
+		var list = str.split(' ');
+		return ref[list[1]] + '-' + list[2] + '-' + list[5] + ' ' + list[3];
+	},
 	times: [
-      'Any time',
-      '12:00am',
-      '1:00am',
-      '2:00am',
-      '3:00am',
-      '4:00am',
-      '5:00am',
-      '6:00am',
-      '7:00am',
-      '8:00am',
-      '9:00am',
-      '10:00am',
-      '11:00am',
-      '12:00pm',
-      '1:00pm',
-      '2:00pm',
-      '3:00pm',
-      '4:00pm',
-      '5:00pm',
-      '6:00pm',
-      '7:00pm',
-      '8:00pm',
-      '9:00pm',
-      '10:00pm',
-      '11:00pm',
-    ]
+    'Any time',
+    '12:00am',
+    '1:00am',
+    '2:00am',
+    '3:00am',
+    '4:00am',
+    '5:00am',
+    '6:00am',
+    '7:00am',
+    '8:00am',
+    '9:00am',
+    '10:00am',
+    '11:00am',
+    '12:00pm',
+    '1:00pm',
+    '2:00pm',
+    '3:00pm',
+    '4:00pm',
+    '5:00pm',
+    '6:00pm',
+    '7:00pm',
+    '8:00pm',
+    '9:00pm',
+    '10:00pm',
+    '11:00pm',
+  ],
+	months: {
+		'Jan': '01',
+		'Feb': '02',
+		'Mar': '03',
+		'Apr': '04',
+		'May': '05',
+		'Jun': '06',
+		'Jul': '07',
+		'Aug': '08',
+		'Sep': '09',
+		'Oct': '10',
+		'Nov': '11',
+		'Dec': '12'
+	}
 }
 
 console.log("Goddamn Looky Loo");

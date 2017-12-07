@@ -1,4 +1,22 @@
 <div ng-controller="archiveCtrl" id="archive" class="container-fluid">
+	<div id="export-box" class="center" ng-show="showExport">
+		<div id="export-options">
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.id_str"><label>Tweet Id</label></div>
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.text"><label>Text</label></div>
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.created_at"><label>Created At (GMT)</label></div>
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.favorite_count"><label>Favorites</label></div>
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.retweet_count"><label>Retweets</label></div>
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.is_retweet"><label>Is Retweet</label></div>
+			<div><input type="checkbox" class="pointer" ng-model="exportSettings.source"><label>Source</label></div>
+		</div>
+		<div>
+			<input type="text" ng-model="exportSeparator" maxlength="1" />
+			<button class="btn" ng-click="export('CSV')">Update as CSV</button>
+			<button class="btn" ng-click="export('JSON')">Update as JSON</button>
+			<button class="btn" ng-click="showExport = false">Close</button>
+		</div>
+		<textarea ng-model="exported"></textarea>
+	</div>
 	<div id="search-bar" class="col-md-12 input-group input-group-lg">
 		<span class="input-group-addon pointer" id="sizing-addon1" ng-click="showUrlToPage()" title="click for link to this search">{{matches.length}}</span>
 		<input class="form-control" type="text" tabindex='1' placeholder="Search..." ng-model="query" aria-describedby="sizing-addon1">
@@ -18,7 +36,17 @@
 	</div>
 	<div id="control-bar" class="col-md-12">
 		<div id="control-buttons">
-			<div class="dropdown">
+			<div id="exports-button" class="dropdown">
+				<button class="btn btn-danger form-control" type="button" data-toggle="dropdown">Export
+				<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li><b>Performance slow over 10,000 items</b></li>
+					<li role="separator" class="divider"></li>
+					<li class="pointer" ng-click="export('CSV')">CSV (for MS Excel)</li>
+					<li class="pointer" ng-click="export('JSON')">JSON</li>
+				</ul>
+			</div>
+			<div id="options-button" class="dropdown">
 			  <button class="btn btn-danger form-control" type="button" data-toggle="dropdown">Options
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">

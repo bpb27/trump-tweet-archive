@@ -87,7 +87,7 @@
     "linked": "",
     "name": "Tom Price",
     "startingYear": "2009",
-    "title": "Secretary of Health and Human Services"
+    "title": "former Secretary of Health and Human Services"
   },
   {
     "account": "seanhannity",
@@ -117,7 +117,7 @@
     "linked": "",
     "name": "Stephen Bannon",
     "startingYear": "2010",
-    "title": "Chief Strategist"
+    "title": "former Chief Strategist"
   },
   {
     "account": "andypuzder",
@@ -193,7 +193,7 @@
     "account": "nikkihaley",
     "display": true,
     "id": 37666984,
-    "inactive": false,
+    "inactive": true,
     "linked": "govhaleysc",
     "name": "Nikki Haley",
     "startingYear": "2012",
@@ -353,7 +353,7 @@
     "account": "monicacrowley",
     "display": true,
     "id": 166990746,
-    "inactive": false,
+    "inactive": true,
     "linked": "",
     "name": "Monica Crowley",
     "startingYear": "2011",
@@ -397,7 +397,7 @@
     "linked": "",
     "name": "Sebastian Gorka",
     "startingYear": "2014",
-    "title": "National Security Council"
+    "title": "former National Security Council advisor"
   },
   {
     "account": "govpencein",
@@ -512,7 +512,7 @@
   {
     "account": "potus",
     "display": true,
-    "id": "822215679726100480",
+    "id": 822215679726100480,
     "inactive": false,
     "linked": "",
     "name": "Donald Trump POTUS Account",
@@ -522,7 +522,7 @@
   {
     "account": "vp",
     "display": true,
-    "id": "818910970567344128",
+    "id": 818910970567344128,
     "inactive": false,
     "linked": "",
     "name": "Mike Pence VP Account",
@@ -532,7 +532,7 @@
   {
     "account": "whitehouse",
     "display": true,
-    "id": "822215673812119553",
+    "id": 822215673812119553,
     "inactive": false,
     "linked": "",
     "name": "The Whitehouse",
@@ -542,10 +542,10 @@
   {
     "account": "presssec",
     "display": true,
-    "id": "818927131883356161",
+    "id": 818927131883356161,
     "inactive": false,
     "linked": "",
-    "name": "Sean Spicer",
+    "name": "Sean Spicer / Sarah Sanders",
     "startingYear": "2017",
     "title": "Press Secretary"
   },
@@ -562,8 +562,8 @@
   {
     "account": "shsanders45",
     "display": true,
-    "id": "823693635564802048",
-    "inactive": false,
+    "id": 823693635564802048,
+    "inactive": true,
     "linked": "",
     "name": "Sarah H. Sanders",
     "startingYear": "2017",
@@ -573,11 +573,11 @@
     "account": "jasoninthehouse",
     "display": true,
     "id": 17800215,
-    "inactive": false,
+    "inactive": true,
     "linked": "",
     "name": "Jason Chaffetz",
     "startingYear": "2009",
-    "title": "Congressman"
+    "title": "former Congressman"
   },
   {
     "account": "hillaryclinton",
