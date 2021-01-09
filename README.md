@@ -1,6 +1,3 @@
-source for http://www.trumptwitterarchive.com/
+There's a new repo in town - https://github.com/bpb27/tta-elastic
 
-feel free to use the data (and let me know if you're getting into anything cool trumptwitterarchive@gmail.com)
-
-to run locally, just start an http server at the root
-`python -m SimpleHTTPServer`
+This is the source code for the legacy Trump Twitter Archive site (still hosted at http://www.trumptwitterarchive.com/ for now 1/21). It's not going to be very interesting.
